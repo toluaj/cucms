@@ -1,5 +1,5 @@
 import React,{Component} from 'react';
-import Splash from './components/general/SplashPage';
+import Login from './components/general/Login';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -7,7 +7,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div className="App">
-          <Route exact path="/" component={Splash}></Route>
+          <Route exact path="/" component={Login}></Route>
         </div>
       </BrowserRouter>
     );

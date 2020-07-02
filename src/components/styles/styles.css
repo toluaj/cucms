@@ -1,0 +1,9 @@
+body {
+    font-family: 'Roboto Condensed';
+    background-image: url('../images/blurry.jpg');
+    background-repeat: repeat ;
+}
+
+#header {
+    font-style: italic;
+}

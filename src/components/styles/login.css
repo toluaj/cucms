@@ -1,0 +1,134 @@
+/* html,
+body {
+  height: 100%;
+}
+
+body {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  margin-left: 30em;
+  background-color: white;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+}
+.form-signin .checkbox {
+  font-weight: 400;
+}
+.form-signin .form-control {
+  position: relative;
+  box-sizing: border-box;
+  height: auto;
+  padding: 10px;
+  width: 20em;
+  font-size: 16px;
+}
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans&display=swap");
+
+/* Login Main Container */
+
+body {
+    color: teal ;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: auto;
+}
+
+.base-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.header {
+    font-size: 20px;
+    font-family: 'Times New Roman', Times, serif sans-serif;
+    text-align: center;
+    margin-bottom: -3px;
+}
+  
+.content {
+    display: flex;
+    flex-direction: column;
+}
+
+.image {
+    width: 21em;
+}
+
+img {
+    width: 80%;
+    height: 80%;
+    float: left;
+}
+      
+.form {
+    margin-top: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: fit-content;
+}
+
+.form-group label {
+    font-size: 15px;
+    /* text-align: center; */
+}
+
+input {
+    /* margin-top: 6px; */
+    min-width: 18em;
+    height: 37px;
+    padding: 0px 10px;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    background-color: #f3f3f3;
+    border: 0;
+    border-radius: 4px;
+    margin-bottom: 31px;
+    transition: all 250ms ease-in-out;
+}
+
+.form-group input[type="password"] {
+    /* margin-top: 5px; */
+    margin-bottom: 3px;
+}
+
+.form-group input[type="email"] {
+    margin-bottom: 5px;
+}
+  
+.form-group input[type="checkbox"] {
+    font-size: 10px;
+    font-weight: 400;
+    width: 15px;
+    height: 10px;
+    cursor: pointer;
+    position: relative;
+    margin-right: 13em;
+}
+
+.btn {
+    background-color: teal;
+    width: 9em;
+    border-radius: 2em;
+}
+
+footer {
+    margin-top: 3em;
+}
+
