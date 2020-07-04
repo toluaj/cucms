@@ -1,7 +1,11 @@
 body {
     font-family: 'Roboto Condensed';
-    background-image: url('../images/blurry.jpg');
+    background-image: url('../images/white.jpg');
+    /* background-color: antiquewhite; */
     background-repeat: repeat ;
+    color: teal ;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    margin: 20p5;
 }
 
 #header {

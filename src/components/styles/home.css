@@ -1,0 +1,65 @@
+.container-fluid{
+    margin: 0 auto
+}
+
+.jumbotron img {
+    width: 7em;
+    margin-top: -28px;
+}
+
+.jumbotron {
+    height: 25px;
+    /* background-color: rgb(192, 174, 192) ; */
+    background-color: rgb(201, 182, 182);
+    margin: 0 auto;
+    border-radius: 1em;
+}
+
+.head h1 {
+    margin-top: -30px;
+    margin-bottom: -2px;
+    margin-right: 3em;
+}
+
+
+li {
+    list-style: none;
+    display: inline;
+}
+
+ul {
+    background-color: whitesmoke;
+    /* background-color: rgb(192, 174, 192); */
+    padding:20px;
+    width: 100%;
+    border-radius: 1em;
+}
+
+.menu_item a {
+    position: relative;
+    font-size: 20px;
+    margin-top: -20em;
+    text-decoration: none;
+    color: teal;
+}
+
+.menu_item :hover {
+    background-color: burlywood;
+    
+}
+
+.enter {
+    margin-right: 2em;
+    float: right;
+}
+
+.enter a {
+    color: black;
+    text-decoration: none;
+}
+
+.enter a:hover {
+    background-color: aliceblue;
+    padding: 5px;
+    border-radius: 2em;
+}

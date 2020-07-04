@@ -36,11 +36,7 @@ body {
 
 /* Login Main Container */
 
-body {
-    color: teal ;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: auto;
-}
+
 
 .base-container {
     width: 100%;
@@ -96,11 +92,24 @@ input {
     padding: 0px 10px;
     font-size: 15px;
     font-family: "Open Sans", sans-serif;
-    background-color: #f3f3f3;
+    background-color: #d1bebe;
     border: 0;
     border-radius: 4px;
     margin-bottom: 31px;
-    transition: all 250ms ease-in-out;
+    /* transition: all 250ms ease-in-out; */
+}
+
+select {
+    min-width: 10em;
+    height: 37px;
+    padding: 10px 10px;
+    font-size: 15px;
+    font-family: "Open Sans", sans-serif;
+    background-color: #d1bebe;
+    border: 0;
+    border-radius: 4px;
+    margin-right: 4em;
+    margin-bottom: 31px;
 }
 
 .form-group input[type="password"] {
@@ -124,11 +133,17 @@ input {
 
 .btn {
     background-color: teal;
-    width: 9em;
-    border-radius: 2em;
+    width: 13em;
+    border-radius: 4px;
 }
 
 footer {
     margin-top: 3em;
+}
+
+.logo img {
+    width: 60px;
+    margin-left: 16em;
+    
 }
 

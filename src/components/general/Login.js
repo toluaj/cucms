@@ -2,9 +2,7 @@ import React, {Component} from 'react';
 import '../styles/styles.css';
 import '../styles/login.css';
 import logo from '../images/logo.png';
-import loginImg from '../images/login.svg'
 import {Link} from 'react-router-dom';
-import {SignUp} from './SignUp';
 
 class Login extends Component {
 
@@ -12,14 +10,25 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            username: '',
+            email: '',
             password: ''
         }
 
+
     }
+
+    onChange = (e) =>
+        this.setState({
+
+         [e.target.name]: e.target.value,
+
+      });
 
 
     render() {
+
+        const {email, password} = this.state;
+
         return (
             <div className="base-container">
         <div className="content">
@@ -29,14 +38,17 @@ class Login extends Component {
         <div className="header mr-4">CUCMS Login</div>
           <div className="form">
             <div className="form-group">
-              <label for="username" className="">Username</label>
-              <input type="email" name="username"
-               value="" placeholder="Email address/Username" />
+              <label for="email" className="">Email Address</label>
+              <input type="email"
+               name="email"
+               value={email}
+               onChange={this.onChange} />
             </div>
             <div className="form-group">
               <label for="password" className="">Password</label>
               <input type="password" name="password"
-              value="" placeholder="Password" /><p className="mt-2">Forgot?</p>
+              value={password}
+              onChange={this.onChange} /><p className="mt-2">Forgot Password?</p>
             </div>
             {/* <div className="form-group">
               <label for="remember" className="remember">
@@ -50,7 +62,7 @@ class Login extends Component {
             Login
           </button>
           <footer className="">
-              Don't have an account? <Link to={SignUp}>Sign Up</Link> </footer>
+              Don't have an account? <Link to="/sign-up">Sign Up</Link> </footer>
       </div>
         );
     }
