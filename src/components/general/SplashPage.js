@@ -19,7 +19,7 @@ class SplashPage extends Component {
         return(
             <div className="container-fluid">
                 <div className="row enter">
-                    <p className="mr-5"><Link to="/login">Login</Link></p>
+                    <p className="mr-5"><Link to="/submitabstract">Login</Link></p>
                     <p><Link to="/sign-up">Sign Up</Link></p>
                 </div>
                 <div className="jumbotron">

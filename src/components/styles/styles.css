@@ -5,9 +5,18 @@ body {
     background-repeat: repeat ;
     color: teal ;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    margin: 20p5;
+    margin: 10px;
+    max-width: 100%;
+    overflow-x: hidden;
+    height: auto !important;
+    /* overflow-y: hidden; */
+
 }
 
 #header {
     font-style: italic;
+}
+
+.submit {
+    margin-left: 10em;
 }

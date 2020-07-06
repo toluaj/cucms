@@ -1,0 +1,66 @@
+ol {
+    margin-bottom: 5em;
+    border-radius: 1em;
+    margin-right: 1em;
+    padding: 0.5em;
+    max-width: 50em;
+}
+
+li {
+    display: list-item;
+    list-style-position: inside;
+    list-style-type: disc;
+    margin-bottom: 9px;
+    
+}
+
+.instructions {
+    margin-left: 15em;
+    margin-right: 18em;
+}
+
+.submission {
+    margin-left: 15em;
+    border: 5px solid rgb(201, 182, 182);
+    width: 50em;
+    padding: 20px;
+}
+
+.submission p {
+    position: relative;
+}
+
+.simp {
+    margin-left: 13em;
+}
+
+.authors {
+    margin-top: 1em;
+    border: 3px solid rgb(201, 182, 182);
+    width: 25em;
+}
+
+.linethrough {
+    color: grey;
+    border: 1px solid;
+}
+
+input {
+    margin-left: 1em;
+}
+
+.authors p {
+    margin-left: 3px;
+    margin-bottom: -1px;
+}
+
+.btn {
+    width: 9em;
+    background-color: rgb(201, 182, 182) ;
+    margin-left: 1em;
+    margin-bottom: 3px;
+}
+
+.btn:hover {
+    background-color: teal;
+}
