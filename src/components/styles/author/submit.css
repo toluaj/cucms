@@ -15,15 +15,15 @@ li {
 }
 
 .instructions {
-    margin-left: 15em;
-    margin-right: 18em;
+    margin-left: 25em;
+    margin-right: 20em;
 }
 
 .submission {
-    margin-left: 15em;
+    margin-left: 25em;
     border: 5px solid rgb(201, 182, 182);
     width: 50em;
-    padding: 20px;
+    padding: 10px;
 }
 
 .submission p {
@@ -54,13 +54,240 @@ input {
     margin-bottom: -1px;
 }
 
-.btn {
-    width: 9em;
-    background-color: rgb(201, 182, 182) ;
-    margin-left: 1em;
-    margin-bottom: 3px;
+.remove {
+    background-color: rgb(240, 34, 34);
+    color: white;
+    margin-left: 2em;
+    border-radius: 90%;
+    border: none;
+    width: 20px;
+    height: 5px;
+    padding: 20px;
 }
 
-.btn:hover {
-    background-color: teal;
+.add {
+    background-color: rgb(52, 156, 66);
+    color: white;
+    margin-left: 2em;
+    border-radius: 90%;
+    border: none;
+    width: 20px;
+    height: 5px;
+    padding: 20px;
 }
+
+.add2 {
+    background-color: rgb(52, 156, 66);
+    color: white;
+    margin-bottom: 3px;
+    border-radius: 90%;
+    border: none;
+    width: 20px;
+    height: 5px;
+    padding: 20px;
+    margin-top: 7px;
+}
+
+.sign {
+    font-weight: bold;
+    line-height: 5px;
+    text-align: center;
+}
+
+.jumbotron {
+    background-color: transparent;
+    margin-bottom: 2em;
+}
+
+/* .head {
+    margin-top: .5em;
+    margin-left: 1em;
+} */
+
+@media only screen and (min-width: 768px) {
+    .img {
+        margin-left: 10.5em;
+    }
+    .head {
+        margin-top: .5em;
+        margin-left: 5.5em;
+    }
+
+    .submit {
+        margin-left: 18em; 
+    }
+
+    .simp {
+        margin-left: 18em;
+        font-size: 20px;
+    }
+
+    .ta-abstract {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;	
+        width: 40em;
+    }
+
+    .btnsub {
+        margin-left: 15em;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .container-fluid{
+        max-width: 350px;
+        margin: 20px;
+    }
+
+    .submit {
+        margin-bottom: 5em;
+        margin-left: 2em;
+    }
+
+    .head {
+        margin-left: .5em;
+        margin-top: .5em;
+    }
+
+    img {
+        margin-left: .5em;
+    }
+
+    .submission {
+        margin-left: -1.5em;
+        width: 30em;
+        margin-right: 18em;
+    }
+
+    .instructions {
+        margin-left: 8em;
+        margin-right: 40em;
+    }
+
+    .simp {
+        margin-left: 3em;
+    }
+
+    .ta-title {
+        width: 21em;
+        height: 5em;
+    }
+
+    .ta-abstract {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;	
+        width: 23em;
+        height: 25em;
+    }
+
+    .nav-link {
+        font-size: 9px;   
+    }
+
+    .btnsub {
+        margin-left: 7em;
+    }
+   
+}
+
+.ta-abstract {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;	
+    /* width: 60%; */
+}
+
+.nav-link {
+    text-decoration: none;
+    color: rgb(240,172,175);
+    
+}
+.nav-link :focus, :hover, :visited, :link, :active {
+    text-decoration: none;
+    text-decoration-style: none;
+}
+
+.btnsub {
+    background-color: rgb(52, 156, 66);
+    margin-top: 1em;
+    color: white;
+    width: 5em;
+    height: 1.2em;
+    border-radius: 4px;
+    font-size: 20px;
+}
+
+/* .nav-link :hover, :focus, :link {
+    color: rgb(240,172,175);
+} */
+
+
+/* nav */
+/* 
+<div id="mySidenav" className="sidenav">
+                <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
+                <a href="#">About</a>
+                <a href="#">Services</a>
+                <a href="#">Clients</a>
+                <a href="#">Contact</a>
+            </div>
+            <span style={{fontSize: "30px", cursor: "pointer"}} onClick={openNav}>&#9776;</span> */
+
+/* .sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+  }
+  
+  .sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+  }
+  
+  .sidenav a:hover {
+    color: #f1f1f1;
+  }
+  
+  .sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+  
+  @media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+  } */
+
+  /* rsuite */
+  /* <div className="nav-wrapper" style={{width: "10em"}, {display: "inline-table"}}>
+                <Sidenav defaultOpenKeys={['3', '4']} activeKey="1" appearance="inverse">
+                    <Sidenav.Body>
+                        <Nav>
+                            <Nav.Item eventKey="1">Dashboard</Nav.Item>
+                            <Nav.Item eventKey="2">User Group</Nav.Item>
+                            <Dropdown eventKey="3" title="Advanced">
+                            <Dropdown.Item eventKey="3-1">Geo</Dropdown.Item>
+                            <Dropdown.Item eventKey="3-2">Devices</Dropdown.Item>
+                            <Dropdown.Item eventKey="3-3">Loyalty</Dropdown.Item>
+                            <Dropdown.Item eventKey="3-4">Visit Depth</Dropdown.Item>
+                        </Dropdown>
+                        </Nav>
+                    </Sidenav.Body>
+                </Sidenav>
+                </div> */

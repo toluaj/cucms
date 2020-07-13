@@ -3,6 +3,7 @@ import '../../styles/styles.css';
 import '../../styles/author/submit.css';
 import logo from '../../images/logo.png';
 import {Link} from 'react-router-dom';
+import SideBar from '../../layouts/AuthorSideBar';
 
 class submitAbs extends Component {
 
@@ -10,43 +11,55 @@ class submitAbs extends Component {
         super(props);
 
         this.state = {
-
+            authorList: [{ index: Math.random(), firstName: "", lastName: "", email: ""}],
+            expanded: true,
         }
-        this.duplicate = this.duplicate.bind(this);
+        this.deleteAuthor = this.deleteAuthor.bind(this);
+    }   
+
+    handleChange = (e) => {
+        if(["firstName", "lastName", "email"].includes(e.target.name)) {
+            let authorList = [...this.state.authorList]
+            authorList[e.target.dataset.id][e.target.name] = e.target.value;
+        }
+        else {
+            this.setState({
+                [e.target.name]: e.target.value
+            })
+        }
     }
 
-    duplicate = (e) => {
-        e.preventDefault();
-        var i = 0;
-        var original = document.getElementById('duplicater');
-        var clone = original.cloneNode(true); // "deep" clone
-        clone.id = "duplicater" + ++i;
-    // or clone.id = ""; if the divs don't need an ID
-        original.parentNode.appendChild(clone);
+    addNewAuthor = (e) => {
+        // e.preventDefault();
+        this.setState((prevState) => ({
+            authorList: [...prevState.authorList, { index: Math.random(), 
+            firstName: "", lastName: "", email: ""}],
+        }));
     }
 
+    deleteAuthor = (record) => {
+        this.setState({
+            authorList: this.state.authorList.filter
+            (r => r!== record),
+        });
+    }
 
+    
     render() {
 
-        const {duplicate} = this.state;
-
+        let {authorList, onSelectNav} = this.state;
         return(
             <div className="container-fluid">
-                <div className="row enter col-2">
-                    <p className="mr-5"><Link to="/login">Login</Link></p>
-                    <p><Link to="/sign-up">Sign Up</Link></p>
-                </div>
                 <div className="jumbotron">
                     <div className="image">
-                        <img src={logo}/>
+                        <img className="img" src={logo}/>
                     </div>
-                    <div className="head"> 
-                        <h1>CUCMS</h1>
-                        <p>A solution to manage conferences in Covenant University</p>  
-                    </div>
+                    <br/>
+                    <h1 className=" head mr-5">CUCMS</h1>
                 </div>
+                <SideBar/>
                 <div className="row">
-                    <h5 className="submit mt-3 mb-3 col-12">SUBMIT ABSTRACT</h5>
+                    <h5 className="submit mt-5 mb-3 col-12">SUBMIT ABSTRACT</h5>
                     {/* <br/> */}
                 </div>
                 <div className="row">
@@ -68,30 +81,54 @@ class submitAbs extends Component {
                     </div>
                 </div>
                     <div className="submission">
-                        <div className="row">
-                        <form className="ml-4">
-                        <h5>Abstract Title<b>*</b></h5>
+                        <form className="ml-4" id="wrapper">
+                        <h5><u>Abstract Title<b style={{color: 'red'}}>*</b></u></h5>
                         <p>Title must not exceed 200 characters</p>
-                        <textarea name="title" cols="50" rows="3"></textarea>
-                        <h5>Abstract Text <b>*</b></h5>
+                        <textarea className="ta-title" name="title" cols="50" rows="3"></textarea>
+                        <h5><u>Abstract Text<b style={{color: 'red'}}>*</b></u></h5>
                         <p>Text must not exceed 5000 characters</p>
-                        <textarea name="abstract" cols="90" rows="20"></textarea>
-                        <div className="authors" id="duplicater">
-                          <h5 className="ml-2">Authors <b>*</b></h5>
-                          <hr className="linethrough"></hr>
-                          <p>First Name</p>
-                          <input type="text" name="firstname"/>
-                          <p>Last Name</p>
-                          <input type="text" name="lastname"/>
-                          <p>Email Address</p>
-                          <input type="email" name="email"/>
-                          <br />
-                          <button className="btn btn-block" onClick={duplicate}>Add author</button>
+                        <textarea className="ta-abstract" name="abstract" cols="90" rows="20"></textarea>
+                        <div>
+                        {authorList.map((val, i) => {
+                            let firstName = `firstName-${i}`, lastName = `lastName-${i}`, email = `email-${i}`
+                            return ( 
+                                <div className="authors" key={val.index}>
+                                <h5 className="ml-2"><u>Authors<b style={{color: 'red'}}>*</b></u></h5>
+                                <hr className="linethrough"></hr>
+                                <p>First Name</p>
+                                <input type="text" id={firstName} data-id={i} name="firstName"/>
+                                <p>Last Name</p>
+                                <input type="text" id={lastName} data-id={i} name="lastName"/>
+                                <p>Email Address</p>
+                                <input type="email" id={email} data-id={i} name="email"/>
+                                {
+                                i===0 ? 
+                                <button id="submit" type="button" className="add btn btn-primary"
+                                name="submit" onClick={()=>this.addNewAuthor()}>
+                                <h5 className="sign">+</h5></button>
+                                :
+                                <button id="submit" type="button" className="remove btn btn-danger"
+                                name="submit" onClick={()=>this.deleteAuthor(val)}>
+                                <h5 className="sign">-</h5></button>
+                                }   
+                          </div>
+                            );
+                         })}
+                            <button id="submit" type="button" className="add2 btn btn-primary"
+                            name="submit" onClick={()=>this.addNewAuthor()}>
+                            <h5 className="sign">+</h5></button>
+                            <div>
+                            <h5 className="mt-3"><u>Affiliation<b style={{color: 'red'}}>*</b></u></h5>
+                            <textarea cols="50" rows="3"></textarea>
                         </div>
+                        </div>
+                            <button id="submit" type="button" className="btnsub btn btn-block"
+                            name="submit">
+                            <p className="sign">Submit</p></button>
                         </form>
-                        </div>
                     </div>
             </div>
+            
         )
     }
 }

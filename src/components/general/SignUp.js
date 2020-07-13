@@ -24,7 +24,7 @@ class SignUp extends Component {
     render() {
 
         return(
-            <div className="base-container">
+            <div className="container-fluid">
         <div className="content">
             <div className="logo"><img src={logo} width="10px"/></div>
           <div className="header mt-4"> SIGN UP FOR CUCMS</div>
