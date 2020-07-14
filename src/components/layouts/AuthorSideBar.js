@@ -4,12 +4,16 @@ import  SideNav, { Toggle, Nav, ClickOutside, NavItem, NavIcon, NavText } from '
 import {Link} from 'react-router-dom';
 
 class AuthorSideBar extends Component {
+
+    constructor(props){
+        super(props);
+    }
     render() {
         return (
             <div>
-                <SideNav>
-                <SideNav.Toggle />
-                <SideNav.Nav >
+                <SideNav style={{backgroundColor: "teal", height: "100%"}}>
+                <SideNav.Toggle style={{backgroundColor: "rgb(201,182,182)"}} />
+                <SideNav.Nav  >
                     <NavItem eventKey="home">
                     <NavIcon><Link to="/" className="nav-link">
                             <i className="fa fa-fw fa-home" title="Home" style={{ fontSize: '2.2em' }} />

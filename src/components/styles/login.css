@@ -133,12 +133,14 @@ select {
 
 .btn {
     background-color: teal;
-    width: 13em;
+    width: 5em;
     border-radius: 4px;
+    margin-right: 40em;
 }
 
 footer {
     margin-top: 3em;
+    margin-right: 35em;
 }
 
 .logo img {

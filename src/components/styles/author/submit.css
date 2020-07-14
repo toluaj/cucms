@@ -99,11 +99,6 @@ input {
     margin-bottom: 2em;
 }
 
-/* .head {
-    margin-top: .5em;
-    margin-left: 1em;
-} */
-
 @media only screen and (min-width: 768px) {
     .img {
         margin-left: 10.5em;
@@ -218,76 +213,3 @@ input {
     border-radius: 4px;
     font-size: 20px;
 }
-
-/* .nav-link :hover, :focus, :link {
-    color: rgb(240,172,175);
-} */
-
-
-/* nav */
-/* 
-<div id="mySidenav" className="sidenav">
-                <a href="javascript:void(0)" className="closebtn" onClick={closeNav}>&times;</a>
-                <a href="#">About</a>
-                <a href="#">Services</a>
-                <a href="#">Clients</a>
-                <a href="#">Contact</a>
-            </div>
-            <span style={{fontSize: "30px", cursor: "pointer"}} onClick={openNav}>&#9776;</span> */
-
-/* .sidenav {
-    height: 100%;
-    width: 0;
-    position: fixed;
-    z-index: 1;
-    top: 0;
-    left: 0;
-    background-color: #111;
-    overflow-x: hidden;
-    transition: 0.5s;
-    padding-top: 60px;
-  }
-  
-  .sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s;
-  }
-  
-  .sidenav a:hover {
-    color: #f1f1f1;
-  }
-  
-  .sidenav .closebtn {
-    position: absolute;
-    top: 0;
-    right: 25px;
-    font-size: 36px;
-    margin-left: 50px;
-  }
-  
-  @media screen and (max-height: 450px) {
-    .sidenav {padding-top: 15px;}
-    .sidenav a {font-size: 18px;}
-  } */
-
-  /* rsuite */
-  /* <div className="nav-wrapper" style={{width: "10em"}, {display: "inline-table"}}>
-                <Sidenav defaultOpenKeys={['3', '4']} activeKey="1" appearance="inverse">
-                    <Sidenav.Body>
-                        <Nav>
-                            <Nav.Item eventKey="1">Dashboard</Nav.Item>
-                            <Nav.Item eventKey="2">User Group</Nav.Item>
-                            <Dropdown eventKey="3" title="Advanced">
-                            <Dropdown.Item eventKey="3-1">Geo</Dropdown.Item>
-                            <Dropdown.Item eventKey="3-2">Devices</Dropdown.Item>
-                            <Dropdown.Item eventKey="3-3">Loyalty</Dropdown.Item>
-                            <Dropdown.Item eventKey="3-4">Visit Depth</Dropdown.Item>
-                        </Dropdown>
-                        </Nav>
-                    </Sidenav.Body>
-                </Sidenav>
-                </div> */
