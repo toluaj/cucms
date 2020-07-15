@@ -95,7 +95,7 @@ input {
 }
 
 .jumbotron {
-    background-color: transparent;
+    background-color: transparent !important;
     margin-bottom: 2em;
 }
 
@@ -197,6 +197,7 @@ input {
 .nav-link {
     text-decoration: none;
     color: rgb(240,172,175);
+    font-size: 15px
     
 }
 .nav-link :focus, :hover, :visited, :link, :active {

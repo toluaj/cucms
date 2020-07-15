@@ -9,10 +9,10 @@
 
 .jumbotron {
     height: 25px;
-    /* background-color: rgb(192, 174, 192) ; */
-    background-color: rgb(201, 182, 182);
+    color: teal;
+    background-color: rgb(241, 244, 247) !important;
     margin: 0 auto;
-    border-radius: 1em;
+    border-radius: .5em;
 }
 
 .head h1 {
@@ -21,32 +21,38 @@
     margin-right: 3em;
 }
 
-
-li {
-    list-style: none;
-    display: inline;
-}
-
-ul {
-    background-color: whitesmoke;
-    /* background-color: rgb(192, 174, 192); */
-    padding:20px;
-    width: 100%;
-    border-radius: 1em;
-}
-
-.menu_item a {
-    position: relative;
+ul.topnav {
+    list-style-type: none;
+    margin: -1.5em 0 0 0;
+    padding: 10px;
     font-size: 20px;
-    margin-top: -20em;
-    text-decoration: none;
+    overflow: hidden;
+    width: 83em;
+    height: 80px;
+    background-color: rgb(199, 206, 212);
+    border-radius: .5em;
+  }
+  
+  ul.topnav li {float: left; list-style-type: none;}
+  
+  ul.topnav li a {
+    display: block;
     color: teal;
-}
-
-.menu_item :hover {
-    background-color: burlywood;
-    
-}
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  ul.topnav li a:hover:not(.active) {background-color: rgb(185, 151, 151); padding: 10px}
+  
+  ul.topnav li a.active {background-color: whitesmoke; border-radius: 4px;}
+  
+  ul.topnav li.right {float: right;}
+  
+  @media screen and (max-width: 600px) {
+    ul.topnav li.right, 
+    ul.topnav li {float: none;}
+  }
 
 .enter {
     margin-right: 2em;
@@ -62,4 +68,29 @@ ul {
     background-color: aliceblue;
     padding: 5px;
     border-radius: 2em;
+}
+
+table  th:nth-child(1){
+    border-radius: .5em 0px 0px .5em;
+}
+
+table  th:nth-last-child(1){
+    border-radius: 0px .5em .5em 0px;
+}
+
+.link {
+    text-decoration: none;
+    color: black
+}
+
+.icons {
+    float: right;
+    margin-bottom: -2em;
+    margin-top: -4.5em;
+    padding: 2px
+}
+
+.icons a {
+    padding: 9px;
+    color: teal;
 }

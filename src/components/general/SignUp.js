@@ -68,7 +68,7 @@ class SignUp extends Component {
             </div>
             <div className="row">
             <div className="form-group col-sm-6 aff">
-                <label for="">Affiliation <b style={{color: 'red'}}>*</b></label>
+                <label for="affiliation">Affiliation <b style={{color: 'red'}}>*</b></label>
                 <input type="text" name="affiliation" placeholder="" />
             </div>
             <div className="form-group col-sm-3 gender">
@@ -103,7 +103,7 @@ class SignUp extends Component {
             </div>
             <div className="row">
             <div className="form-group col-sm-6">
-                <label for="">Country of Residence <b style={{color: 'red'}}>*</b></label>
+                <label for="country">Country of Residence <b style={{color: 'red'}}>*</b></label>
                 <input type="text" name="country" placeholder="" />
             </div>
             <div className="form-group col-sm-6">
