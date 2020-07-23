@@ -1,16 +1,17 @@
 @media only screen and (min-width: 768px) {
 
-    .btn {
-        margin-left: 40em;
+    .signupbutton {
+        margin-left: 3em;
         width: 10em;
+        background-color: teal;
     }
 
     footer {
-        margin-left: 37em;
+        margin-left: 34em;
     }
 
     .logo {
-        margin-left: 28em;
+        margin-left: 5em;
     }
 
     .gender {
@@ -37,4 +38,13 @@
         margin-bottom: -3px;
         margin-top: -3px;
     }
+}
+
+.sign-in-footer {
+    width: 20em;
+}
+
+.signlogo{
+    width: 8em;
+    margin-left: 37em;
 }

@@ -32,7 +32,7 @@ class SplashPage extends Component {
                     <p>A solution to manage conferences in Covenant University</p>  
                     </div>
                     <div className="icons">
-                        <a href="/sign-up"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://web.facebook.com/CovenantUniversity?_rdc=1&_rdr"><i class="fa fa-facebook" aria-hidden="true"></i></a>
                         <a href="/login"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
                         <a href="/submitabstract"><i class="fa fa-twitter" aria-hidden="true"></i></a>
                     </div>
@@ -58,8 +58,8 @@ class SplashPage extends Component {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td  nowrap="no-wrap">Human and Computer Interaction</td>
-                                    <td nowrap="no-wrap">Human and Computer Interaction</td>
+                                    <td>Human and Computer Interaction</td>
+                                    <td>Human and Computer Interaction</td>
                                     <td>For faster mobile-friendly development, use responsive display classes for showing
                                         and hiding elements by device. Avoid creating entirely different versions of the 
                                         same site, instead hide element responsively for each screen size.</td>
@@ -73,6 +73,9 @@ class SplashPage extends Component {
                         </table>
                     </div>
                 </div>
+                <div className="footer ">
+                <p>{new Date().getFullYear()} © Covenant University. All Rights Reserved</p>
+            </div>
             </div>
         )
     }

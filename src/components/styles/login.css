@@ -131,11 +131,11 @@ select {
     margin-right: 13em;
 }
 
-.btn {
+.loginbtn {
     background-color: teal;
     width: 5em;
     border-radius: 4px;
-    margin-right: 40em;
+    margin-right: 2em;
 }
 
 footer {

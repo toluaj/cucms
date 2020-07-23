@@ -3,6 +3,10 @@ import '../styles/styles.css';
 import '../styles/login.css';
 import logo from '../images/logo.png';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
+import {ToastContainer, toast} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {Redirect} from 'react-router-dom';
 
 class Login extends Component {
 
@@ -11,9 +15,13 @@ class Login extends Component {
 
         this.state = {
             email: '',
-            password: ''
+            password: '',
+            userDetails: {},
+            navigate: false
         }
 
+        this.onChange = this.onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
 
     }
 
@@ -24,18 +32,75 @@ class Login extends Component {
 
       });
 
+    onSubmit = () => {
+
+      const {email, password} = this.state;
+      const data = {email, password};
+      console.log(data);
+
+      axios({
+        method: 'post',
+        url: `http://localhost:8080/api/cu/users/login`,
+        data: data
+      }).then((res) => {
+        if(res.data.status === 'success' && res.data.data.active === true) {
+          console.log(res.data);
+          sessionStorage.setItem('token', res.data._token);
+          this.setState({navigate: true});
+          toast.success("Login success");
+          try {
+            axios({
+              method: 'get',
+              url: `http://localhost:8080/api/cu/users/logged`,
+              headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+              }
+            }).then((res) => {
+              if(res.data.status === 'success'){
+                console.log(res.data);
+              this.setState({
+                userDetails: res.data
+              })
+            }
+            else {
+              console.log("verify your email");
+              toast.info("Invalid parameters")
+            }
+            }) 
+          } catch(e) {
+            console.log(e);
+          }
+        }
+        else if(res.data.message === "Invalid password!") {
+            console.log('password aint right');
+            toast.error('Invalid Password. Check again');
+        }
+        else {
+          toast.error('Email not verified!');
+          console.log('problem');
+        }
+      }).catch(err => {
+        console.log(err.message);
+        console.log('her i am')
+      })
+    } 
+
 
     render() {
 
-        const {email, password} = this.state;
+        const {email, password, navigate, userDetails} = this.state;
+        console.log(userDetails);
 
+        // if(navigate){return <Redirect to="/" push={true}/>}
         return (
             <div className="base-container">
         <div className="content">
           <div className="image mt-5 ml-5">
             <img src={logo} />
           </div>
+          <ToastContainer/>
         <div className="header mr-4">CUCMS Login</div>
+          <form onSubmit={this.onSubmit}>
           <div className="form">
             <div className="form-group">
               <label for="email" className="">Email Address</label>
@@ -57,8 +122,9 @@ class Login extends Component {
                 </label>
             </div> */}
           </div>
+          </form>
         </div>
-          <button type="button" className="btn btn-lg btn-block">
+          <button type="button" className="btn loginbtn" onClick={this.onSubmit}>
             Login
           </button>
           <footer className="">

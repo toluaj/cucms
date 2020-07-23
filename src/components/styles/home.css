@@ -43,11 +43,11 @@ ul.topnav {
     text-decoration: none;
   }
   
-  ul.topnav li a:hover:not(.active) {background-color: rgb(185, 151, 151); padding: 10px}
+  ul.topnav li a:hover:not(.active) {background-color: rgb(201, 187, 187); padding: 10px}
   
   ul.topnav li a.active {background-color: whitesmoke; border-radius: 4px;}
   
-  ul.topnav li.right {float: right;}
+  
   
   @media screen and (max-width: 600px) {
     ul.topnav li.right, 
@@ -94,3 +94,40 @@ table  th:nth-last-child(1){
     padding: 9px;
     color: teal;
 }
+
+.user-icon {
+    font-size: 1.9em;
+    margin-top: 5px;
+    color: teal;
+}
+
+.dropdown {
+    position: relative;
+    float: right; margin-right: 3em; margin-top: -3.5em
+    /* display: inline-block; */
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(241, 244, 247);
+    min-width: 80px;
+    height: 7em;
+    text-decoration: none;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 1px 1px;
+    /*background-color: teal;*/
+    text-decoration: none;
+    list-style-type: none;
+    list-style: none;
+    display: block;
+  }
+
+.dropdown:hover .dropdown-content {display: block; list-style-type: none;}
+.dropdown:hover .dropbtn {background-color: #3e8e41; list-style-type: none;}
+.dropdown-content a:hover {background-color: #ddd; list-style-type: none;}
