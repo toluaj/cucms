@@ -59,7 +59,8 @@ class Login extends Component {
               if(res.data.status === 'success'){
                 console.log(res.data);
               this.setState({
-                userDetails: res.data
+                userDetails: res.data,
+                navigate: true
               })
             }
             else {
@@ -91,7 +92,7 @@ class Login extends Component {
         const {email, password, navigate, userDetails} = this.state;
         console.log(userDetails);
 
-        // if(navigate){return <Redirect to="/" push={true}/>}
+        if(navigate){return <Redirect to="/" push={true}/>}
         return (
             <div className="base-container">
         <div className="content">

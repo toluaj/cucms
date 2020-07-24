@@ -17,7 +17,8 @@ class createConference extends Component {
       location: '',
       topic: '',
       start_date: '',
-      end_date: ''
+      end_date: '',
+      seats_available: ''
     }
 
     this.onChange = this.onChange.bind(this);
@@ -42,6 +43,7 @@ class createConference extends Component {
       topic,
       start_date,
       end_date,
+      seats_available
     } = this.state;
 
     return (
@@ -50,14 +52,15 @@ class createConference extends Component {
       location.length > 0 &&
       topic.length > 0 &&
       start_date.length > 0 &&
-      end_date.length > 0
+      end_date.length > 0 &&
+      seats_available > 0
     );
   };
 
   onSubmit = () => {
 
-    const {name, description, location, topic, start_date, end_date,} = this.state;
-    const data = {name, description, location, topic, start_date, end_date,}
+    const {name, description, location, topic, start_date, end_date,seats_available} = this.state;
+    const data = {name, description, location, topic, start_date, end_date,seats_available}
     console.log(data);
 
     axios({
@@ -105,7 +108,7 @@ class createConference extends Component {
   }
     render() {
 
-      const {name, description, location, topic, start_date, end_date,} = this.state;
+      const {name, description, location, topic, start_date, end_date, seats_available} = this.state;
 
       const isEnabled = this.submitForm();
 
@@ -185,6 +188,13 @@ class createConference extends Component {
                value={end_date}
                onChange={this.onChange} />
             </div>
+            </div>
+            <div className="form-group col-sm-3">
+              <label for="seats_available">Maximum Seats<b style={{color: 'red'}}>*</b></label>
+              <input type="number"
+               name="seats_available"
+               value={seats_available}
+               onChange={this.onChange} />
             </div>
           </div>
           </form>

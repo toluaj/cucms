@@ -3,7 +3,9 @@ import '../styles/home.css'
 import logo from '../images/logo.png';
 import {Link} from 'react-router-dom';
 import SplashSideBar from '../layouts/SplashSideBar';
-import SideNav from '../layouts/AuthorSideBar';
+import axios from 'axios';
+import {toast, ToastContainer} from 'react-toastify';
+import moment from 'moment';
 
 class SplashPage extends Component {
 
@@ -11,14 +13,92 @@ class SplashPage extends Component {
         super(props);
 
         this.state = {
+            user: {},
+            conferences: []
 
         }
+        this.getConferences = this.getConferences.bind(this);
     }
 
+    componentWillMount() {
+        this.fetchLoggedOnUser();
+    }
+    
+    componentDidMount() {
+        this.getUser();
+        this.getConferences();
+    }
+
+    getUser() {
+        axios({
+            method: 'get',
+            url: 'http://localhost:8080/api/cu/users/loggedOnUser',
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        }).then((res) => {
+            if(res.data) {
+            console.log(res);
+            this.setState({
+                user: res.data
+            })
+            }
+            else {
+                console.log('user don\'t exist bitch')
+            }
+        })
+        .catch(err => {
+            console.log('No authorization');
+            console.log(err.message);
+            toast.info("Please log in again. getuserSession expired")
+        })
+    }
+
+    fetchLoggedOnUser() {
+        axios({
+    
+          method: 'get',
+          url: `http://localhost:8080/api/cu/users/logged`,
+          headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        }).then((res) => {
+          if(res.data) {
+            console.log(res.data);
+          }
+          else {
+            console.log('you are not logged in!')
+          }
+        }).catch(err => {
+          console.log('no authorization');
+          toast.info("Please log in again. fetchlogged Session expired")
+        })
+    }
+
+    getConferences = () => {
+
+        axios({
+            method: 'get',
+            url: 'http://localhost:8080/api/cu/conference/getConference',
+            headers: {
+              'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        }).then((res) => {
+            if(res.data) {
+                console.log(res.data.data);
+                this.setState({conferences: res.data.data});
+            }
+        }).catch(err => {
+            console.log(err.message)
+        })
+    }
 
     render() {
+
+        const {conferences} = this.state
         return(
             <div className="container-fluid">
+                <ToastContainer/>
                 <div className="row enter">
                     {/* <p className="mr-5"><Link to="/submitabstract">Login</Link></p>
                     <p><Link to="/sign-up">Sign Up</Link></p> */}
@@ -53,29 +133,28 @@ class SplashPage extends Component {
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Location</th>
-                                    {/* <th>Actions</th> */}
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>Human and Computer Interaction</td>
-                                    <td>Human and Computer Interaction</td>
-                                    <td>For faster mobile-friendly development, use responsive display classes for showing
-                                        and hiding elements by device. Avoid creating entirely different versions of the 
-                                        same site, instead hide element responsively for each screen size.</td>
-                                    <td>9-10-2020</td>
-                                    <td>7-10-2020</td>
-                                    <td>Ikota</td>
-                                    {/* <td><Link className="link" to="/sign-up"><i class="fa fa-address-card" aria-hidden="true">
-                                    </i></Link></td> */}
+                                {conferences.map((conf, i) => (
+                                <tr key={i + 1}>
+                                    <td>{conf.name}</td>
+                                    <td>{conf.topic}</td>
+                                    <td>{conf.description}</td>
+                                    <td>{moment(conf.start_date).format('DD/MM/YYYY')}</td>
+                                    <td>{moment(conf.end_date).format('DD/MM/YYYY')}</td>
+                                    <td>{conf.location}</td>
+                                    <td><i class="fa fa-eye" aria-hidden="true"></i></td>
                                 </tr>
+                                ))}
                             </tbody>
                         </table>
                     </div>
                 </div>
-                <div className="footer ">
+                <footer className=" ">
                 <p>{new Date().getFullYear()} © Covenant University. All Rights Reserved</p>
-            </div>
+            </footer>
             </div>
         )
     }
