@@ -6,7 +6,7 @@ import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Redirect} from 'react-router-dom';
 
-class ChairSideBar extends Component {
+class AdminSideBar extends Component {
 
     constructor(props){
         super(props);
@@ -49,9 +49,8 @@ class ChairSideBar extends Component {
                         </NavIcon>
                         <NavText>Conferences</NavText>
                         <NavItem>
-                        <NavText><Link to="" className="nav-link"> Chaired Conferences </Link></NavText>
+                        <NavText><Link to="/createconference" className="nav-link"> Add Conference </Link></NavText>
                     </NavItem>
-                    <u></u>
                         <NavItem>
                         <NavText><Link to="" className="nav-link"> Edit Conference </Link></NavText>
                     </NavItem>
@@ -68,7 +67,7 @@ class ChairSideBar extends Component {
                         </NavIcon>
                         <NavText>Profile</NavText>
                         <NavItem>
-                        <NavText><Link to="/createconference" className="nav-link"> Edit Profile </Link></NavText>
+                        <NavText><Link to="/editprofile" className="nav-link"> Edit Profile </Link></NavText>
                     </NavItem>
                     <NavItem>
                         <NavText><Link to="/createconference" className="nav-link"> Reset Password </Link></NavText>
@@ -91,4 +90,4 @@ class ChairSideBar extends Component {
 }
 
 
-export default ChairSideBar;
+export default AdminSideBar;

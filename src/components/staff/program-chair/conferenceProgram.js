@@ -80,7 +80,7 @@ class conferenceProgram extends Component {
             
             data = {name: datha.name, date: datha.date,
                     start_time: datha.start_time, end_time: datha.end_time, 
-                    room: datha.room};
+                    room: datha.room, conference_id: '89803d2a-d859-4b45-ba9e-8a90658b07fd'};
             console.log(data);
         axios({
 

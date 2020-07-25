@@ -38,6 +38,24 @@ class AuthorSideBar extends Component {
                         <i class="fa fa-user" title="Profile" aria-hidden="true" style={{fontSize: '1.75em'}}></i>
                         </NavIcon>
                         <NavText>Profile</NavText>
+                        <NavItem>
+                        <NavText><Link to="/createconference" className="nav-link"> Edit Profile </Link></NavText>
+                    </NavItem>
+                    <NavItem>
+                        <NavText><Link to="/createconference" className="nav-link"> Reset Password </Link></NavText>
+                    </NavItem>
+                    </NavItem>
+                    <NavItem>
+                        <NavIcon>
+                        <i class="fa fa-server" title="Conferences" aria-hidden="true" style={{fontSize: '1.75em'}}></i>
+                        </NavIcon>
+                        <NavText>Conferences</NavText>
+                        <NavItem>
+                        <NavText><Link to="" className="nav-link"> Regstered Conferences </Link></NavText>
+                    </NavItem>
+                    <NavItem>
+                        <NavText><Link to="" className="nav-link">  Assigned Reviews </Link></NavText>
+                    </NavItem>
                     </NavItem>
                     <NavItem>
                         <NavIcon>

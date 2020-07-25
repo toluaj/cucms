@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import '../../styles/program-chair/createconf.css';
 import logo from '../../images/logo.png';
-import Nav from '../../layouts/ChairSideBar';
+import Nav from '../../layouts/AdminSideBar';
 import axios from 'axios';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -188,13 +188,6 @@ class createConference extends Component {
                value={end_date}
                onChange={this.onChange} />
             </div>
-            </div>
-            <div className="form-group col-sm-3">
-              <label for="seats_available">Maximum Seats<b style={{color: 'red'}}>*</b></label>
-              <input type="number"
-               name="seats_available"
-               value={seats_available}
-               onChange={this.onChange} />
             </div>
           </div>
           </form>

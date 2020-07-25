@@ -167,6 +167,8 @@ class submitAbs extends Component {
            formData.append('email', email);
            formData.append('affiliation', affiliation);
            formData.append('abstract_text', abstract_text);
+           formData.append('status', 'pending');
+           formData.append('conference_id', '89803d2a-d859-4b45-ba9e-8a90658b07fd')
            console.log(formData.values());
 
            axios({
