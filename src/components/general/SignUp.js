@@ -40,9 +40,9 @@ class SignUp extends Component {
 
    onSubmit = () => {
 
-     const {title, firstName, lastName, username, email, affiliation, password,
+     const {title, firstName, lastName, email, affiliation, password,
       phoneNumber, gender, alternate_phone, country, address} = this.state;
-     const data = {title, firstName, lastName, username, email, affiliation,
+     const data = {title, firstName, lastName, email, affiliation,
         password, phoneNumber,gender,alternate_phone, country, address}
         console.log(data);
 
@@ -75,13 +75,11 @@ class SignUp extends Component {
       lastName,
       email,
       phoneNumber,
-      username,
       address,
       country,
       password,
       gender,
       title,
-      affiliation,
     } = this.state;
 
     return (
@@ -89,13 +87,11 @@ class SignUp extends Component {
       lastName.length > 0 &&
       email.length > 0 &&
       phoneNumber.length > 0 &&
-      username.length > 0 &&
       address.length > 0 &&
       country.length > 0 &&
       password.length > 0 &&
       title.length > 0 &&
-      gender.length > 0 &&
-      affiliation.length > 0
+      gender.length > 0 
     );
   };
 
@@ -111,8 +107,8 @@ class SignUp extends Component {
 
     render() {
 
-      const {firstName, lastName, username, email,
-        affiliation, password, phoneNumber, alternate_phone, address, gender} = this.state;
+      const {firstName, lastName, email,
+         password, phoneNumber, alternate_phone, address, gender} = this.state;
 
         const isEnabled = this.submitForm();
 
@@ -157,12 +153,12 @@ class SignUp extends Component {
             </div>
             </div>
             <div className="row">
-              <div className="form-group col-sm-6">
-              <label htmlFor="username">Username</label>
-              <input
-               type="text"
-              name="username"
-              value={username}
+            <div className="form-group col-sm-6">
+              <label htmlFor="address">Address <b style={{color: 'red'}}>*</b></label>
+              <input 
+              type="text"
+              name="address"
+              value={address}
               onChange={this.onChange} />
             </div>
             <div className="form-group col-sm-6">
@@ -226,22 +222,15 @@ class SignUp extends Component {
             </div>
             </div>
             <div className="row">
-            <div className="form-group col-sm-6">
+            {/* <div className="form-group col-sm-6">
                 <label htmlFor="affiliation">Affiliation <b style={{color: 'red'}}>*</b></label>
                 <input
                  type="text"
                 name="affiliation"
                 value={affiliation}
                 onChange={this.onChange} />
-            </div>
-            <div className="form-group col-sm-6">
-              <label htmlFor="address">Address <b style={{color: 'red'}}>*</b></label>
-              <input 
-              type="text"
-              name="address"
-              value={address}
-              onChange={this.onChange} />
-            </div>
+            </div> */}
+            
             </div>
           </div>
           <div className="text-center">

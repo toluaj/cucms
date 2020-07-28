@@ -79,7 +79,7 @@ class SplashPage extends Component {
 
         axios({
             method: 'get',
-            url: 'http://localhost:8080/api/cu/conference/getConference',
+            url: 'http://localhost:8080/api/cu/conference/',
             headers: {
               'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
