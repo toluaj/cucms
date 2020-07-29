@@ -55,7 +55,10 @@ class AdminSideBar extends Component {
                         <NavText><Link to="" className="nav-link"> Edit Conference </Link></NavText>
                     </NavItem>
                     <NavItem>
-                        <NavText><Link to="" className="nav-link">  Call for papers </Link></NavText>
+                        <NavText><Link to="/callforpaper" className="nav-link">  Call for papers </Link></NavText>
+                    </NavItem>
+                    <NavItem>
+                        <NavText><Link to="/make-request" className="nav-link">  Request Reviewer </Link></NavText>
                     </NavItem>
                     <NavItem>
                         <NavText><Link to="" className="nav-link">  Assign Abstracts to Reviewers </Link></NavText>

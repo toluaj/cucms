@@ -43,7 +43,7 @@ class MakeRequest extends Component {
           }
         }).catch(err => {
           console.log('no authorization');
-          toast.info("Please log in again. fetchlogged Session expired")
+          toast.info("Session expired. Please log in again")
         })
     }
 
@@ -69,7 +69,7 @@ class MakeRequest extends Component {
         })
     }
 
-    async accept  (e) {
+    async accept (e) {
         let index = +e.currentTarget.getAttribute('data-index');
         console.log(this.state.requests[index]);
         console.log(this.state.requests[index].conference_id);
@@ -98,12 +98,12 @@ class MakeRequest extends Component {
         })
     }
 
-    decline = (e) => {
+    async decline (e) {
         let index = +e.currentTarget.getAttribute('data-index');
         console.log(this.state.requests[index]);
         console.log(this.state.requests[index].conference_id);
-        this.setState({conference_id: this.state.requests[index].conference_id})
-        const {conference_id} = this.state;
+       await this.setState({conference_id: this.state.requests[index].conference_id})
+       const {conference_id} = this.state;
         var reply = "rejected";
         const data = {reply, conference_id};
         console.log(data);
@@ -159,10 +159,12 @@ render() {
                                         onClick={this.accept}
                                         aria-hidden="true"></i>
                                     </button>
+                                    <button>
                                      <i className="fa fa-times"
                                         aria-hidden="true" 
                                         onClick={this.decline}
                                         style={{marginLeft: '9em'}}></i>
+                                    </button>
                                 </td>
                             </tr>
                         ))}
