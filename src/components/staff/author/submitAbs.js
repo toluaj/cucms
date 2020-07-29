@@ -33,35 +33,6 @@ class submitAbs extends Component {
     componentWillMount() {
         this.fetchLoggedOnUser();
     }
-    
-    componentDidMount() {
-        this.getUser();
-    }
-
-    getUser() {
-        axios({
-            method: 'get',
-            url: 'http://localhost:8080/api/cu/users/loggedOnUser',
-            headers: {
-                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-            }
-        }).then((res) => {
-            if(res.data) {
-            console.log(res.data);
-            this.setState({
-                user: res.data
-            })
-            }
-            else {
-                console.log('user don\'t exist bitch')
-            }
-        })
-        .catch(err => {
-            console.log('No authorization');
-            console.log(err.message);
-            toast.info("Please log in again. getuserSession expired")
-        })
-    }
 
     fetchLoggedOnUser() {
         axios({
@@ -257,7 +228,7 @@ class submitAbs extends Component {
                         <li>In order to give a presentation at the conference, please submit a short abstract first.</li>
                         <li>The full, camera-ready paper should be submitted shortly after you have received a message, accepting your contribution,
                         from the Programme Committee.</li>
-                        <li>Please note that papers can only be accepted if at least one author has registered for participation at the conference.</li>
+                        <li>Please submit abstract you authored in.</li>
                     </ol>  
                     </div>
                     <button type="submit" className="btnsub btn btn-block"

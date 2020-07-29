@@ -10,7 +10,7 @@ import conferenceProgram from './components/staff/program-chair/conferenceProgra
 import Request from './components/staff/reviewer/Request';
 import ChairRequest from './components/staff/program-chair/ChairRequest';
 import GetRequest from './components/general/GetRequest';
-import MakeRequest from './components/staff/admin/MakeRequest';
+import MakeRequest from './components/staff/admin/MakeReviewerRequest';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 class App extends Component {

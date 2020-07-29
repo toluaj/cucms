@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify';
-
+import Side from '../layouts/AuthorSideBar';
 
 class MakeRequest extends Component {
 
@@ -10,9 +10,12 @@ class MakeRequest extends Component {
 
         this.state = {
             user: {},
-            requests: []
+            requests: [],
+            conference_id: ''
         }
         this.getRequests = this.getRequests.bind(this);
+        this.accept = this.accept.bind(this);
+        this.decline = this.decline.bind(this);
     }
 
     componentWillMount() {
@@ -20,33 +23,7 @@ class MakeRequest extends Component {
     }
     
     componentDidMount() {
-        this.getUser();
         this.getRequests();
-    }
-
-    getUser() {
-        axios({
-            method: 'get',
-            url: 'http://localhost:8080/api/cu/users/loggedOnUser',
-            headers: {
-                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-            }
-        }).then((res) => {
-            if(res.data) {
-            console.log(res.data);
-            this.setState({
-                user: res.data
-            })
-            }
-            else {
-                console.log('user don\'t exist bitch')
-            }
-        })
-        .catch(err => {
-            console.log('No authorization');
-            console.log(err.message);
-            toast.info("Please log in again. getuserSession expired")
-        })
     }
 
     fetchLoggedOnUser() {
@@ -91,18 +68,77 @@ class MakeRequest extends Component {
             console.log(err.message);
         })
     }
-    
 
+    async accept  (e) {
+        let index = +e.currentTarget.getAttribute('data-index');
+        console.log(this.state.requests[index]);
+        console.log(this.state.requests[index].conference_id);
+       await this.setState({conference_id: this.state.requests[index].conference_id})
+       const {conference_id} = this.state;
+        var reply = "accepted";
+        const data = {reply, conference_id};
+        console.log(data);
+        axios({
+
+            method: 'post',
+            url: 'http://localhost:8080/api/cu/request/reply',
+            data: data,
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+            
+        }).then((res) => {
+            console.log(res);
+            if(res.data) {
+                console.log(res.data);
+            }
+        }).catch(err => {
+            console.log(err.message);
+            console.log('something\'s up')
+        })
+    }
+
+    decline = (e) => {
+        let index = +e.currentTarget.getAttribute('data-index');
+        console.log(this.state.requests[index]);
+        console.log(this.state.requests[index].conference_id);
+        this.setState({conference_id: this.state.requests[index].conference_id})
+        const {conference_id} = this.state;
+        var reply = "rejected";
+        const data = {reply, conference_id};
+        console.log(data);
+        axios({
+
+            method: 'post',
+            url: 'http://localhost:8080/api/cu/request/reply',
+            data: data,
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+            
+        }).then((res) => {
+            console.log(res);
+            if(res.data) {
+                console.log(res.data);
+            }
+        }).catch(err => {
+            console.log(err.message);
+            console.log('something\'s up')
+        })
+    }
+    
 
 render() {
 
     const {requests} = this.state;
     console.log(requests);
+    console.log(this.state.conference_id);
 
     return(
 
        <div className="container-fluid">
            <ToastContainer/>
+           <Side/>
            <div className="mt-3">
             <div className="table-responsive content">
                 <table className="table copy-font">
@@ -114,12 +150,20 @@ render() {
                     </tr>
                     </thead>
                     <tbody>
-                        {requests.map((req, i) => (
-                            <tr key={i + 1}>
+                        {requests.map((req, index) => (
+                            <tr key={index} data-index={index}>
                                 <td>{req.conference_name}</td>
                                 <td>{req.reply}</td>
-                                <td> <i className="fa fa-check" aria-hidden="true"></i>
-                                <i className="fa fa-times" aria-hidden="true" style={{marginLeft: '9em'}}></i></td>
+                                <td> <button>
+                                    <i className="fa fa-check"
+                                        onClick={this.accept}
+                                        aria-hidden="true"></i>
+                                    </button>
+                                     <i className="fa fa-times"
+                                        aria-hidden="true" 
+                                        onClick={this.decline}
+                                        style={{marginLeft: '9em'}}></i>
+                                </td>
                             </tr>
                         ))}
                     </tbody>
