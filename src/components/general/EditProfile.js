@@ -4,6 +4,7 @@ import {Link} from 'react-router-dom';
 import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify';
 import SideNav from '../layouts/AdminSideBar';
+import { data } from 'jquery';
 
 class EditProfile extends Component {
 
@@ -11,43 +12,15 @@ class EditProfile extends Component {
     super(props);
     this.state = {
 
-      user: {}
+      user: {},
+      logged: ''
 
     }
   }
 
   componentWillMount() {
     this.fetchLoggedOnUser();
-    // this.getUser();
 }
-
-// componentDidMount() {
-// }
-
-// getUser() {
-//     axios({
-//         method: 'get',
-//         url: 'http://localhost:8080/api/cu/users/loggedOnUser',
-//         headers: {
-//             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-//         }
-//     }).then((res) => {
-//         if(res.data) {
-//         console.log(res.data.data);
-//         // this.setState({
-//         //     user: res.data
-//         // })
-//         }
-//         else {
-//             console.log('user don\'t exist bitch')
-//         }
-//     })
-//     .catch(err => {
-//         console.log('No authorization');
-//         console.log(err.message);
-//         toast.info("Please log in again. getuserSession expired")
-//     })
-// }
 
 fetchLoggedOnUser() {
     axios({
@@ -60,40 +33,47 @@ fetchLoggedOnUser() {
     }).then((res) => {
       if(res.data) {
         console.log(res.data.data);
-        this.setState({user: res.data.data})
+        this.setState({user: res.data.data, logged: 'true'})
       }
       else {
         console.log('you are not logged in!')
+        this.setState({logged: 'false'});
+        window.location.replace('/login')
       }
     }).catch(err => {
       console.log('no authorization');
       toast.info("Please log in again. fetchlogged Session expired")
+      this.setState({logged: 'false'});
+      window.location.replace('/login')
     })
+}
+
+editProfile = () => {
+
+  axios({
+    method: 'post',
+    url: 'http://localhost:8080/api/cu/users/edit',
+    data: data,
+    headers: {
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    }
+  })
 }
 
     render() {
 
-      const {user} = this.state;
+      const {user, logged} = this.state;
+      console.log(user.role);
+      console.log(logged)
 
         return(
             <div className="container-fluid">
+              <ToastContainer/>
         <div className="content mr-5">
           <div className="header mt-4 mr-5"> Edit Your Profile</div>
           <form className="wrapper">
-              <SideNav/>
+              <SideNav user={user}/>
           <div className="form">
-            {/* <div className="form-group col-sm-6">
-                <label for="title" className="mr-2 mb-1">Title <b style={{color: 'red'}}>*</b></label>
-                <br />
-                <select name="title" placeholder={user.title} className="mb-3">
-                    <option value=""></option>
-                    <option value="prof">Prof</option>
-                    <option value="dr">Dr</option>
-                    <option value="ms">Ms</option>
-                    <option value="mrs">Mrs</option>
-                    <option value="mr">Mr</option>
-                </select>
-            </div> */}
             <div className="row">
               <div className="form-group col-sm-6">
               <label for="username">First Name <b style={{color: 'red'}}>*</b></label>
@@ -111,17 +91,17 @@ fetchLoggedOnUser() {
             </div>
             <div className="form-group col-sm-6">
               <label for="email">Email <b style={{color: 'red'}}>*</b></label>
-              <input type="email" name="email" placeholder={user.email} />
+              <input type="email" name="email" placeholder={user.email} readOnly/>
             </div>
             </div>
             <div className="row">
               <div className="form-group col-sm-6">
               <label for="phone">Phone Number <b style={{color: 'red'}}>*</b></label>
-              <input type="text" name="phoneNumber" value={user.phoneNumber}/>
+              <input type="text" name="phoneNumber" value={user.phoneNumber} readOnly/>
             </div>
             <div className="form-group col-sm-6">
               <label for="altphone">Alternate Phone</label>
-              <input type="text" name="alternate_phone" placeholder="" />
+              <input type="text" name="alternate_phone" value={user.alternate_phone} placeholder="" />
             </div> 
             </div>
             <div className="row">
@@ -140,7 +120,7 @@ fetchLoggedOnUser() {
           </form>
         </div>
         <div className="footer">
-          <button type="submit" className="btn btn-block" style={{width: '60px', marginLeft: '30em', backgroundColor: 'teal'}}>
+          <button type="submit" className="btn btn-block" style={{width: '60px', marginLeft: '42em', backgroundColor: 'teal'}}>
             Save
           </button>
         </div>

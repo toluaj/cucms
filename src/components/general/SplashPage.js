@@ -14,10 +14,12 @@ class SplashPage extends Component {
 
         this.state = {
             user: {},
-            conferences: []
+            conferences: [],
+            logged: false
 
         }
         this.getConferences = this.getConferences.bind(this);
+        // this.isLogged = this.isLogged.bind(this);
     }
 
     componentWillMount() {
@@ -25,34 +27,9 @@ class SplashPage extends Component {
     }
     
     componentDidMount() {
-        this.getUser();
         this.getConferences();
     }
 
-    getUser() {
-        axios({
-            method: 'get',
-            url: 'http://localhost:8080/api/cu/users/loggedOnUser',
-            headers: {
-                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-            }
-        }).then((res) => {
-            if(res.data) {
-            console.log(res);
-            this.setState({
-                user: res.data
-            })
-            }
-            else {
-                console.log('user don\'t exist bitch')
-            }
-        })
-        .catch(err => {
-            console.log('No authorization');
-            console.log(err.message);
-            toast.info("Please log in again. getuserSession expired")
-        })
-    }
 
     fetchLoggedOnUser() {
         axios({
@@ -65,13 +42,18 @@ class SplashPage extends Component {
         }).then((res) => {
           if(res.data) {
             console.log(res.data);
+            this.setState({
+                user: res.data.data,
+                logged: true
+            })
           }
           else {
-            console.log('you are not logged in!')
+            console.log('you are not logged in!');
+            this.setState({logged: false})
           }
         }).catch(err => {
           console.log('no authorization');
-          toast.info("Please log in again. fetchlogged Session expired")
+          this.setState({logged: false})
         })
     }
 
@@ -80,9 +62,7 @@ class SplashPage extends Component {
         axios({
             method: 'get',
             url: 'http://localhost:8080/api/cu/conference/',
-            headers: {
-              'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-            }
+           
         }).then((res) => {
             if(res.data) {
                 console.log(res.data.data);
@@ -95,7 +75,7 @@ class SplashPage extends Component {
 
     render() {
 
-        const {conferences} = this.state
+        const {conferences, user, logged} = this.state
         return(
             <div className="container-fluid">
                 <ToastContainer/>
@@ -112,19 +92,25 @@ class SplashPage extends Component {
                     <p>A solution to manage conferences in Covenant University</p>  
                     </div>
                     <div className="icons">
-                        <a href="https://web.facebook.com/CovenantUniversity?_rdc=1&_rdr"><i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="/login"><i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        <a href="/submitabstract"><i class="fa fa-twitter" aria-hidden="true"></i></a>
+                        <a href="https://web.facebook.com/CovenantUniversity?_rdc=1&_rdr" target="_blank">
+                            <i class="fa fa-facebook" aria-hidden="true"></i></a>
+                        <a href="https://www.linkedin.com/school/covenant-university/" target="_blank">
+                            <i class="fa fa-linkedin" aria-hidden="true"></i></a>
+                        <a href="https://twitter.com/CUHEBRON?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank">
+                            <i class="fa fa-twitter" aria-hidden="true"></i></a>
+                            {logged ? <div style={{marginTop: '2em', marginLeft: '0.5em'}}>Hi, {user.firstName}</div> :
+                            ""}
                     </div>
                 </div>
                 {/* <SideNav/> */}
-                <SplashSideBar/>
+                 {/* {this.isLogged ? : ""} */}
+                <SplashSideBar user = {logged}/>
                 <div className="mt-3">
-                        <h4>Latest Conferences</h4>
+                        <h4 style={{marginLeft: '27em'}}>UPCOMING CONFERENCES</h4>
                     </div>
-                <div className="mt-3">
-                    <div className="table-responsive content">
-                        <table className="table copy-font">
+                <div className="mt-3 limiter container-table100">
+                    <div className="table-responsive content ">
+                        <table className="table copy-font wrap-table100">
                             <thead style={{backgroundColor: 'teal'}}>
                                 <tr>
                                     <th>Name</th>
@@ -133,19 +119,19 @@ class SplashPage extends Component {
                                     <th>Start Date</th>
                                     <th>End Date</th>
                                     <th>Location</th>
-                                    <th>Actions</th>
+                                    <th>View</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style={{backgroundColor: '#c4d3f6', borderRadius: '3em'}}>
                                 {conferences.map((conf, i) => (
-                                <tr key={i + 1}>
+                                <tr key={i + 1} className="rowed">
                                     <td>{conf.name}</td>
                                     <td>{conf.topic}</td>
                                     <td>{conf.description}</td>
                                     <td>{moment(conf.start_date).format('DD/MM/YYYY')}</td>
                                     <td>{moment(conf.end_date).format('DD/MM/YYYY')}</td>
                                     <td>{conf.location}</td>
-                                    <td><i class="fa fa-eye" aria-hidden="true"></i></td>
+                                    <td><i style={{cursor: 'pointer'}} class="fa fa-eye" aria-hidden="true"></i></td>
                                 </tr>
                                 ))}
                             </tbody>

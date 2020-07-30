@@ -20,7 +20,12 @@ class submitAbs extends Component {
             abstract_text: '',
             affiliation: '',
             abstract: '',
-            firstName: "", lastName: "", email: "", user: {}
+            firstName: "", 
+            lastName: "", 
+            email: "",
+            conference_id: '',
+            conferences: [],
+            user: {}
             
         }
         this.deleteAuthor = this.deleteAuthor.bind(this);
@@ -32,6 +37,10 @@ class submitAbs extends Component {
 
     componentWillMount() {
         this.fetchLoggedOnUser();
+    }
+
+    componentDidMount() {
+        this.getConferences();
     }
 
     fetchLoggedOnUser() {
@@ -129,17 +138,17 @@ class submitAbs extends Component {
         e.preventDefault();
         const formData = new FormData();
         const {topic, firstName, lastName, email, affiliation,
-          abstract_text, abstract} = this.state;
+          abstract_text, abstract, conference_id} = this.state;
 
            formData.append('abstract', abstract);
-           formData.append('topic', topic);
+           formData.append('title', topic);
            formData.append('firstName', firstName);
            formData.append('lastName', lastName);
            formData.append('email', email);
            formData.append('affiliation', affiliation);
            formData.append('abstract_text', abstract_text);
            formData.append('status', 'pending');
-           formData.append('conference_id', '89803d2a-d859-4b45-ba9e-8a90658b07fd')
+           formData.append('conference_id', conference_id)
            console.log(formData.values());
 
            axios({
@@ -168,6 +177,24 @@ class submitAbs extends Component {
         console.log(abstract);
         this.setState({
             abstract: abstract
+        })
+    }
+
+    getConferences() {
+
+        axios({
+            method: 'get',
+            url: 'http://localhost:8080/api/cu/conference',
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        }).then(res => {
+            if(res.data){
+                console.log(res.data);
+                this.setState({
+                    conferences: res.data.data
+                })
+            }
         })
     }
 
@@ -201,7 +228,8 @@ class submitAbs extends Component {
     
     render() {
 
-        let {authorList, onSelectNav} = this.state;
+        let {authorList, conferences} = this.state;
+        console.log(conferences)
         const {topic, affiliation, firstName, lastName, abstract_text, abstract, email} = this.state;
 
         return(
@@ -231,11 +259,20 @@ class submitAbs extends Component {
                         <li>Please submit abstract you authored in.</li>
                     </ol>  
                     </div>
-                    <button type="submit" className="btnsub btn btn-block"
+                    {/* <button type="submit" className="btnsub btn btn-block"
                             onClick={this.downloadFile}
                             name="eper"> 
-                            <p className="sign">Download</p></button>
+                            <p className="sign">Download</p></button> */} 
                 </div>
+                <div className="form-group col-sm-9" style={{marginLeft: '22em'}}>
+              <label for="conference_id">Select Conference <b style={{color: 'red'}}>*</b></label>
+                <select name="conference_id" onChange={this.onChange}>
+                    <option value=""></option>
+                    {conferences.map((conf, i) => (
+                        <option value={conf.id}>{conf.name}</option>
+                    ))}
+                </select>
+            </div>
                 <div className="row">
                     <div className="simp">
                     <p>NEW SUBMISSION</p>

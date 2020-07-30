@@ -14,14 +14,21 @@ class SplashSideBar extends Component {
             <li><a href="#contact">Contact</a></li>
         </ul>
         </div>
-        <div className="dropdown">
-           <a className="right"><i className="fa fa-user-circle user-icon" aria-hidden="true">
+        {this.props.user ?
+         <div className="dropdown">
+           <a className="right" href="/editprofile"><i className="fa fa-user-circle user-icon" aria-hidden="true">
                 </i></a>
-            <div className="dropdown-content">
-            <li className=""><a href="login">Sign In</a></li>
-            <li className=""><a href="sign-up">Sign Up</a></li>
             </div>
-            </div>
+             : 
+            <div className="dropdown">
+            <a className="right"><i className="fa fa-user-circle user-icon" aria-hidden="true">
+                 </i></a>
+             <div className="dropdown-content">
+             <li className=""><a href="login">Sign In</a></li>
+             <li className=""><a href="sign-up">Sign Up</a></li>
+             </div>
+             </div> 
+            } 
         </div>
         );
     }

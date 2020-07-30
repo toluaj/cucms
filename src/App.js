@@ -3,7 +3,7 @@ import SplashPage from './components/general/SplashPage';
 import Login from './components/general/Login';
 import SignUp from './components/general/SignUp';
 import Submit from './components/staff/author/submitAbs';
-import createconference from './components/staff/program-chair/createConference';
+import createconference from './components/staff/admin/createConference';
 import ChairHome from './components/staff/program-chair/programChairHome';
 import EditProfile from './components/general/EditProfile';
 import conferenceProgram from './components/staff/program-chair/conferenceProgram';

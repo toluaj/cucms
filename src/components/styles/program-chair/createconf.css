@@ -17,7 +17,7 @@
 .confbut {
     background-color: teal;
     width: 5.5em;
-    margin-left: 36em;
+    margin-left: 44em;
 }
 
 /* .progput {
@@ -28,6 +28,10 @@
 .progput-date{
     max-width: 10px;
 }
+
+/* .sess {
+    max-width: 10px !important
+} */
 
 @media only screen and (max-width: 600px) {
 

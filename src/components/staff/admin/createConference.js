@@ -5,6 +5,7 @@ import Nav from '../../layouts/AdminSideBar';
 import axios from 'axios';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { timers } from 'jquery';
 
 class createConference extends Component {
 
@@ -18,7 +19,9 @@ class createConference extends Component {
       topic: '',
       start_date: '',
       end_date: '',
-      seats_available: ''
+      sessions: '',
+      loading: '',
+      user: ''
     }
 
     this.onChange = this.onChange.bind(this);
@@ -26,9 +29,35 @@ class createConference extends Component {
 
   }
 
-  componentDidMount() {
+  componentWillMount(){
     this.fetchLoggedOnUser();
   }
+
+  fetchLoggedOnUser() {
+    axios({
+
+      method: 'get',
+      url: `http://localhost:8080/api/cu/users/logged`,
+      headers: {
+        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+        }
+    }).then((res) => {
+      if(res.data) {
+        console.log(res.data.data);
+        this.setState({user: res.data.data, logged: 'true'})
+      }
+      else {
+        console.log('you are not logged in!')
+        this.setState({logged: 'false'});
+        window.location.replace('/login')
+      }
+    }).catch(err => {
+      console.log('no authorization');
+      toast.info("Please log in again. fetchlogged Session expired")
+      this.setState({logged: 'false'});
+      window.location.replace('/login')
+    })
+}
 
   onChange = (e) =>
    this.setState({
@@ -43,7 +72,6 @@ class createConference extends Component {
       topic,
       start_date,
       end_date,
-      seats_available
     } = this.state;
 
     return (
@@ -52,15 +80,14 @@ class createConference extends Component {
       location.length > 0 &&
       topic.length > 0 &&
       start_date.length > 0 &&
-      end_date.length > 0 &&
-      seats_available > 0
+      end_date.length > 0 
     );
   };
 
   onSubmit = () => {
 
-    const {name, description, location, topic, start_date, end_date,seats_available} = this.state;
-    const data = {name, description, location, topic, start_date, end_date,seats_available}
+    const {name, description, location, topic, start_date, end_date,sessions} = this.state;
+    const data = {name, description, location, topic, start_date, end_date,sessions}
     console.log(data);
 
     axios({
@@ -73,7 +100,8 @@ class createConference extends Component {
     }).then((res) => {
       if(res.data) {
         console.log(res.data);
-        toast.success("Conference created successfully!")
+        toast.success("Conference created successfully!");
+        window.location.reload();
       }
       else {
         toast.error('Something went wrong');
@@ -87,28 +115,10 @@ class createConference extends Component {
 
   }
 
-  fetchLoggedOnUser() {
-    axios({
 
-      method: 'get',
-      url: `http://localhost:8080/api/cu/users/logged`,
-      headers: {
-        'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-        }
-    }).then((res) => {
-      if(res.data) {
-        console.log(res.data);
-      }
-      else {
-        console.log('you are not logged in!')
-      }
-    }).catch(err => {
-      console.log('no atowizason');
-    })
-  }
     render() {
 
-      const {name, description, location, topic, start_date, end_date, seats_available} = this.state;
+      const {name, description, location, topic, start_date, end_date, sessions, user} = this.state;
 
       const isEnabled = this.submitForm();
 
@@ -116,7 +126,7 @@ class createConference extends Component {
             <div className="container-fluid confcont">
               <ToastContainer/>
         <div className="content">
-          <Nav/>
+          <Nav user={user}/>
             <div className="logo d-none d-sm-block"><img src={logo} width="10px"/></div>
           <div className="header mt-5"> SET UP CONFERENCE </div>
           <form className="wrapper">
@@ -186,6 +196,15 @@ class createConference extends Component {
               <input type="date"
                name="end_date"
                value={end_date}
+               onChange={this.onChange} />
+            </div>
+            </div>
+            <div className="row">
+            <div className="form-group col-sm-6">
+              <p for="sessions">Number of Sessions <b style={{color: 'red'}}>*</b></p>
+              <input type="number"
+               name="sessions"
+               value={sessions} className="sess"
                onChange={this.onChange} />
             </div>
             </div>

@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useRef} from 'react';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 import  SideNav, { Toggle, Nav, ClickOutside, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import {Link} from 'react-router-dom';
@@ -27,7 +27,8 @@ class AdminSideBar extends Component {
 
     render() {
         const {navigate} = this.state;
-
+        const {role} = this.props.user;
+        console.log(role);
         if(navigate) {
             return <Redirect to="/login" push={true} />
         }
@@ -48,21 +49,43 @@ class AdminSideBar extends Component {
                         <i class="fa fa-server" title="Conferences" aria-hidden="true" style={{fontSize: '1.75em'}}></i>
                         </NavIcon>
                         <NavText>Conferences</NavText>
+                    {role === "chair" || role === "admin" ?
                         <NavItem>
                         <NavText><Link to="/createconference" className="nav-link"> Add Conference </Link></NavText>
-                    </NavItem>
+                    </NavItem> : ""}
+                    {role === "reviewer" ?
                         <NavItem>
+                        <NavText><Link to="/" className="nav-link"> View Assigned Abstracts </Link></NavText>
+                    </NavItem> : ""}
+                        <NavItem>
+                        <NavText><Link to="/request" className="nav-link"> View Requests </Link></NavText>
+                    </NavItem> 
+                    {role === "chair" || role === "admin" ?
+                    <NavItem>
                         <NavText><Link to="" className="nav-link"> Edit Conference </Link></NavText>
+                    </NavItem> : ""}
+                    {role === "chair" || role === "admin" ?
+                    <NavItem>
+                        <NavText><Link to="/confprogram" className="nav-link"> Create Sessions </Link></NavText>
+                    </NavItem> : ""}
+                    <NavItem>
+                        <NavText><Link to="/submitabstract" className="nav-link">  Submit Abstract </Link></NavText>
                     </NavItem>
+                    <NavItem>
+                        <NavText><Link to="/" className="nav-link">  Abstract Status </Link></NavText>
+                    </NavItem>
+                    {role === "chair" || role === "admin" ?
                     <NavItem>
                         <NavText><Link to="/callforpaper" className="nav-link">  Call for papers </Link></NavText>
-                    </NavItem>
-                    <NavItem>
+                    </NavItem> : ""}
+                    {role === "chair" || role === "admin" ?
+                     <NavItem>
                         <NavText><Link to="/make-request" className="nav-link">  Request Reviewer </Link></NavText>
-                    </NavItem>
-                    <NavItem>
+                    </NavItem> : ""}
+                   {role === "chair" || role === "admin" ?
+                     <NavItem>
                         <NavText><Link to="" className="nav-link">  Assign Abstracts to Reviewers </Link></NavText>
-                    </NavItem>
+                    </NavItem> : ""}
                     </NavItem>
                     <NavItem>
                         <NavIcon>

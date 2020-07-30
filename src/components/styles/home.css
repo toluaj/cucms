@@ -70,12 +70,30 @@ ul.topnav {
     border-radius: 2em;
 }
 
-table  th:nth-child(1){
-    border-radius: .5em 0px 0px .5em;
+table {
+    width: 100%;
+    display: table;
+    margin: 0;
 }
 
-table  th:nth-last-child(1){
-    border-radius: 0px .5em .5em 0px;
+.wrap-table100 {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.container-table100 {
+    width: 100%;
+    min-height: 100vh;
+    align-items: center; 
+    justify-content: center;
+    flex-wrap: wrap;
+    
+}
+
+.limiter {
+    width: 100%;
+    margin: 0 auto;
 }
 
 .link {
@@ -99,6 +117,14 @@ table  th:nth-last-child(1){
     font-size: 1.9em;
     margin-top: 5px;
     color: teal;
+}
+
+.rowed {
+    width: 100% !important;
+  }
+
+.rowed:hover {
+    background-color: #ececff;
 }
 
 .dropdown {

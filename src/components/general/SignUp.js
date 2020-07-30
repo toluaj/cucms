@@ -59,6 +59,7 @@ class SignUp extends Component {
           if(res.data) {
             console.log(res.data);
             toast.success("Successful registration. Verify your email address");
+            window.location.replace('/login');
           }
           else {
             toast.error('Something went wrong. Try again')
@@ -80,6 +81,7 @@ class SignUp extends Component {
       password,
       gender,
       title,
+      conf_password
     } = this.state;
 
     return (
@@ -91,7 +93,8 @@ class SignUp extends Component {
       country.length > 0 &&
       password.length > 0 &&
       title.length > 0 &&
-      gender.length > 0 
+      gender.length > 0 &&
+      conf_password.length > 0
     );
   };
 

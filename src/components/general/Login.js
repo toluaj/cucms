@@ -77,7 +77,7 @@ class Login extends Component {
             toast.error('Invalid Password. Check again');
         }
         else {
-          toast.error('Email not verified!');
+          toast.error('Invalid email!');
           console.log('problem');
         }
       }).catch(err => {
