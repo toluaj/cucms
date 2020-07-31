@@ -12,6 +12,7 @@ import ChairRequest from './components/staff/program-chair/ChairRequest';
 import GetRequest from './components/general/GetRequest';
 import MakeRequest from './components/staff/admin/MakeReviewerRequest';
 import CallForPaper from './components/general/CallForPaper';
+import showconferences from './components/staff/admin/showConferences';
 import { BrowserRouter, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
           <Route exact path="/request" component={GetRequest}></Route>
           <Route exact path="/make-request" component={MakeRequest}></Route>
           <Route exact path="/callforpaper" component={CallForPaper}></Route>
+          <Route exact path="/showconferences" component={showconferences}></Route>
         </div>
       </BrowserRouter>
     );

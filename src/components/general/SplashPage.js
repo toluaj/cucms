@@ -122,7 +122,7 @@ class SplashPage extends Component {
                                     <th>View</th>
                                 </tr>
                             </thead>
-                            <tbody style={{backgroundColor: '#c4d3f6', borderRadius: '3em'}}>
+                            <tbody style={{backgroundColor: '#C7CED4', borderRadius: '3em'}}>
                                 {conferences.map((conf, i) => (
                                 <tr key={i + 1} className="rowed">
                                     <td>{conf.name}</td>

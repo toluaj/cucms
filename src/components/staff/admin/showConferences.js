@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import Nav from '../layouts/AdminSideBar';
+import Nav from '../../layouts/AdminSideBar';
 
 class CallForPaper extends Component {
 
@@ -71,7 +71,7 @@ class CallForPaper extends Component {
         })
     }
 
-    async callForPaper(e) {
+    async chooseConference(e) {
         let index = +e.currentTarget.getAttribute('data-index');
         console.log(this.state.conferences[index]);
         console.log(this.state.conferences[index].name);
@@ -79,24 +79,6 @@ class CallForPaper extends Component {
        const {name} = this.state;
        const data = {name};
        console.log(data);
-
-       axios({
-
-        method: 'post',
-        url: 'http://localhost:8080/api/cu/conference/papercall',
-        data: data,
-        headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-        }
-
-       }).then(res => {
-        if(res.data) {
-            toast.success("Emails sent!");
-           console.log(res.data);
-        }
-       }).catch(err => {
-           toast.error("Something went wrong. Try again!")
-       })
 
     }
 
@@ -113,21 +95,14 @@ class CallForPaper extends Component {
                     <thead style={{backgroundColor: 'teal'}}>
                     <tr>
                         <th>Conference Name</th>
-                        <th style={{marginLeft: '2em'}}>Call For Paper</th>
+                        <th style={{marginLeft: '2em'}}>View</th>
                     </tr>
                     </thead>
                     <tbody style={{backgroundColor: '#ebf5f3', borderRadius: '3em'}}>
                         {conferences.map((req, index) => (
                             <tr key={index} data-index={index} className="rowed">
                                 <td>{req.name}</td>
-                                <td> 
-                                     {/* <button style={{}}> */}
-                                     <i className="fa fa-bell"
-                                        aria-hidden="true" 
-                                        onClick={this.callForPaper}
-                                        style={{marginLeft: '3em',cursor: 'pointer', width: '8em'}}></i>
-                                     {/* </button> */}
-                                </td>
+                                <td><i style={{cursor: 'pointer'}} class="fa fa-eye" aria-hidden="true"></i></td>
                             </tr>
                         ))}
                     </tbody>

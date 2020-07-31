@@ -28,7 +28,7 @@ class AdminSideBar extends Component {
     render() {
         const {navigate} = this.state;
         const {role} = this.props.user;
-        console.log(role);
+
         if(navigate) {
             return <Redirect to="/login" push={true} />
         }

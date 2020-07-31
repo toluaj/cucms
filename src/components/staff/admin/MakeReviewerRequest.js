@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify';
 import Nav from '../../layouts/AdminSideBar'
+import { type } from 'jquery';
 
 class MakeReviewerRequest extends Component {
 
@@ -15,6 +16,8 @@ class MakeReviewerRequest extends Component {
             conference_name: '',
             user_id: '',
             conference_id: '',
+            user: {},
+            loading: ''
 
         }
         this.onChange = this.onChange.bind(this);
@@ -63,25 +66,30 @@ class MakeReviewerRequest extends Component {
     // }
 
     fetchLoggedOnUser() {
-        axios({
-    
-          method: 'get',
-          url: `http://localhost:8080/api/cu/users/logged`,
-          headers: {
-            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-            }
-        }).then((res) => {
-          if(res.data) {
-            console.log(res.data);
+      axios({
+  
+        method: 'get',
+        url: `http://localhost:8080/api/cu/users/logged`,
+        headers: {
+          'Authorization': `Bearer ${sessionStorage.getItem('token')}`
           }
-          else {
-            console.log('you are not logged in!')
-          }
-        }).catch(err => {
-          console.log('no authorization');
-          toast.info("Please log in again. fetchlogged Session expired")
-        })
-    }
+      }).then((res) => {
+        if(res.data) {
+          console.log(res.data.data);
+          this.setState({user: res.data.data, logged: 'true'})
+        }
+        else {
+          console.log('you are not logged in!')
+          this.setState({logged: 'false'});
+          window.location.replace('/login')
+        }
+      }).catch(err => {
+        console.log('no authorization');
+        toast.info("Please log in again. fetchlogged Session expired")
+        this.setState({logged: 'false'});
+        window.location.replace('/login')
+      })
+  }
 
     //Return User Details
 
@@ -176,10 +184,11 @@ class MakeReviewerRequest extends Component {
             conference_name: name,
             email: mail
            }, () => {
-            const {user_id,conference_id, email, conference_name} = this.state;
-            const data = {user_id, conference_id, email, conference_name};
+            const {user_id,conference_id, email, conference_name, type} = this.state;
+            const data = {user_id, conference_id, email, conference_name, type};
             this.makeRequest(data);
            console.log(this.state.conference_name, 'conference_name');
+           console.log(data)
        })
     
 
@@ -193,8 +202,9 @@ class MakeReviewerRequest extends Component {
         if (users && users.length) {
           return (
             <div>
-              <label className="label2 copy-font">Users</label>
-              <select className="form-control" onChange={this.onChange} style={{width: '15em'}} name="user_id">
+              {/* <label className="label2 copy-font">Users</label> */}
+              <select className="form-control" onChange={this.onChange}
+               style={{width: '15em', backgroundColor: '#d1bebe'}} name="user_id">
                 <option>Select User</option>
                 {users.map((user) => {
                   return (
@@ -239,8 +249,9 @@ class MakeReviewerRequest extends Component {
         if (conferences && conferences.length) {
           return (
             <div>
-              <label className="label2 copy-font">Conference</label>
-              <select className="form-control" onChange={this.onChange} style={{width: '15em'}} name="conference_id">
+              {/* <label className="label2 copy-font">Conference</label> */}
+              <select className="form-control" onChange={this.onChange}
+               style={{width: '15em', backgroundColor: '#d1bebe'}} name="conference_id">
                 <option>Select Conference</option>
                 {conferences.map((conference) => {
                   return (
@@ -262,11 +273,13 @@ class MakeReviewerRequest extends Component {
     }
 
 render() {
-    console.log(this.state.conference_name)
+    console.log(this.state.conference_name);
+    const {user} = this.state;
+
     return(
-       <div className="container-fluid ml-5">
-           <Nav/>
-           <form className="wrapper" onSubmit={e => e.preventDefault()}>
+       <div className="container-fluid ml-5" style={{marginLeft: '30em'}}>
+           <Nav user={user}/>
+           <form className="wrapper" onSubmit={e => e.preventDefault()} style={{marginLeft: '30em'}}>
            <div className="ml-5">
            <div>
            <label className="label2 copy-font" htmlFor="conference" aria-labelledby="conference">
@@ -280,10 +293,19 @@ render() {
               </label>
                {this.showUsers()}
                </div>
+              <div>
+              <label className="label2 copy-font" htmlFor="user" aria-labelledby="user">
+                <select name="type" onChange={this.onChange}>
+                  <option value=""></option>
+                  <option value="reviewer">Reviewer</option>
+                  <option value="chair">Program Chair</option>
+                </select>
+              </label>
+              </div>
            </div>
            <button onClick={this.onSubmit}
                    className="btn btn-block"
-                   style={{backgroundColor: 'teal'}}>MAKE REQUEST</button>
+                   style={{backgroundColor: 'teal', width: '10em', marginLeft: '5em'}}>MAKE REQUEST</button>
            </form>
        </div>
     );

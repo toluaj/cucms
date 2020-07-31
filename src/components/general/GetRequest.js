@@ -139,22 +139,25 @@ render() {
        <div className="container-fluid">
            <ToastContainer/>
            <Side/>
-           <div className="mt-3">
-            <div className="table-responsive content">
-                <table className="table copy-font">
+           <div className="mt-3 limiter container-table100">
+                    <div className="table-responsive content ">
+                        <table className="table copy-font wrap-table100"
+                         style={{maxWidth: '40em', marginLeft: '25em'}}>
                     <thead style={{backgroundColor: 'teal'}}>
                     <tr>
                         <th>Conference Name</th>
                         <th>Request Type</th>
+                        <th>Request Status</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody style={{backgroundColor: '#C7CED4', borderRadius: '3em'}} >
                         {requests.map((req, index) => (
-                            <tr key={index} data-index={index}>
+                            <tr key={index} data-index={index} className="rowed">
                                 <td>{req.conference_name}</td>
+                                <td>{req.type}</td>
                                 <td>{req.reply}</td>
-                                <td> <button>
+                                {req.reply === "accepted" || req.reply === "rejected" ? "" : <td> <button>
                                     <i className="fa fa-check"
                                         onClick={this.accept}
                                         aria-hidden="true"></i>
@@ -163,9 +166,9 @@ render() {
                                      <i className="fa fa-times"
                                         aria-hidden="true" 
                                         onClick={this.decline}
-                                        style={{marginLeft: '9em'}}></i>
+                                        style={{marginLeft: '1em'}}></i>
                                     </button>
-                                </td>
+                                </td>}
                             </tr>
                         ))}
                     </tbody>
