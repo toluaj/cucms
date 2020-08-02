@@ -199,15 +199,15 @@ class createConference extends Component {
                onChange={this.onChange} />
             </div>
             </div>
-            <div className="row">
-            <div className="form-group col-sm-6">
-              <p for="sessions">Number of Sessions <b style={{color: 'red'}}>*</b></p>
-              <input type="number"
-               name="sessions"
-               value={sessions} className="sess"
-               onChange={this.onChange} />
-            </div>
-            </div>
+            {/*<div className="row">*/}
+            {/*<div className="form-group col-sm-6">*/}
+            {/*  <p for="sessions">Number of Sessions <b style={{color: 'red'}}>*</b></p>*/}
+            {/*  <input type="number"*/}
+            {/*   name="sessions"*/}
+            {/*   value={sessions} className="sess"*/}
+            {/*   onChange={this.onChange} />*/}
+            {/*</div>*/}
+            {/*</div>*/}
           </div>
           </form>
         </div>

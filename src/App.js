@@ -6,7 +6,7 @@ import Submit from './components/staff/author/submitAbs';
 import createconference from './components/staff/admin/createConference';
 import EditProfile from './components/general/EditProfile';
 import conferenceProgram from './components/staff/program-chair/conferenceProgram';
-import Request from './components/staff/reviewer/Request';
+import Request from './components/staff/reviewer/TrackRequest';
 import GetRequest from './components/general/GetRequest';
 import MakeRequest from './components/staff/admin/MakeReviewerRequest';
 import CallForPaper from './components/general/CallForPaper';
@@ -15,6 +15,7 @@ import ReviewAbstract from './components/staff/reviewer/ReviewAbstract';
 import Program from './components/general/OneConfProgram';
 import AssignAbstract from "./components/staff/program-chair/AssignAbstract";
 import ViewAssignments from "./components/staff/reviewer/ViewAssignments";
+import getUserAbstract from "./components/staff/author/getUserAbstract";
 import { BrowserRouter, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -38,6 +39,7 @@ class App extends Component {
           <Route exact path="/program" component={Program}></Route>
           <Route exact path="/assign-abstract" component={AssignAbstract}></Route>
           <Route exact path="/assignedAbstracts" component={ViewAssignments}></Route>
+          <Route exact path="/track-abstract" component={getUserAbstract}></Route>
         </div>
       </BrowserRouter>
     );

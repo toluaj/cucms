@@ -30,12 +30,12 @@ const OneConfProgram = ({name, id, program}) => {
                         <div className="modal-body">
                             <form>
                                 <div className="form-group">
-                                    <label htmlFor="recipient-name" className="col-form-label">
-                                        <p style={{ textAlign: 'left' }}>
-                                            {/*{user.extra ? user.extra[0].account_ref : null}*/}
-                                            Sessions for {name}
-                                        </p>
-                                    </label>
+                                    {/*<label htmlFor="recipient-name" className="col-form-label">*/}
+                                    {/*    <p style={{ textAlign: 'left' }}>*/}
+                                    {/*        /!*{user.extra ? user.extra[0].account_ref : null}*!/*/}
+                                    {/*        /!*Sessions for {name}*!/*/}
+                                    {/*    </p>*/}
+                                    {/*</label>*/}
                                     <table>
                                         <thead>
                                         <tr>
@@ -46,7 +46,7 @@ const OneConfProgram = ({name, id, program}) => {
                                         <tbody>
                                         {program.map((prog, i)  => (
                                             <tr key={i} className="rowed">
-                                            <td>{prog.name}</td>
+                                            <td>{prog.name} {i+1}</td>
                                             {/*<td>{prog.acts}</td>*/}
                                                 <thead>
                                                 <tr>
