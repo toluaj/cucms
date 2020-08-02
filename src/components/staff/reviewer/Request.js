@@ -127,6 +127,7 @@ render() {
                         <th>User Email</th>
                         <th>Request Type</th>
                         <th>Request Status</th>
+                        {/*<th>Action</th>*/}
                     </tr>
                     </thead>
                     <tbody style={{backgroundColor: '#C7CED4', borderRadius: '3em'}} >
@@ -136,20 +137,20 @@ render() {
                                 <td>{req.email}</td>
                                 <td>{req.type}</td>
                                 <td>{req.reply}</td>
-                                {req.reply === "accepted" || req.reply === "rejected" ? "" : <td> <button>
-                                    <i className="fa fa-check"
-                                        onClick={this.accept}
-                                        aria-hidden="true"></i>
-                                    </button>
-                                    <button>
-                                     <i className="fa fa-times"
-                                        aria-hidden="true" 
-                                        onClick={this.decline}
-                                        style={{marginLeft: '1em'}}></i>
-                                    </button>
-                                </td>}
+                                {/*{req.reply === "accepted" || req.reply === "rejected" ? "" : <td> <button>*/}
+                                {/*    <i className="fa fa-check"*/}
+                                {/*        onClick={this.accept}*/}
+                                {/*        aria-hidden="true"></i>*/}
+                                {/*    </button>*/}
+                                {/*    <button>*/}
+                                {/*     <i className="fa fa-times"*/}
+                                {/*        aria-hidden="true" */}
+                                {/*        onClick={this.decline}*/}
+                                {/*        style={{marginLeft: '1em'}}></i>*/}
+                                {/*    </button>*/}
+                                {/*</td>}*/}
                             </tr>
-                        )): "You do not have any requests at this time"}
+                        )): "You have not made any requests at this time"}
                     </tbody>
             </table>
             </div>

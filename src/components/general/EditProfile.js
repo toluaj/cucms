@@ -13,9 +13,13 @@ class EditProfile extends Component {
     this.state = {
 
       user: {},
-      logged: ''
+      logged: '',
+      alternate_phone: '',
+      lastName: ''
 
     }
+    this.onChange = this.onChange.bind(this);
+    this.editProfile = this.editProfile.bind(this);
   }
 
   componentWillMount() {
@@ -48,15 +52,25 @@ fetchLoggedOnUser() {
     })
 }
 
-editProfile = () => {
+  onChange = (e) =>
+      this.setState({
+        [e.target.name]: e.target.value,
+      });
+
+editProfile = (e) => {
+    e.preventDefault();
+    const {alternate_phone, lastName} = this.state;
+    const data = {alternate_phone, lastName};
 
   axios({
-    method: 'post',
+    method: 'put',
     url: 'http://localhost:8080/api/cu/users/edit',
     data: data,
     headers: {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     }
+  }).then(res => {
+    console.log(res.data);
   })
 }
 
@@ -81,7 +95,8 @@ editProfile = () => {
             </div>
             <div className="form-group col-sm-6">
               <label for="email">Last Name <b style={{color: 'red'}}>*</b></label>
-              <input type="text" name="lastname" placeholder={user.lastName} />
+              <input type="text" name="lastName" placeholder={user.lastName} onChange={this.onChange}
+                     value={this.state.lastName}/>
             </div>
             </div>
             <div className="row">
@@ -101,7 +116,8 @@ editProfile = () => {
             </div>
             <div className="form-group col-sm-6">
               <label for="altphone">Alternate Phone</label>
-              <input type="text" name="alternate_phone" value={user.alternate_phone} placeholder="" />
+              <input type="text" name="alternate_phone" value={this.state.alternate_phone}
+                     placeholder={user.alternate_phone} onChange={this.onChange} />
             </div> 
             </div>
             <div className="row">
@@ -120,7 +136,8 @@ editProfile = () => {
           </form>
         </div>
         <div className="footer">
-          <button type="submit" className="btn btn-block" style={{width: '60px', marginLeft: '42em', backgroundColor: 'teal'}}>
+          <button type="submit" className="btn btn-block" onClick={this.editProfile}
+                  style={{width: '60px', marginLeft: '42em', backgroundColor: 'teal'}}>
             Save
           </button>
         </div>

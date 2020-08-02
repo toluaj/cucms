@@ -117,7 +117,7 @@ class ViewAssignments extends Component {
                             </tr>
                             </thead>
                             <tbody style={{backgroundColor: '#ebf5f3', borderRadius: '3em'}}>
-                            {abstracts.map((req, index) => (
+                            {abstracts.length > 0 ? abstracts.map((req, index) => (
                                 <tr key={index} data-index={index} className="rowed">
                                     <td>{req.conference_name}</td>
                                     <td>
@@ -132,7 +132,7 @@ class ViewAssignments extends Component {
                                                         abstract={abstract} />
                                     </td>
                                 </tr>
-                            ))}
+                            )): <tr style={{width: '50em'}}>You have not been assigned any abstracts to review</tr>}
                             </tbody>
                         </table>
                     </div>
