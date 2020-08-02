@@ -6,6 +6,7 @@ import SplashSideBar from '../layouts/SplashSideBar';
 import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify';
 import moment from 'moment';
+import OneConfProgram from './OneConfProgram';
 
 class SplashPage extends Component {
 
@@ -15,11 +16,16 @@ class SplashPage extends Component {
         this.state = {
             user: {},
             conferences: [],
-            logged: false
+            logged: false,
+            id: '',
+            name: '',
+            conference_id: '',
+            programs: [],
+            acts: []
 
         }
         this.getConferences = this.getConferences.bind(this);
-        // this.isLogged = this.isLogged.bind(this);
+        this.viewProgram = this.viewProgram.bind(this);
     }
 
     componentWillMount() {
@@ -28,6 +34,7 @@ class SplashPage extends Component {
     
     componentDidMount() {
         this.getConferences();
+        // this.viewProgram();
     }
 
 
@@ -73,15 +80,53 @@ class SplashPage extends Component {
         })
     }
 
+    getProgram(data) {
+        console.log(JSON.stringify(data))
+        axios({
+            method: 'get',
+            url: `http://localhost:8080/api/cu/activity/program/${data}`,
+            // data: data,
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        }).then(res => {
+            if(res.data) {
+                console.log(res.data);
+                this.setState(
+                    {programs: res.data.program}, () => console.log(this.state.programs))
+            }
+        }).catch(err => {
+            console.log(err)
+        })
+    }
+
+    viewProgram(e) {
+        let index = +e.currentTarget.getAttribute('data-index');
+        console.log(this.state.conferences[index]);
+        console.log(this.state.conferences[index].id);
+        this.setState({
+            conference_id: this.state.conferences[index].id,
+            name: this.state.conferences[index].name
+        }, () => {
+            const {conference_id} = this.state;
+            // const data = {conference_id};
+            // console.log(JSON.stringify(data));
+            this.getProgram(conference_id);
+            console.log(this.state.conference_id)
+        })
+
+    }
+
     render() {
 
-        const {conferences, user, logged} = this.state
+        const {conferences, user, logged, id, name, programs} = this.state
+        console.log(this.state.conference_id);
+        console.log(this.state.programs);
         return(
             <div className="container-fluid">
                 <ToastContainer/>
+                {/*<OneConfProgram id={id}/>*/}
                 <div className="row enter">
-                    {/* <p className="mr-5"><Link to="/submitabstract">Login</Link></p>
-                    <p><Link to="/sign-up">Sign Up</Link></p> */}
                 </div>
                 <div className="jumbotron">
                     <div className="image">
@@ -102,8 +147,6 @@ class SplashPage extends Component {
                             ""}
                     </div>
                 </div>
-                {/* <SideNav/> */}
-                 {/* {this.isLogged ? : ""} */}
                 <SplashSideBar user = {logged}/>
                 <div className="mt-3">
                         <h4 style={{marginLeft: '27em'}}>UPCOMING CONFERENCES</h4>
@@ -123,15 +166,26 @@ class SplashPage extends Component {
                                 </tr>
                             </thead>
                             <tbody style={{backgroundColor: '#C7CED4', borderRadius: '3em'}}>
-                                {conferences.map((conf, i) => (
-                                <tr key={i + 1} className="rowed">
-                                    <td>{conf.name}</td>
+                                {conferences.map((conf, index) => (
+                                <tr key={index + 1} data-index={index} className="rowed">
+                                    <td data-index={index} >{conf.name}</td>
                                     <td>{conf.topic}</td>
                                     <td>{conf.description}</td>
                                     <td>{moment(conf.start_date).format('DD/MM/YYYY')}</td>
                                     <td>{moment(conf.end_date).format('DD/MM/YYYY')}</td>
                                     <td>{conf.location}</td>
-                                    <td><i style={{cursor: 'pointer'}} class="fa fa-eye" aria-hidden="true"></i></td>
+                                    <td><i style={{cursor: 'pointer'}}
+                                           class="fa fa-eye"
+                                           aria-hidden="true"
+                                           data-index={index}
+                                           data-toggle="modal"
+                                           data-target="#program"
+                                           onClick={this.viewProgram}
+                                            ></i>
+                                        <OneConfProgram id={id}
+                                                        name={name}
+                                                        program={programs}/>
+                                    </td>
                                 </tr>
                                 ))}
                             </tbody>

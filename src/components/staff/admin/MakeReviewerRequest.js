@@ -277,12 +277,15 @@ render() {
     const {user} = this.state;
 
     return(
-       <div className="container-fluid ml-5" style={{marginLeft: '30em'}}>
+       <div className="container-fluid mt-5" 
+            style={{ width: '22em', border: '4px solid #fff', marginLeft: '40em', borderRadius: '2em'}}>
            <Nav user={user}/>
-           <form className="wrapper" onSubmit={e => e.preventDefault()} style={{marginLeft: '30em'}}>
+           <form className="wrapper" onSubmit={e => e.preventDefault()} 
+          //  style={{marginLeft: '30em'}}
+           >
            <div className="ml-5">
            <div>
-           <label className="label2 copy-font" htmlFor="conference" aria-labelledby="conference">
+           <label className="label2 copy-font mt-3" htmlFor="conference" aria-labelledby="conference">
                 Choose Conference
               </label>
                {this.showConferences()}
@@ -295,6 +298,7 @@ render() {
                </div>
               <div>
               <label className="label2 copy-font" htmlFor="user" aria-labelledby="user">
+                Request Type
                 <select name="type" onChange={this.onChange}>
                   <option value=""></option>
                   <option value="reviewer">Reviewer</option>
@@ -305,7 +309,8 @@ render() {
            </div>
            <button onClick={this.onSubmit}
                    className="btn btn-block"
-                   style={{backgroundColor: 'teal', width: '10em', marginLeft: '5em'}}>MAKE REQUEST</button>
+                   style={{backgroundColor: 'teal', width: '10em',
+                    marginLeft: '5em', marginBottom: '2em'}}>MAKE REQUEST</button>
            </form>
        </div>
     );

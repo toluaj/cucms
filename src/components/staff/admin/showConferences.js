@@ -4,7 +4,7 @@ import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Nav from '../../layouts/AdminSideBar';
 
-class CallForPaper extends Component {
+class showConferences extends Component {
 
     constructor(props) {
         super(props);
@@ -115,4 +115,4 @@ class CallForPaper extends Component {
     }
 }
 
-export default CallForPaper;
+export default showConferences;

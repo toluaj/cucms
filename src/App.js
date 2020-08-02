@@ -4,15 +4,17 @@ import Login from './components/general/Login';
 import SignUp from './components/general/SignUp';
 import Submit from './components/staff/author/submitAbs';
 import createconference from './components/staff/admin/createConference';
-import ChairHome from './components/staff/program-chair/programChairHome';
 import EditProfile from './components/general/EditProfile';
 import conferenceProgram from './components/staff/program-chair/conferenceProgram';
 import Request from './components/staff/reviewer/Request';
-import ChairRequest from './components/staff/program-chair/ChairRequest';
 import GetRequest from './components/general/GetRequest';
 import MakeRequest from './components/staff/admin/MakeReviewerRequest';
 import CallForPaper from './components/general/CallForPaper';
 import showconferences from './components/staff/admin/showConferences';
+import ReviewAbstract from './components/staff/reviewer/ReviewAbstract';
+import Program from './components/general/OneConfProgram';
+import AssignAbstract from "./components/staff/program-chair/AssignAbstract";
+import ViewAssignments from "./components/staff/reviewer/ViewAssignments";
 import { BrowserRouter, Route } from 'react-router-dom';
 
 class App extends Component {
@@ -25,15 +27,17 @@ class App extends Component {
           <Route exact path="/sign-up" component={SignUp}></Route>
           <Route exact path="/submitabstract" component={Submit}></Route>
           <Route exact path="/createconference" component={createconference}></Route>
-          <Route exact path="/chair-home" component={ChairHome}></Route>
           <Route exact path="/editprofile" component={EditProfile}></Route>
           <Route exact path="/confprogram" component={conferenceProgram}></Route>
-          <Route exact path="/request/:token" component={Request}></Route>
-          <Route exact path="/chairRequest/:token" component={ChairRequest}></Route>
+          <Route exact path="/requests" component={Request}></Route>
           <Route exact path="/request" component={GetRequest}></Route>
           <Route exact path="/make-request" component={MakeRequest}></Route>
           <Route exact path="/callforpaper" component={CallForPaper}></Route>
           <Route exact path="/showconferences" component={showconferences}></Route>
+          <Route exact path="/review-abstract" component={ReviewAbstract}></Route>
+          <Route exact path="/program" component={Program}></Route>
+          <Route exact path="/assign-abstract" component={AssignAbstract}></Route>
+          <Route exact path="/assignedAbstracts" component={ViewAssignments}></Route>
         </div>
       </BrowserRouter>
     );

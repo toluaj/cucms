@@ -1,85 +1,163 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import {toast, ToastContainer} from 'react-toastify';
+import Side from '../../layouts/AdminSideBar';
 
-class Request extends Component {
+class MakeRequest extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            // reply: ''
+            user: {},
+            requests: [],
+            conference_id: '',
+            logged: ''
         }
-        this.markCorrect = this.markCorrect.bind(this);
-        this.markWrong = this.markWrong.bind(this);
+        this.getRequests = this.getRequests.bind(this);
+        
     }
 
-    // componentDidMount(){
-    //     this.markCorrect();
-    // }
+    componentWillMount() {
+        this.fetchLoggedOnUser();
+    }
+    
+    componentDidMount() {
+        this.getRequests();
+    }
 
-    markCorrect() {
-
-        // e.preventDefault();
-
-        // this.setState({reply: "accepted"})
-        var reply = "accepted";
-        const { token } = this.props.match.params;
-        const data = {reply, token};
-        console.log(data);
+    fetchLoggedOnUser() {
         axios({
+    
+          method: 'get',
+          url: `http://localhost:8080/api/cu/users/logged`,
+          headers: {
+            'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        }).then((res) => {
+          if(res.data) {
+            console.log(res.data.data);
+            this.setState({user: res.data.data, logged: 'true'})
+          }
+          else {
+            console.log('you are not logged in!')
+            this.setState({logged: 'false'});
+            window.location.replace('/login')
+          }
+        }).catch(err => {
+          console.log('no authorization');
+          toast.info("Please log in again. fetchlogged Session expired")
+          this.setState({logged: 'false'});
+          window.location.replace('/login')
+        })
+    }
 
-            method: 'post',
-            url: 'http://localhost:8080/api/cu/request/reply',
-            data: data
+
+    getRequests = () => {
+
+        axios({
+            method: 'get',
+            url: 'http://localhost:8080/api/cu/request/requests',
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        }).then(res => {
+            if(res.data) {
+
+                console.log(res.data.data);
+                this.setState({
+                    requests: res.data.data       
+                })
+
+            } 
+        }).catch(err => {
+            console.log(err.message);
+        })
+    }
+
+    // async getRequests (e) {
+    //     let index = +e.currentTarget.getAttribute('data-index');
+    //     console.log(this.state.requests[index]);
+    //     console.log(this.state.requests[index].conference_id);
+    //    await this.setState({conference_id: this.state.requests[index].conference_id})
+    //    const {conference_id} = this.state;
+    //     var reply = "accepted";
+    //     const data = {reply, conference_id};
+    //     console.log(data);
+    //     axios({
+
+    //         method: 'post',
+    //         url: 'http://localhost:8080/api/cu/request/reply',
+    //         data: data,
+    //         headers: {
+    //             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    //         }
             
-        }).then((res) => {
-            console.log(res);
-            if(res.data) {
-                console.log(res.data);
-            }
-        }).catch(err => {
-            console.log(err.message);
-            console.log('something\'s up')
-        })
+    //     }).then((res) => {
+    //         console.log(res);
+    //         if(res.data) {
+    //             console.log(res.data);
+    //         }
+    //     }).catch(err => {
+    //         console.log(err.message);
+    //         console.log('something\'s up')
+    //     })
+    // }
+    
 
-    }
+render() {
 
-    markWrong = (e) => {
-        // e.preventDefault();
-        // this.setState({reply: "rejected"})
+    const {requests, user} = this.state;
+    console.log(requests);
+    console.log(user);
+    console.log(this.state.conference_id);
 
-        const reply = "rejected";
-        const data = {reply};
-        console.log(data);
-        axios({
+    return(
 
-            method: 'post',
-            url: 'http://localhost:8080/api/cu/request/reply',
-            data: data
-
-        }).then((res) => {
-            if(res.data) {
-                console.log(res.data);
-            }
-        }).catch(err => {
-            console.log(err.message);
-        })
-
-    }
-
-    render() {
-        return(
-            <div className="text-align-center" style={{marginLeft: '40em'}}>
-                <textarea cols="20" rows="3" placeholder="Do you accept this request?" readOnly></textarea>
-                <br/>
-                <button type="submit" onClick={this.markCorrect}>
-                    {/* <i className="fa fa-check" aria-hidden="true"> */}
-                        </button>
-                <i onClick={this.markWrong} className="fa fa-times" aria-hidden="true" style={{marginLeft: '9em'}}></i>
+       <div className="container-fluid">
+           <ToastContainer/>
+           <Side user={user}/>
+           <div className="mt-3 limiter container-table100">
+                    <div className="table-responsive content ">
+                        <table className="table copy-font wrap-table100"
+                         style={{maxWidth: '40em', marginLeft: '25em'}}>
+                    <thead style={{backgroundColor: 'teal'}}>
+                    <tr>
+                        <th>Conference Name</th>
+                        <th>User Email</th>
+                        <th>Request Type</th>
+                        <th>Request Status</th>
+                    </tr>
+                    </thead>
+                    <tbody style={{backgroundColor: '#C7CED4', borderRadius: '3em'}} >
+                        {requests.length > 0 ? requests.map((req, index) => (
+                            <tr key={index} data-index={index} className="rowed">
+                                <td>{req.conference_name}</td>
+                                <td>{req.email}</td>
+                                <td>{req.type}</td>
+                                <td>{req.reply}</td>
+                                {req.reply === "accepted" || req.reply === "rejected" ? "" : <td> <button>
+                                    <i className="fa fa-check"
+                                        onClick={this.accept}
+                                        aria-hidden="true"></i>
+                                    </button>
+                                    <button>
+                                     <i className="fa fa-times"
+                                        aria-hidden="true" 
+                                        onClick={this.decline}
+                                        style={{marginLeft: '1em'}}></i>
+                                    </button>
+                                </td>}
+                            </tr>
+                        )): "You do not have any requests at this time"}
+                    </tbody>
+            </table>
             </div>
-        )
-    }
+            </div>
+       </div>
+    );
 
 }
 
-export default Request;
+}
+export default MakeRequest;

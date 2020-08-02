@@ -12,8 +12,8 @@ class conferenceProgram extends Component {
         this.state = {
             acts: [{ name: "", date: "", start_time: "", end_time: "", room: ""}],
             program: "",
-            //  user: {}, logged: '',
-            spaces_available: "", conference_id: '2'
+             user: {}, logged: '',
+            spaces_available: "", conference_id: ''
         }
         this.deleteSession = this.deleteSession.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -22,6 +22,7 @@ class conferenceProgram extends Component {
 
     componentDidMount(){
         this.fetchLoggedOnUser();
+        this.getConferences();
     }
 
     handleChange = (e) => {
@@ -62,36 +63,80 @@ class conferenceProgram extends Component {
         }).then((res) => {
           if(res.data) {
             console.log(res.data.data);
-            // this.setState({user: res.data.data, logged: 'true'})
+            this.setState({user: res.data.data, logged: 'true'})
           }
           else {
             console.log('you are not logged in!')
-            // this.setState({logged: 'false'});
+            this.setState({logged: 'false'});
             window.location.replace('/login')
           }
         }).catch(err => {
           console.log('no authorization');
           toast.info("Please log in again. fetchlogged Session expired")
-        //   this.setState({logged: 'false'});
+          this.setState({logged: 'false'});
           window.location.replace('/login')
         })
     }
 
-      onSubmit = (e) => {
+    getConferences() {
+
+        axios({
+            method: 'get',
+            url: 'http://localhost:8080/api/cu/conference',
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        }).then(res => {
+            if(res.data){
+                console.log(res.data.data);
+                this.setState({
+                    conferences: res.data.data
+                })
+            }
+        })
+    }
+
+    showConferences() {
+        const { conferences } = this.state;
+
+        if (conferences && conferences.length) {
+            return (
+                <div>
+                    <select className="form-control" onChange={this.onChange}
+                            style={{width: '15em', backgroundColor: '#d1bebe'}} name="conference_id">
+                        <option value=""></option>
+                        {conferences.map((conference) => {
+                            return (
+                                <option value={conference.id}  key={conference.id}>
+                                    {conference.name}
+                                </option>
+                            );
+                        })}
+                    </select>
+                </div>
+            );
+        }
+        return (
+            <div>
+                <label className="label2 copy-font">Conference</label>
+                <small>No Conferences to display</small>
+            </div>
+        );
+    }
+
+    onSubmit = (e) => {
 
         e.preventDefault();
 
-        var formData = new FormData();
-        formData = this.state;
-        let data = {formData: this.state}
+        const {acts, program, spaces_available, conference_id} = this.state
+        const data = {acts, program, spaces_available, conference_id};
         console.log(data);
-        console.log(formData);
 
         axios({
 
                 method: 'post',
                 url: `http://localhost:8080/api/cu/activity`,
-                data: formData,
+                data: data,
                 headers: {
                     'Authorization': `Bearer ${sessionStorage.getItem('token')}`
                 }
@@ -104,58 +149,25 @@ class conferenceProgram extends Component {
                 console.log('something wen twornhf')
                 console.log(err.message);
             })
-        
-        // const data1 = this.state.sessionList;
-        // var datha = {};
-        // var data = {};
-        // const {spaces, program} = this.state;
-        // // let data = {'spaces': spaces, 'program': program};
-        // for(var i=0; i<data1.length; i++) {
-        //     console.log(this.state.sessionList[i]);
-        //     datha = this.state.sessionList[i];
-            
-        //     data = {
-        //             name: datha.name, 
-        //             date: datha.date,
-        //             start_time: datha.start_time,
-        //             end_time: datha.end_time, 
-        //             room: datha.room, 
-        //             spaces, 
-        //             program,
-        //             conference_id: '2'};
-        
-        //     console.log(data);
-        
-        // axios({
-
-        //     method: 'post',
-        //     url: `http://localhost:8080/api/cu/activity`,
-        //     data: data,
-        //     headers: {
-        //         'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-        //     }
-        // })
-        // .then((res) => {
-        //     if(res.data){
-        //         console.log(res.data);
-        //     }
-        // }).catch(err=> {
-        //     console.log('something wen twornhf')
-        //     console.log(err.message);
-        // })
-        
-        // }
 
       }
 
     render() {
 
-        const {acts, program, spaces_available} = this.state;
+        const {acts, program, spaces_available, user} = this.state;
         return(
             <div className="container-fluid prog" style={{maxWidth: '90%'}}>
-                {/* <Nav user={user}/> */}
+                 <Nav user={user}/>
                 <form className="form"onSubmit={this.onSubmit} onChange={this.handleChange}>
                 <h5>Conference Program (you can edit this later)</h5>
+                    <div className="row">
+                        <div>
+                            <label className="label2 copy-font mt-3" htmlFor="conference" aria-labelledby="conference">
+                                Choose Conference
+                            </label>
+                            {this.showConferences()}
+                        </div>
+                    </div>
                 <div className="row">
                     <div className="col-sm-6">
                     <p>Program Name</p>
@@ -203,6 +215,7 @@ class conferenceProgram extends Component {
                     <option value="chapel">Chapel</option>
                     <option value="conference">Conference Room</option>
                     <option value="cucrid">CUCRID</option>
+                    <option value="Hall 201">Hall 201</option>
                     </select>
                     </td>
                     <td>

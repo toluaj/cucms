@@ -3,7 +3,7 @@ import '../../styles/styles.css';
 import '../../styles/author/submit.css';
 import logo from '../../images/logo.png';
 import {Link} from 'react-router-dom';
-import SideBar from '../../layouts/AuthorSideBar';
+import SideBar from '../../layouts/AdminSideBar';
 import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify';
 import FileDownload from 'js-file-download';
@@ -53,16 +53,22 @@ class submitAbs extends Component {
             }
         }).then((res) => {
           if(res.data) {
-            console.log(res.data);
+            console.log(res.data.data);
+            this.setState({user: res.data.data, logged: 'true'})
           }
           else {
             console.log('you are not logged in!')
+            this.setState({logged: 'false'});
+            window.location.replace('/login')
           }
         }).catch(err => {
           console.log('no authorization');
           toast.info("Please log in again. fetchlogged Session expired")
+          this.setState({logged: 'false'});
+          window.location.replace('/login')
         })
     }
+
 
     onChange = (e) =>
    this.setState({
@@ -95,43 +101,6 @@ class submitAbs extends Component {
             (r => r!== record),
         });
     }
-
-    // onSubmit = (e) => {
-
-    //     e.preventDefault();
-        
-    //     const data1 = this.state.sessionList;
-    //     var datha = {};
-    //     let data= {};
-    //     for(var i=0; i<data1.length; i++) {
-    //         console.log(this.state.sessionList[i]);
-    //         datha = this.state.sessionList[i];
-            
-    //         data = {firstName: datha.firstName, date: datha.date,
-    //                 start_time: datha.start_time, end_time: datha.end_time, 
-    //                 room: datha.room};
-    //         console.log(data);
-    //     axios({
-
-    //         method: 'post',
-    //         url: `http://localhost:8080/api/cu/activity`,
-    //         data: data,
-    //         headers: {
-    //             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-    //         }
-    //     })
-    //     .then((res) => {
-    //         if(res.data){
-    //             console.log(res.data);
-    //         }
-    //     }).catch(err=> {
-    //         console.log('something wen twornhf')
-    //         console.log(err.message);
-    //     })
-        
-    //     }
-
-    //   }
 
     onSubmit = (e) => {
 
@@ -228,7 +197,7 @@ class submitAbs extends Component {
     
     render() {
 
-        let {authorList, conferences} = this.state;
+        let {authorList, conferences, user} = this.state;
         console.log(conferences)
         const {topic, affiliation, firstName, lastName, abstract_text, abstract, email} = this.state;
 
@@ -242,7 +211,7 @@ class submitAbs extends Component {
                     <br/>
                     <h1 className=" head mr-5">CUCMS</h1>
                 </div>
-                <SideBar/>
+                <SideBar user={user}/>
                 <div className="row">
                     <h5 className="submit mt-5 mb-3 col-12">SUBMIT ABSTRACT</h5>
                     {/* <br/> */}

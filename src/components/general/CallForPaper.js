@@ -12,7 +12,7 @@ class CallForPaper extends Component {
         this.state = {
             conferences: [],
             name: '',
-            user: '',
+            user: {},
             loading: ''
         }
         this.callForPaper = this.callForPaper.bind(this);
@@ -121,12 +121,10 @@ class CallForPaper extends Component {
                             <tr key={index} data-index={index} className="rowed">
                                 <td>{req.name}</td>
                                 <td> 
-                                     {/* <button style={{}}> */}
                                      <i className="fa fa-bell"
                                         aria-hidden="true" 
-                                        onClick={this.callForPaper}
+                                        onClick={this.callForPaper} data-index={index}
                                         style={{marginLeft: '3em',cursor: 'pointer', width: '8em'}}></i>
-                                     {/* </button> */}
                                 </td>
                             </tr>
                         ))}

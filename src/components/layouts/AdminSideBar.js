@@ -19,6 +19,7 @@ class AdminSideBar extends Component {
     }
 
     logout = () => {
+        sessionStorage.setItem('token', '')
         sessionStorage.clear('token');
         this.setState({navigate: true})
         toast.success('logged out');
@@ -53,13 +54,17 @@ class AdminSideBar extends Component {
                         <NavItem>
                         <NavText><Link to="/createconference" className="nav-link"> Add Conference </Link></NavText>
                     </NavItem> : ""}
-                    {role === "reviewer" ?
+                    {role !== "user" ?
                         <NavItem>
-                        <NavText><Link to="/" className="nav-link"> View Assigned Abstracts </Link></NavText>
-                    </NavItem> : ""}
+                        <NavText><Link to="/assignedAbstracts" className="nav-link"> View Assigned Abstracts </Link></NavText>
+                    </NavItem>: ""}
                         <NavItem>
                         <NavText><Link to="/request" className="nav-link"> View Requests </Link></NavText>
                     </NavItem> 
+                    {role === "chair" || role === "admin" ?
+                    <NavItem>
+                        <NavText><Link to="/requests" className="nav-link"> Track Requests </Link></NavText>
+                    </NavItem> : ""}
                     {role === "chair" || role === "admin" ?
                     <NavItem>
                         <NavText><Link to="" className="nav-link"> Edit Conference </Link></NavText>
@@ -84,7 +89,7 @@ class AdminSideBar extends Component {
                     </NavItem> : ""}
                    {role === "chair" || role === "admin" ?
                      <NavItem>
-                        <NavText><Link to="" className="nav-link">  Assign Abstracts to Reviewers </Link></NavText>
+                        <NavText><Link to="/assign-abstract" className="nav-link">  Assign Abstracts to Reviewers </Link></NavText>
                     </NavItem> : ""}
                     </NavItem>
                     <NavItem>
