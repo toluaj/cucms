@@ -12,11 +12,14 @@ class MakeRequest extends Component {
             user: {},
             requests: [],
             conference_id: '',
-            logged: ''
+            logged: '',
+            conference_name: ''
         }
         this.getRequests = this.getRequests.bind(this);
         this.accept = this.accept.bind(this);
         this.decline = this.decline.bind(this);
+        this.acceptChair = this.acceptChair.bind(this);
+        this.declineChair = this.declineChair.bind(this);
     }
 
     componentWillMount() {
@@ -76,14 +79,50 @@ class MakeRequest extends Component {
         })
     }
 
+    async acceptChair (e) {
+        let ind = +e.currentTarget.getAttribute('data-index');
+        console.log(this.state.requests[ind]);
+        console.log(this.state.requests[ind].conference_id);
+        console.log(this.state.requests[ind].conference_name);
+        await this.setState({conference_id: this.state.requests[ind].conference_id, conference_name: this.state.requests[ind].conference_name})
+        const {conference_id, conference_name} = this.state;
+        const {email, firstName, lastName} = this.state.user;
+        console.log(email, firstName, lastName);
+        var reply = "accepted";
+        const data = {reply, conference_id, email, firstName, lastName, conference_name};
+        console.log(data);
+        axios({
+
+            method: 'post',
+            url: 'http://localhost:8080/api/cu/request/chair/reply',
+            data: data,
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+
+        }).then((res) => {
+            console.log(res);
+            if(res.data) {
+                console.log(res.data);
+                window.location.reload();
+            }
+        }).catch(err => {
+            console.log(err.message);
+            console.log('something\'s up')
+        })
+    }
+
     async accept (e) {
         let index = +e.currentTarget.getAttribute('data-index');
         console.log(this.state.requests[index]);
         console.log(this.state.requests[index].conference_id);
-       await this.setState({conference_id: this.state.requests[index].conference_id})
-       const {conference_id} = this.state;
+       await this.setState({conference_id: this.state.requests[index].conference_id,
+           conference_name: this.state.requests[index].conference_name})
+       const {conference_id, conference_name} = this.state;
+        const {email, firstName, lastName} = this.state.user;
+        console.log(email, firstName, lastName);
         var reply = "accepted";
-        const data = {reply, conference_id};
+        const data = {reply, conference_id, email, firstName, lastName, conference_name};
         console.log(data);
         axios({
 
@@ -98,6 +137,38 @@ class MakeRequest extends Component {
             console.log(res);
             if(res.data) {
                 console.log(res.data);
+                window.location.reload();
+            }
+        }).catch(err => {
+            console.log(err.message);
+            console.log('something\'s up')
+        })
+    }
+
+    async declineChair (e) {
+        let dex = +e.currentTarget.getAttribute('data-index');
+        console.log(this.state.requests[dex]);
+        console.log(this.state.requests[dex].conference_id);
+        await this.setState({conference_id: this.state.requests[dex].conference_id})
+        const {conference_id} = this.state;
+        var reply = "rejected";
+        const data = {reply, conference_id};
+        console.log(data);
+
+        axios({
+
+            method: 'post',
+            url: 'http://localhost:8080/api/cu/request/chair/reply',
+            data: data,
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+
+        }).then((res) => {
+            console.log(res);
+            if(res.data) {
+                console.log(res.data);
+                // window.location.reload();
             }
         }).catch(err => {
             console.log(err.message);
@@ -127,6 +198,7 @@ class MakeRequest extends Component {
             console.log(res);
             if(res.data) {
                 console.log(res.data);
+                window.location.reload();
             }
         }).catch(err => {
             console.log(err.message);
@@ -162,21 +234,57 @@ render() {
                     <tbody style={{backgroundColor: '#C7CED4', borderRadius: '3em'}} >
                         {requests.length > 0 ? requests.map((req, index) => (
                             <tr key={index} data-index={index} className="rowed">
-                                <td>{req.conference_name}</td>
+                                <td  data-index={index} >{req.conference_name}</td>
                                 <td>{req.type}</td>
                                 <td>{req.reply}</td>
-                                {req.reply === "accepted" || req.reply === "rejected" ? "" : <td> <button>
-                                    <i className="fa fa-check"
-                                        onClick={this.accept}
-                                        aria-hidden="true"></i>
-                                    </button>
-                                    <button>
-                                     <i className="fa fa-times"
-                                        aria-hidden="true" 
-                                        onClick={this.decline}
-                                        style={{marginLeft: '1em'}}></i>
-                                    </button>
-                                </td>}
+                                {/*{req.reply === "accepted" || req.reply === "rejected" ? "" :*/}
+                                {/*    <td> */}
+                                {/*    <button>*/}
+                                {/*    <i className="fa fa-check"*/}
+                                {/*        onClick={this.accept}*/}
+                                {/*        aria-hidden="true"></i>*/}
+                                {/*    </button>*/}
+                                {/*    <button>*/}
+                                {/*     <i className="fa fa-times"*/}
+                                {/*        aria-hidden="true" */}
+                                {/*        onClick={this.decline}*/}
+                                {/*        style={{marginLeft: '1em'}}></i>*/}
+                                {/*    </button>*/}
+                                {/*</td>}*/}
+                                {req.type === "chair" && req.reply === "pending" ?
+                                    <td>
+                                        {/*<button>*/}
+                                            <i className="fa fa-check"
+                                               onClick={this.acceptChair}
+                                               aria-hidden="true"
+                                                style={{cursor: 'pointer'}}
+                                                data-index={index}>.</i>
+                                        {/*</button>*/}
+                                        {/*<button>*/}
+                                            <i className="fa fa-times"
+                                               aria-hidden="true"
+                                               onClick={this.declineChair}
+                                               data-index={index}
+                                               style={{marginLeft: '1em', cursor: 'pointer'}}>.</i>
+                                        {/*</button>*/}
+                                    </td> :
+                                    req.type === "reviewer" && req.reply === "pending" ?
+                                        <td>
+                                            {/*<button>*/}
+                                                <i className="fa fa-check"
+                                                   onClick={this.accept}
+                                                   aria-hidden="true"
+                                                   data-index={index}
+                                                   style={{cursor: 'pointer'}}>.</i>
+                                            {/*</button>*/}
+                                            {/*<button>*/}
+                                                <i className="fa fa-times"
+                                                   aria-hidden="true"
+                                                   onClick={this.decline}
+                                                   data-index={index}
+                                                   style={{marginLeft: '1em', cursor: 'pointer'}}>.</i>
+                                            {/*</button>*/}
+                                        </td> : ""}
                             </tr>
                         )): "You do not have any requests at this time"}
                     </tbody>

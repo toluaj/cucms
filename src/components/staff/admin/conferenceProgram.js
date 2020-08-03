@@ -82,7 +82,7 @@ class conferenceProgram extends Component {
 
         axios({
             method: 'get',
-            url: 'http://localhost:8080/api/cu/conference',
+            url: 'http://localhost:8080/api/cu/parties',
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
@@ -107,8 +107,8 @@ class conferenceProgram extends Component {
                         <option value=""></option>
                         {conferences.map((conference) => {
                             return (
-                                <option value={conference.id}  key={conference.id}>
-                                    {conference.name}
+                                <option value={conference.conference_id}  key={conference.conference_id}>
+                                    {conference.conference_name}
                                 </option>
                             );
                         })}

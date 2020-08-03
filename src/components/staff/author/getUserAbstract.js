@@ -111,12 +111,12 @@ class getUserAbstract extends Component {
                                     <td>{req.title}</td>
                                     <td>{req.status}</td>
                                     <td>{moment(req.created_at).format('DD/MM/YYYY')}</td>
-                                    {req.path === "" ? "" : <td> <button>
+                                    {req.path === "" ? "" : <td>
                                         <i className="fa fa-download"
                                            onClick={this.downloadFile}
+                                           style={{cursor: 'pointer'}}
                                             data-index={index}
                                            aria-hidden="true"></i>
-                                    </button>
                                     </td>}
                                 </tr>
                             )): "You have not submitted any abstracts at this time"}

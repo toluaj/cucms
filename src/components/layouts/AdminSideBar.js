@@ -69,7 +69,11 @@ class AdminSideBar extends Component {
                     {/*<NavItem>*/}
                     {/*    <NavText><Link to="" className="nav-link"> Edit Conference </Link></NavText>*/}
                     {/*</NavItem> : ""}*/}
-                    {role === "chair" || role === "admin" ?
+                    {role === "admin" ?
+                    <NavItem>
+                        <NavText><Link to="/confprogram" className="nav-link"> Create Sessions </Link></NavText>
+                    </NavItem> : ""}
+                    {role === "chair" ?
                     <NavItem>
                         <NavText><Link to="/confprogram" className="nav-link"> Create Sessions </Link></NavText>
                     </NavItem> : ""}

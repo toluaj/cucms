@@ -5,7 +5,7 @@ import SignUp from './components/general/SignUp';
 import Submit from './components/staff/author/submitAbs';
 import createconference from './components/staff/admin/createConference';
 import EditProfile from './components/general/EditProfile';
-import conferenceProgram from './components/staff/program-chair/conferenceProgram';
+import conferenceProgram from './components/staff/admin/conferenceProgram';
 import Request from './components/staff/reviewer/TrackRequest';
 import GetRequest from './components/general/GetRequest';
 import MakeRequest from './components/staff/admin/MakeReviewerRequest';
