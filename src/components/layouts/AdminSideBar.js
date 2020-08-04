@@ -77,6 +77,10 @@ class AdminSideBar extends Component {
                     <NavItem>
                         <NavText><Link to="/confprogram" className="nav-link"> Create Sessions </Link></NavText>
                     </NavItem> : ""}
+                    {role === "chair" ?
+                    <NavItem>
+                         <NavText><Link to="/abstract-review" className="nav-link"> Accept/Reject Abstracts </Link></NavText>
+                    </NavItem> : ""}
                     <NavItem>
                         <NavText><Link to="/submitabstract" className="nav-link">  Submit Abstract </Link></NavText>
                     </NavItem>
@@ -89,7 +93,7 @@ class AdminSideBar extends Component {
                     </NavItem> : ""}
                     {role === "chair" || role === "admin" ?
                      <NavItem>
-                        <NavText><Link to="/make-request" className="nav-link">  Request Reviewer </Link></NavText>
+                        <NavText><Link to="/make-request" className="nav-link">  Request Reviewer/Chair </Link></NavText>
                     </NavItem> : ""}
                    {role === "chair" || role === "admin" ?
                      <NavItem>

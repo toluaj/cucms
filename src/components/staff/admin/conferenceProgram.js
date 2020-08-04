@@ -108,8 +108,7 @@ class conferenceProgram extends Component {
                         {conferences.map((conference) => {
                             return (
                                 <option value={conference.conference_id}  key={conference.conference_id}>
-                                    {conference.conference_name}
-                                </option>
+                                    {conference.conference_name} </option>
                             );
                         })}
                     </select>

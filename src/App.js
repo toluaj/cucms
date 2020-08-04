@@ -1,4 +1,5 @@
 import React,{Component} from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
 import SplashPage from './components/general/SplashPage';
 import Login from './components/general/Login';
 import SignUp from './components/general/SignUp';
@@ -16,7 +17,7 @@ import Program from './components/general/OneConfProgram';
 import AssignAbstract from "./components/staff/program-chair/AssignAbstract";
 import ViewAssignments from "./components/staff/reviewer/ViewAssignments";
 import getUserAbstract from "./components/staff/author/getUserAbstract";
-import { BrowserRouter, Route } from 'react-router-dom';
+import ReviewFeedback from "./components/staff/program-chair/ReviewFeedback";
 
 class App extends Component {
   render() {
@@ -40,6 +41,7 @@ class App extends Component {
           <Route exact path="/assign-abstract" component={AssignAbstract}></Route>
           <Route exact path="/assignedAbstracts" component={ViewAssignments}></Route>
           <Route exact path="/track-abstract" component={getUserAbstract}></Route>
+          <Route exact path="/abstract-review" component={ReviewFeedback}></Route>
         </div>
       </BrowserRouter>
     );
