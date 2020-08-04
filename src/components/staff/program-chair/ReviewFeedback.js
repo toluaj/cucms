@@ -323,7 +323,7 @@ class ReviewFeedback extends Component {
                                       </td>
                                       <td>{rev.recommendation}</td>
                                       <td>{rev.abstract.status}</td>
-                                      <td>
+                                      {rev.abstract.status === "pending" ? <td>
                                           {/*<button>*/}
                                           <i className="fa fa-check"
                                              onClick={this.acceptAbstract}
@@ -338,7 +338,7 @@ class ReviewFeedback extends Component {
                                              data-index={index}
                                              style={{marginLeft: '1em', cursor: 'pointer'}}>.</i>
                                           {/*</button>*/}
-                                      </td>
+                                      </td>: ""}
                                   </tr>
                               ))}
                               </tbody>
