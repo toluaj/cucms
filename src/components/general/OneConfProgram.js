@@ -37,28 +37,29 @@ const OneConfProgram = ({name, id, program}) => {
                                     {/*    </p>*/}
                                     {/*</label>*/}
                                     <table>
+                                        {/*<thead>*/}
+                                        {/*<tr>*/}
+                                        {/*    <th>Sessions</th>*/}
+                                        {/*    /!*<th>Start Time</th>*!/*/}
+                                        {/*</tr>*/}
+                                        {/*</thead>*/}
                                         <thead>
-                                        <tr>
-                                            <th>Sessions</th>
-                                            {/*<th>Start Time</th>*/}
-                                        </tr>
-                                        </thead>
-                                        <tbody>
                                         {program.map((prog, i)  => (
-                                            <tr key={i} className="rowed">
-                                            <td>{prog.name} {i+1}</td>
+                                            <tr key={i} >
+                                            <td>{prog.program}</td>
                                             {/*<td>{prog.acts}</td>*/}
-                                                <thead>
+                                            {/*    <thead>*/}
                                                 <tr>
-                                                    <th>Name</th>
-                                                    <th>Room</th>
-                                                    <th>Date</th>
-                                                    <th>Start Time</th>
-                                                    <th>End Time</th>
+                                                    <th nowrap="no-wrap">Name</th>
+                                                    <th nowrap="no-wrap">Room</th>
+                                                    <th nowrap="no-wrap">Date</th>
+                                                    <th nowrap="no-wrap">Start Time</th>
+                                                    <th nowrap="no-wrap">End Time</th>
                                                 </tr>
-                                                </thead>
-                                            {prog.acts.map((act, index) => (
-                                                <tr key={index} className="rowed">
+                                                {/*</thead>*/}
+                                                <tbody>
+                                            {prog.acts.map((act, i) => (
+                                                <tr key={i}>
                                                     <td>{act.name}</td>
                                                     <td>{act.room}</td>
                                                     <td>{moment(act.date).format('DD/MM/YYYY')}</td>
@@ -66,9 +67,10 @@ const OneConfProgram = ({name, id, program}) => {
                                                     <td>{act.end_time}</td>
                                                 </tr>
                                             ))}
+                                                </tbody>
                                             </tr>
                                     ))}
-                                        </tbody>
+                                        </thead>
                                     </table>
                                 </div>
                             </form>

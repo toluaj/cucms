@@ -7,6 +7,8 @@ import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify';
 import moment from 'moment';
 import OneConfProgram from './OneConfProgram';
+import Payment from '../staff/participant/Payment';
+import {API_URL} from "../../utils/config";
 
 class SplashPage extends Component {
 
@@ -26,6 +28,7 @@ class SplashPage extends Component {
         }
         this.getConferences = this.getConferences.bind(this);
         this.viewProgram = this.viewProgram.bind(this);
+        this.register = this.register.bind(this);
     }
 
     componentWillMount() {
@@ -68,7 +71,7 @@ class SplashPage extends Component {
 
         axios({
             method: 'get',
-            url: 'http://localhost:8080/api/cu/conference/',
+            url: `${API_URL}/conference/`,
            
         }).then((res) => {
             if(res.data) {
@@ -84,7 +87,7 @@ class SplashPage extends Component {
         console.log(JSON.stringify(data))
         axios({
             method: 'get',
-            url: `http://localhost:8080/api/cu/activity/program/${data}`,
+            url: `${API_URL}/activity/program/${data}`,
             // data: data,
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
@@ -104,6 +107,7 @@ class SplashPage extends Component {
         let index = +e.currentTarget.getAttribute('data-index');
         console.log(this.state.conferences[index]);
         console.log(this.state.conferences[index].id);
+        console.log(this.state.user);
         this.setState({
             conference_id: this.state.conferences[index].id,
             name: this.state.conferences[index].name
@@ -117,9 +121,26 @@ class SplashPage extends Component {
 
     }
 
+    register(e) {
+        let index = +e.currentTarget.getAttribute('data-index');
+        console.log(this.state.conferences[index]);
+        console.log(this.state.conferences[index].id);
+        console.log(this.state.user);
+        this.setState({
+            conference_id: this.state.conferences[index].id,
+            name: this.state.conferences[index].name
+        }, () => {
+            const {conference_id} = this.state;
+            // const data = {conference_id};
+            // console.log(JSON.stringify(data));
+            this.getProgram(conference_id);
+            console.log(this.state.conference_id)
+        })
+    }
+
     render() {
 
-        const {conferences, user, logged, id, name, programs} = this.state
+        const {conferences, user, logged, id, name, programs, conference_id} = this.state
         console.log(this.state.conference_id);
         console.log(this.state.programs);
         return(
@@ -163,6 +184,7 @@ class SplashPage extends Component {
                                     <th>End Date</th>
                                     <th>Location</th>
                                     <th>View</th>
+                                    <th>Register</th>
                                 </tr>
                             </thead>
                             <tbody style={{backgroundColor: '#C7CED4', borderRadius: '3em'}}>
@@ -185,6 +207,19 @@ class SplashPage extends Component {
                                         <OneConfProgram id={id}
                                                         name={name}
                                                         program={programs}/>
+                                    </td>
+                                    <td><i style={{cursor: 'pointer'}}
+                                           className="fa fa-money"
+                                           aria-hidden="true"
+                                           data-index={index}
+                                           data-toggle="modal"
+                                           data-target="#payment"
+                                           onClick={this.register}
+                                    ></i>
+                                       <Payment
+                                                    program={programs}
+                                                    name={name}
+                                                    id={conference_id}/>
                                     </td>
                                 </tr>
                                 ))}

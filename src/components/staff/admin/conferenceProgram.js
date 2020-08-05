@@ -11,7 +11,7 @@ class conferenceProgram extends Component {
 
         this.state = {
             acts: [{ name: "", date: "", start_time: "", end_time: "", room: ""}],
-            program: "",
+            amount: "", program: "",
              user: {}, logged: '',
             spaces_available: "", conference_id: ''
         }
@@ -102,7 +102,7 @@ class conferenceProgram extends Component {
         if (conferences && conferences.length) {
             return (
                 <div>
-                    <select className="form-control" onChange={this.onChange}
+                    <select className="" onChange={this.onChange}
                             style={{width: '15em', backgroundColor: '#d1bebe'}} name="conference_id">
                         <option value=""></option>
                         {conferences.map((conference) => {
@@ -117,8 +117,8 @@ class conferenceProgram extends Component {
         }
         return (
             <div>
-                <label className="label2 copy-font">Conference</label>
-                <small>No Conferences to display</small>
+                {/*<label className="label2 copy-font">Conference</label>*/}
+                <small>You are not a chair of any conferences currently</small>
             </div>
         );
     }
@@ -127,8 +127,9 @@ class conferenceProgram extends Component {
 
         e.preventDefault();
 
-        const {acts, program, spaces_available, conference_id} = this.state
-        const data = {acts, program, spaces_available, conference_id};
+        let {acts, amount, spaces_available, conference_id, program} = this.state;
+        // amount = Number((amount).toFixed(2).toLocaleString());
+        const data = {acts, amount, spaces_available, conference_id, program};
         console.log(data);
 
         axios({
@@ -143,9 +144,11 @@ class conferenceProgram extends Component {
             .then((res) => {
                 if(res.data){
                     console.log(res.data);
+                    toast.success('Session created');
+                    window.location.reload();
                 }
             }).catch(err=> {
-                console.log('something wen twornhf')
+                console.log('something wen wrong')
                 console.log(err.message);
             })
 
@@ -153,36 +156,46 @@ class conferenceProgram extends Component {
 
     render() {
 
-        const {acts, program, spaces_available, user} = this.state;
+        const {acts, amount, spaces_available, user, program} = this.state;
         return(
             <div className="container-fluid prog" style={{maxWidth: '90%'}}>
                  <Nav user={user}/>
                 <form className="form"onSubmit={this.onSubmit} onChange={this.handleChange}>
                 <h5>Conference Program (you can edit this later)</h5>
-                    <div className="row">
-                        <div>
-                            <label className="label2 copy-font mt-3" htmlFor="conference" aria-labelledby="conference">
-                                Choose Conference
-                            </label>
-                            {this.showConferences()}
+                    {/*<div className="form-group">*/}
+                        <div className="row">
+                            <div className="" style={{width: '1em', marginRight: '18em', marginLeft: '-7em'}}>
+                                <p>Name</p>
+                                <input type="text"
+                                       name="program"
+                                       value={this.state.program}
+                                       onChange={this.onChange} />
+                            </div>
+                            <div>
+                                <label className="label2 copy-font mt-2" htmlFor="conference" aria-labelledby="conference">
+                                    Choose Conference
+                                </label>
+                                {this.showConferences()}
+                            </div>
                         </div>
-                    </div>
-                <div className="row">
-                    <div className="col-sm-6">
-                    <p>Program Name</p>
-                    <input type="program"
-                            name="program"
-                            value={program}
-                            onChange={this.onChange} />
-                    </div>
-                    <div className="col-sm-3">
-                    <p>Available Spaces</p>
-                    <input type="number"
-                            name="spaces_available"
-                            value={spaces_available}
-                            onChange={this.onChange} />
-                    </div>
-                </div>
+                        <div className="row">
+                            <div className="col-sm-3 mr-5">
+                                <p>Available Spaces</p>
+                                <input type="number"
+                                       name="spaces_available"
+                                       value={spaces_available}
+                                       onChange={this.onChange} />
+                            </div>
+                            <div className="col-sm-6 ml-5">
+                                <p>Amount</p>
+                                <input type="number"
+                                       name="amount"
+                                       value={amount}
+                                       onChange={this.onChange} />
+                            </div>
+
+                        </div>
+                    {/*</div>*/}
                 <div className="table-responsive content">
               {acts.map((val, i) => {
                 let name = `name-${i}`, date = `date-${i}`,
@@ -211,9 +224,9 @@ class conferenceProgram extends Component {
                     <td>
                     <select name="room" id={room} data-id={i} className="progput-room" >
                     <option value=""></option>
-                    <option value="chapel">Chapel</option>
-                    <option value="conference">Conference Room</option>
-                    <option value="cucrid">CUCRID</option>
+                    <option value="Chapel">Chapel</option>
+                    <option value="Conference">Conference Room</option>
+                    <option value="CUCRID">CUCRID</option>
                     <option value="Hall 201">Hall 201</option>
                     </select>
                     </td>
