@@ -130,11 +130,11 @@ class SignUp extends Component {
                  name="title"
                  onChange={this.onChange}>
                     <option value=""></option>
-                    <option value="prof">Prof</option>
-                    <option value="dr">Dr</option>
-                    <option value="ms">Ms</option>
-                    <option value="mrs">Mrs</option>
-                    <option value="mr">Mr</option>
+                    <option value="Prof">Prof</option>
+                    <option value="Dr">Dr</option>
+                    <option value="Ms">Ms</option>
+                    <option value="Mrs">Mrs</option>
+                    <option value="Mr">Mr</option>
                 </select>
             </div>
             <div className="row">
@@ -183,9 +183,9 @@ class SignUp extends Component {
               <label for="gender">Gender <b style={{color: 'red'}}>*</b></label>
                 <select name="gender" onChange={this.onChange}>
                     <option value=""></option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                    <option value="other">Other</option>
+                    <option value="Female">Female</option>
+                    <option value="Male">Male</option>
+                    <option value="Other">Other</option>
                 </select>
             </div>
             </div>

@@ -225,7 +225,7 @@ class conferenceProgram extends Component {
                     <select name="room" id={room} data-id={i} className="progput-room" >
                     <option value=""></option>
                     <option value="Chapel">Chapel</option>
-                    <option value="Conference">Conference Room</option>
+                    <option value="Conference Room">Conference Room</option>
                     <option value="CUCRID">CUCRID</option>
                     <option value="Hall 201">Hall 201</option>
                     </select>

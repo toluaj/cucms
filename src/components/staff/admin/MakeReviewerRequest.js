@@ -278,7 +278,8 @@ render() {
 
     return(
        <div className="container-fluid mt-5" 
-            style={{ width: '22em', border: '4px solid #fff', marginLeft: '40em', borderRadius: '2em'}}>
+            style={{ width: '22em', border: '4px solid teal',
+                marginLeft: '37em', borderRadius: '2em'}}>
            <Nav user={user}/>
            <form className="wrapper" onSubmit={e => e.preventDefault()} 
           //  style={{marginLeft: '30em'}}

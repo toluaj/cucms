@@ -32,7 +32,7 @@ class submitAbs extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.handelChange = this.handelChange.bind(this);
-        this.downloadFile = this.downloadFile.bind(this);
+        // this.downloadFile = this.downloadFile.bind(this);
     }
 
     componentWillMount() {
@@ -54,7 +54,11 @@ class submitAbs extends Component {
         }).then((res) => {
           if(res.data) {
             console.log(res.data.data);
-            this.setState({user: res.data.data, logged: 'true'})
+            this.setState({user: res.data.data,
+                                firstName: res.data.data.firstName,
+                                lastName: res.data.data.lastName,
+                                email: res.data.data.email,
+                                logged: 'true'})
           }
           else {
             console.log('you are not logged in!')
@@ -106,8 +110,11 @@ class submitAbs extends Component {
 
         e.preventDefault();
         const formData = new FormData();
-        const {topic, firstName, lastName, email, affiliation,
+        const {topic, affiliation,
           abstract_text, abstract, conference_id} = this.state;
+        const {firstName, lastName, email,} = this.state.user;
+        console.log(firstName, lastName, email);
+        console.log(this.state.user);
 
            formData.append('abstract', abstract);
            formData.append('title', topic);
@@ -120,24 +127,24 @@ class submitAbs extends Component {
            formData.append('conference_id', conference_id)
            console.log(formData.values());
 
-           axios({
-             method: 'post',
-             url: `http://localhost:8080/api/cu/abstract/upload`, 
-             data: formData,
-             headers: {
-                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-             }
-           }).then((res) => {
-             if(res.data) {
-               console.log(res.data);
-               toast.success("Successful upload");
-             }
-             else {
-               toast.error('Something went wrong. Try again')
-             }
-           }).catch(err => {
-             console.log(err.message);
-           })
+           // axios({
+           //   method: 'post',
+           //   url: `http://localhost:8080/api/cu/abstract/upload`,
+           //   data: formData,
+           //   headers: {
+           //       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+           //   }
+           // }).then((res) => {
+           //   if(res.data) {
+           //     console.log(res.data);
+           //     toast.success("Successful upload");
+           //   }
+           //   else {
+           //     toast.error('Something went wrong. Try again')
+           //   }
+           // }).catch(err => {
+           //   console.log(err.message);
+           // })
            
       }
 
@@ -167,34 +174,32 @@ class submitAbs extends Component {
         })
     }
 
-    downloadFile = () => {
+    // downloadFile = () => {
+    //
+    //     axios({
+    //         method: 'get',
+    //         url: 'http://localhost:8080/api/cu/abstract/upload',
+    //         headers: {
+    //             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    //         }
+    //     })
+    //     .then((res) => {
+    //         if(res.data){
+    //             console.log(res.data);
+    //             // window.open(`${res.data.file}`);
+    //             window.open('http://localhost:8080/'+res.data.file);
+    //             // FileDownload('data', res.data.file);
+    //             console.log(window.location.pathname);
+    //         }
+    //         else {
+    //             console.log('could not upload abstract!')
+    //           }
+    //     })
+    //     .catch(err => {
+    //         console.log("no authorization")
+    //     })
+    // }
 
-        axios({
-            method: 'get',
-            url: 'http://localhost:8080/api/cu/abstract/upload',
-            headers: {
-                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-            }
-        })
-        .then((res) => {
-            if(res.data){
-                console.log(res.data);
-                // window.open(`${res.data.file}`);
-                window.open('http://localhost:8080/'+res.data.file);
-                // FileDownload('data', res.data.file);
-                console.log(window.location.pathname);
-            }
-            else {
-                console.log('could not upload abstract!')
-              }
-        })
-        .catch(err => {
-            console.log("no authorization")
-        })
-    }
-
-    
-    
     render() {
 
         let {authorList, conferences, user} = this.state;
@@ -273,19 +278,25 @@ class submitAbs extends Component {
                                 //  id={firstName} data-id={i}
                                   name="firstName"
                                   value={firstName}
-                                  onChange={this.onChange}/>
+                                       placeholder={firstName}
+                                  onChange={this.onChange} readOnly/>
                                 <p>Last Name</p>
                                 <input type="text"
                                 //  id={lastName} data-id={i}
                                   name="lastName"
                                   value={lastName}
-                                  onChange={this.onChange}/>
+                                       placeholder={lastName}
+                                  onChange={this.onChange} readOnly/>
                                 <p>Email Address</p>
                                 <input type="email"
                                 //  id={email} data-id={i}
                                   name="email"
                                   value={email}
-                                  onChange={this.onChange}/>
+                                       placeholder={email}
+                                  onChange={this.onChange} readOnly/>
+                                  {/*<div>*/}
+                                  {/*    */}
+                                  {/*</div>*/}
                                 {/* { */}
                                 {/* i===0 ?  */}
                                 {/* <button id="submit" type="button" className="add btn btn-primary"
@@ -314,8 +325,10 @@ class submitAbs extends Component {
                         <h5 className="mt-3"><u>Upload Extended Abstract<b style={{color: 'red'}}>*</b></u></h5>
                         <input type="file" name="abstract" onChange={this.handelChange} className="mt-2"/>
                         </div>
-                            <button id="submit" type="submit" className="btnsub btn btn-block"
-                            name="submit"> 
+                            <button id="submit" type="submit"
+                                    className="btnsub btn btn-block"
+                                    style={{fontFamily: 'Times New Roman'}}
+                                    name="submit">
                             <p className="sign">Submit</p></button>
                         </form>
                     </div>

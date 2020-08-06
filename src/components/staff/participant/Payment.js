@@ -31,7 +31,8 @@ class Payment extends Component {
             firstname: '',
             lastname: '',
             email: '',
-            amount: ''
+            amount: '',
+            affiliation: '',
         });
     }
 
@@ -147,7 +148,7 @@ class Payment extends Component {
                  }).then(res => {
                      if(res.data) {
                          console.log(res.data);
-                         toast.success('Payment successful!')
+                         toast.success('Payment successful!');
                      }
                  })
 
@@ -184,7 +185,7 @@ class Payment extends Component {
                     <div className="modal-content" style={{width: '40em', marginRight: '3em'}}>
                         <div className="modal-header">
                             <h4 className="modal-title text-center" id="myModalLabel">
-                                Program for {name}
+                                Register for {name}
                             </h4>
                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">
                                 ×
@@ -207,10 +208,13 @@ class Payment extends Component {
                                     </div>
                                 </div>
                             ))}
-                            <label>Affiliation</label>
-                            <input type="text" name="affiliation" onChange={this.onChange} value={affiliation}/>
-                            <button className="modal-footer btn btn-block"
-                                    style={{marginRight: '10em'}}
+                            <div className="mt-3">
+                                <label>Affiliation</label>
+                                <input type="text" name="affiliation" onChange={this.onChange} value={affiliation}/>
+                            </div>
+                            <button className="text-center btn btn-block"
+                                    style={{marginLeft: '18em', backgroundColor: 'rgb(209,190,190)',
+                                        position:'relative', width: '4em'}}
                                     type="submit"
                             >PAY</button>
                             </form>

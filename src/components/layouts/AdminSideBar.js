@@ -99,6 +99,10 @@ class AdminSideBar extends Component {
                      <NavItem>
                         <NavText><Link to="/assign-abstract" className="nav-link">  Assign Abstracts to Reviewers </Link></NavText>
                     </NavItem> : ""}
+                    {role === "chair" || role === "admin" ?
+                    <NavItem>
+                          <NavText><Link to="/abstract-review" className="nav-link">  Review Feedback </Link></NavText>
+                    </NavItem> : ""}
                     </NavItem>
                     <NavItem>
                         <NavIcon>

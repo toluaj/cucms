@@ -18,7 +18,7 @@ const OneConfProgram = ({name, id, program}) => {
                 aria-hidden="true"
             >
                 <div className="modal-dialog" style={{ width: '600px' }}>
-                    <div className="modal-content" style={{ width: '40em', marginRight: '3em' }}>
+                    <div className="modal-content" style={{ width: '45em', marginRight: '3em' }}>
                         <div className="modal-header">
                             <h4 className="modal-title text-center" id="myModalLabel">
                                 Program for {name}
@@ -27,44 +27,33 @@ const OneConfProgram = ({name, id, program}) => {
                                 ×
                             </button>
                         </div>
-                        <div className="modal-body">
-                            <form>
-                                <div className="form-group">
-                                    {/*<label htmlFor="recipient-name" className="col-form-label">*/}
-                                    {/*    <p style={{ textAlign: 'left' }}>*/}
-                                    {/*        /!*{user.extra ? user.extra[0].account_ref : null}*!/*/}
-                                    {/*        /!*Sessions for {name}*!/*/}
-                                    {/*    </p>*/}
-                                    {/*</label>*/}
-                                    <table>
-                                        {/*<thead>*/}
-                                        {/*<tr>*/}
-                                        {/*    <th>Sessions</th>*/}
-                                        {/*    /!*<th>Start Time</th>*!/*/}
-                                        {/*</tr>*/}
-                                        {/*</thead>*/}
+                        <div className="modal-body" style={{backgroundColor: 'rgb(200,200,200)'}}>
+                            <div className="mt-3 limiter container-table100">
+                                <div className="table-responsive content ">
+                                    <table className="table copy-font " style={{minWidth: '50em'}}>
                                         <thead>
                                         {program.map((prog, i)  => (
                                             <tr key={i} >
                                             <td>{prog.program}</td>
-                                            {/*<td>{prog.acts}</td>*/}
-                                            {/*    <thead>*/}
+                                                <br/>
+                                                <br/>
+                                                <thead style={{width: '70px', marginRight: '4px'}}>
                                                 <tr>
-                                                    <th nowrap="no-wrap">Name</th>
-                                                    <th nowrap="no-wrap">Room</th>
-                                                    <th nowrap="no-wrap">Date</th>
-                                                    <th nowrap="no-wrap">Start Time</th>
-                                                    <th nowrap="no-wrap">End Time</th>
+                                                    <th nowrap="nowrap">Name</th>
+                                                    <th nowrap="nowrap">Room</th>
+                                                    <th nowrap="nowrap">Date</th>
+                                                    <th nowrap="nowrap">Start Time</th>
+                                                    <th nowrap="nowrap">End Time</th>
                                                 </tr>
-                                                {/*</thead>*/}
+                                                </thead>
                                                 <tbody>
                                             {prog.acts.map((act, i) => (
-                                                <tr key={i}>
-                                                    <td>{act.name}</td>
-                                                    <td>{act.room}</td>
-                                                    <td>{moment(act.date).format('DD/MM/YYYY')}</td>
-                                                    <td>{act.start_time}</td>
-                                                    <td>{act.end_time}</td>
+                                                <tr key={i} >
+                                                    <td style={{width: '70px'}}><nobr>{act.name}</nobr></td>
+                                                    <td style={{width: '70px'}}>{act.room}</td>
+                                                    <td style={{width: '70px'}}>{moment(act.date).format('DD/MM/YYYY')}</td>
+                                                    <td style={{width: '70px'}}>{act.start_time}</td>
+                                                    <td style={{width: '70px'}}>{act.end_time}</td>
                                                 </tr>
                                             ))}
                                                 </tbody>
@@ -73,7 +62,9 @@ const OneConfProgram = ({name, id, program}) => {
                                         </thead>
                                     </table>
                                 </div>
-                            </form>
+                            </div>
+                                {/*</div>*/}
+                            {/*</form>*/}
                         </div>
                     </div>
                 </div>

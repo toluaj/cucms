@@ -1,10 +1,10 @@
 body {
     font-family: 'Roboto Condensed';
-    background-image: url('../images/white.jpg');
+    background-image: url('../images/grey.jpg');
     /* background-color: antiquewhite; */
     background-repeat: repeat ;
     color: teal ;
-    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-family: 'Times New Roman','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 10px;
     max-width: 100%;
     overflow-x: hidden;
@@ -18,6 +18,17 @@ body {
     font-style: italic;
 }
 
+input[type="text"] {
+    font-family: "Times New Roman";
+}
+
+select {
+    font-family: "Times New Roman";
+}
+
+textarea {
+    font-family: "Times New Roman";
+}
 
 /* navigation */
 /* .sidenav {

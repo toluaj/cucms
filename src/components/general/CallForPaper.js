@@ -3,7 +3,7 @@ import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Nav from '../layouts/AdminSideBar';
-
+toast.configure();
 class CallForPaper extends Component {
 
     constructor(props) {
@@ -90,10 +90,11 @@ class CallForPaper extends Component {
         }
 
        }).then(res => {
-        if(res.data) {
-            toast.success("Emails sent!");
-           console.log(res.data);
-        }
+            // console.log(res);
+           if(res.data) {
+               toast.success("Emails sent!");
+           }
+
        }).catch(err => {
            toast.error("Something went wrong. Try again!")
        })
@@ -106,7 +107,8 @@ class CallForPaper extends Component {
 
         return (
             <div className="container-fluid ml-5">
-            <div className="mt-3 limiter container-table100">
+                <ToastContainer/>
+                <div className="mt-3 limiter container-table100">
             <Nav user={user}/> 
             <div className="table-responsive content">
                 <table className="table copy-font wrap-table100" style={{width: '30em', marginLeft: '30em'}}>
@@ -130,7 +132,6 @@ class CallForPaper extends Component {
                         ))}
                     </tbody>
             </table>
-            <ToastContainer/>
             </div>
             </div>
             </div>

@@ -164,17 +164,19 @@ class SplashPage extends Component {
                             <i class="fa fa-linkedin" aria-hidden="true"></i></a>
                         <a href="https://twitter.com/CUHEBRON?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank">
                             <i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            {logged ? <div style={{marginTop: '2em', marginLeft: '0.5em'}}>Hi, {user.firstName}</div> :
+                            {logged ? <div style={{marginTop: '1em', marginLeft: '0.5em', fontWeight: 'bold'}}
+                                >Hi, {user.firstName}</div> :
                             ""}
                     </div>
                 </div>
                 <SplashSideBar user = {logged}/>
                 <div className="mt-3">
-                        <h4 style={{marginLeft: '27em'}}>UPCOMING CONFERENCES</h4>
+                    <h4 style={{marginLeft: '25em'}}><i>UPCOMING CONFERENCES</i></h4>
                     </div>
                 <div className="mt-3 limiter container-table100">
                     <div className="table-responsive content ">
-                        <table className="table copy-font wrap-table100">
+                        <table className="table copy-font wrap-table100"
+                               style={{width: '80em', marginLeft: '6em', fontFamily: 'TimesNewRoman'}}>
                             <thead style={{backgroundColor: 'teal'}}>
                                 <tr>
                                     <th>Name</th>
