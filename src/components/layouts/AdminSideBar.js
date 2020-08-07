@@ -54,13 +54,6 @@ class AdminSideBar extends Component {
                         <NavItem>
                         <NavText><Link to="/createconference" className="nav-link"> Add Conference </Link></NavText>
                     </NavItem> : ""}
-                    {role !== "user" ?
-                        <NavItem>
-                        <NavText><Link to="/assignedAbstracts" className="nav-link"> View Assigned Abstracts </Link></NavText>
-                    </NavItem>: ""}
-                        <NavItem>
-                        <NavText><Link to="/request" className="nav-link"> View Requests </Link></NavText>
-                    </NavItem> 
                     {role === "chair" || role === "admin" ?
                     <NavItem>
                         <NavText><Link to="/requests" className="nav-link"> Track Requests </Link></NavText>
@@ -83,9 +76,6 @@ class AdminSideBar extends Component {
                     </NavItem> : ""}
                     <NavItem>
                         <NavText><Link to="/submitabstract" className="nav-link">  Submit Abstract </Link></NavText>
-                    </NavItem>
-                    <NavItem>
-                        <NavText><Link to="/track-abstract" className="nav-link">  Abstract Status </Link></NavText>
                     </NavItem>
                     {role === "chair" || role === "admin" ?
                     <NavItem>
@@ -112,9 +102,16 @@ class AdminSideBar extends Component {
                         <NavItem>
                         <NavText><Link to="/editprofile" className="nav-link"> Edit Profile </Link></NavText>
                     </NavItem>
-                    <NavItem>
-                        <NavText><Link to="/createconference" className="nav-link"> Reset Password </Link></NavText>
-                    </NavItem>
+                      {role !== "user" ?
+                        <NavItem>
+                            <NavText><Link to="/assignedAbstracts" className="nav-link"> View Assigned Abstracts </Link></NavText>
+                        </NavItem>: ""}
+                        <NavItem>
+                            <NavText><Link to="/track-abstract" className="nav-link">  Abstract Status </Link></NavText>
+                        </NavItem>
+                        <NavItem>
+                            <NavText><Link to="/request" className="nav-link"> View Requests </Link></NavText>
+                        </NavItem>
                     </NavItem>
                     <NavItem>
                         <NavIcon>

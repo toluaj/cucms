@@ -143,6 +143,7 @@ class SplashPage extends Component {
         const {conferences, user, logged, id, name, programs, conference_id} = this.state
         console.log(this.state.conference_id);
         console.log(this.state.programs);
+        console.log(user);
         return(
             <div className="container-fluid">
                 <ToastContainer/>
@@ -186,7 +187,7 @@ class SplashPage extends Component {
                                     <th>End Date</th>
                                     <th>Location</th>
                                     <th>View</th>
-                                    <th>Register</th>
+                                    {user.firstName ? <th>Register</th> : ""}
                                 </tr>
                             </thead>
                             <tbody style={{backgroundColor: '#C7CED4', borderRadius: '3em'}}>
@@ -210,19 +211,19 @@ class SplashPage extends Component {
                                                         name={name}
                                                         program={programs}/>
                                     </td>
-                                    <td><i style={{cursor: 'pointer'}}
-                                           className="fa fa-money"
-                                           aria-hidden="true"
-                                           data-index={index}
-                                           data-toggle="modal"
-                                           data-target="#payment"
-                                           onClick={this.register}
+                                    {user.firstName ? <td><i style={{cursor: 'pointer'}}
+                                                   className="fa fa-money"
+                                                   aria-hidden="true"
+                                                   data-index={index}
+                                                   data-toggle="modal"
+                                                   data-target="#payment"
+                                                   onClick={this.register}
                                     ></i>
-                                       <Payment
-                                                    program={programs}
-                                                    name={name}
-                                                    id={conference_id}/>
-                                    </td>
+                                        <Payment
+                                            program={programs}
+                                            name={name}
+                                            id={conference_id}/>
+                                    </td> : ""}
                                 </tr>
                                 ))}
                             </tbody>

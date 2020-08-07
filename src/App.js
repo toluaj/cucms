@@ -13,11 +13,12 @@ import MakeRequest from './components/staff/admin/MakeReviewerRequest';
 import CallForPaper from './components/general/CallForPaper';
 import showconferences from './components/staff/admin/showConferences';
 import ReviewAbstract from './components/staff/reviewer/ReviewAbstract';
-import Program from './components/general/OneConfProgram';
 import AssignAbstract from "./components/staff/program-chair/AssignAbstract";
 import ViewAssignments from "./components/staff/reviewer/ViewAssignments";
 import getUserAbstract from "./components/staff/author/getUserAbstract";
 import ReviewFeedback from "./components/staff/program-chair/ReviewFeedback";
+import ForgotPassword from "./components/general/ForgotPassword";
+import ResetPassword from "./components/general/ResetPassword";
 
 class App extends Component {
   render() {
@@ -37,11 +38,12 @@ class App extends Component {
           <Route exact path="/callforpaper" component={CallForPaper}></Route>
           <Route exact path="/showconferences" component={showconferences}></Route>
           <Route exact path="/review-abstract" component={ReviewAbstract}></Route>
-          <Route exact path="/program" component={Program}></Route>
           <Route exact path="/assign-abstract" component={AssignAbstract}></Route>
           <Route exact path="/assignedAbstracts" component={ViewAssignments}></Route>
           <Route exact path="/track-abstract" component={getUserAbstract}></Route>
           <Route exact path="/abstract-review" component={ReviewFeedback}></Route>
+          <Route exact path="/forgot-password" component={ForgotPassword}></Route>
+          <Route exact path="/reset/:token" component={ResetPassword}></Route>
         </div>
       </BrowserRouter>
     );

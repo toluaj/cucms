@@ -114,8 +114,11 @@ class Login extends Component {
               <label for="password" className="">Password</label>
               <input type="password" name="password"
               value={password}
-              onChange={this.onChange} /><p className="mt-2">Forgot Password?</p>
+              onChange={this.onChange} />
             </div>
+              <Link to="/forgot-password"
+                    style={{marginRight: '9em', marginTop: '-1em', marginBottom: '1em', color: 'teal'}}
+              >Forgot Password?</Link>
             {/* <div className="form-group">
               <label for="remember" className="remember">
               <input type="checkbox" id="remember" name="remember"
