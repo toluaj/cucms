@@ -27,39 +27,39 @@ const OneConfProgram = ({name, id, program}) => {
                                 ×
                             </button>
                         </div>
-                        <div className="modal-body" style={{backgroundColor: 'rgb(200,200,200)'}}>
-                            <div className="mt-3 limiter container-table100">
+                        <div className="modal-body" style={{backgroundColor: 'white'}}>
+                            <div className="mt-3 limiter container-table100" style={{marginLeft: '3em'}}>
                                 <div className="table-responsive content ">
-                                    <table className="table copy-font " style={{minWidth: '50em'}}>
-                                        <thead>
+                                    <table className="table copy-font"
+                                           style={{minWidth: '30em', fontFamily: 'Open Sans'}}>
+                                        {/*<thead>*/}
                                         {program.map((prog, i)  => (
-                                            <tr key={i} >
-                                            <td>{prog.program}</td>
+                                            <tr key={i}>
+                                                <tr><b>{prog.program.toUpperCase()}</b></tr>
                                                 <br/>
-                                                <br/>
-                                                <thead style={{width: '70px', marginRight: '4px'}}>
-                                                <tr>
-                                                    <th nowrap="nowrap">Name</th>
-                                                    <th nowrap="nowrap">Room</th>
-                                                    <th nowrap="nowrap">Date</th>
-                                                    <th nowrap="nowrap">Start Time</th>
-                                                    <th nowrap="nowrap">End Time</th>
+                                                <thead >
+                                                <tr style={{marginLeft: '2em', backgroundColor: '#F2f2f2',}}>
+                                                    <th nowrap="nowrap">NAME</th>
+                                                    <th nowrap="nowrap">ROOM</th>
+                                                    <th nowrap="nowrap">DATE</th>
+                                                    <th nowrap="nowrap">START TIME</th>
+                                                    <th nowrap="nowrap">END TIME</th>
                                                 </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody style={{backgroundColor: '#F5F4F6',borderRadius: '3em'}} >
                                             {prog.acts.map((act, i) => (
                                                 <tr key={i} >
-                                                    <td style={{width: '70px'}}><nobr>{act.name}</nobr></td>
-                                                    <td style={{width: '70px'}}>{act.room}</td>
-                                                    <td style={{width: '70px'}}>{moment(act.date).format('DD/MM/YYYY')}</td>
-                                                    <td style={{width: '70px'}}>{act.start_time}</td>
-                                                    <td style={{width: '70px'}}>{act.end_time}</td>
+                                                    <td style={{minWidth: '70px', paddingRight: '3em'}}><nobr>{act.name}</nobr></td>
+                                                    <td style={{minWidth: '70px', paddingRight: '3em'}}>{act.room}</td>
+                                                    <td style={{minWidth: '70px', paddingRight: '3em'}}>{moment(act.date).format('DD/MM/YYYY')}</td>
+                                                    <td style={{minWidth: '70px', paddingRight: '3em'}}>{act.start_time}</td>
+                                                    <td style={{minWidth: '70px', paddingRight: '3em'}}>{act.end_time}</td>
                                                 </tr>
                                             ))}
                                                 </tbody>
                                             </tr>
                                     ))}
-                                        </thead>
+                                        {/*</thead>*/}
                                     </table>
                                 </div>
                             </div>

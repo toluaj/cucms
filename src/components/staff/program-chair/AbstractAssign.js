@@ -27,7 +27,7 @@ class AbstractAssign extends Component {
             return (
                 <div>
                     <select className="form-control" onChange={this.onChange}
-                            style={{width: '15em', backgroundColor: '#d1bebe'}} name="abstract_id">
+                            style={{width: '15em', backgroundColor: '#e2e2e2'}} name="abstract_id">
                         <option>Select User</option>
                         {abstract.map((abs) => {
                             return (
@@ -55,7 +55,7 @@ class AbstractAssign extends Component {
             return (
                 <div>
                     <select className="form-control" onChange={this.onChange}
-                            style={{width: '15em', backgroundColor: '#d1bebe'}} name="reviewer_id">
+                            style={{width: '15em', backgroundColor: '#e2e2e2'}} name="reviewer_id">
                         <option>Select Reviewer</option>
                         {reviewer.map((rev) => {
                             return (
@@ -90,6 +90,7 @@ class AbstractAssign extends Component {
             data: data
         }).then(res => {
             console.log(res.data);
+            window.location.reload();
 
         }).catch(err => {
             console.log(err.message);
@@ -98,7 +99,7 @@ class AbstractAssign extends Component {
 
     render() {
         console.log(this.props);
-        const {name} =this.props;
+        const {conference_name} =this.props;
         return(
             <div
                 id="assign"
@@ -112,7 +113,7 @@ class AbstractAssign extends Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <h4 className="modal-title text-center" id="myModalLabel">
-                                Assign Abstracts for {name}
+                                Assign Abstracts for "{conference_name}"
                             </h4>
                             <button type="button" className="close" aria-hidden="true">
                                 ×
@@ -123,7 +124,7 @@ class AbstractAssign extends Component {
                                 <div className="form-group">
                                     <label htmlFor="recipient-name" className="col-form-label">
                                         <p style={{ textAlign: 'left' }}>
-                                            {/*{user.extra ? user.extra[0].account_ref : null}*/}
+                                            Assign an Abstract to a Reviewer
                                         </p>
                                     </label>
                                      {/*<label htmlFor="recipient-name" className="col-form-label">Name:</label>*/}
@@ -138,11 +139,11 @@ class AbstractAssign extends Component {
                                     <div className="modal-footer">
                                         <button
                                             type="button"
-                                            className="btn btn-primary"
-                                            style={{marginLeft: '7em'}}
+                                            className="btn btn-block"
+                                            style={{marginLeft: '7em', position: 'left', backgroundColor: '#0c081d', color: 'white'}}
                                             onClick={this.assignAbstract}
                                         >
-                                            Assign Abstract
+                                            ASSIGN ABSTRACT
                                         </button>
                                     </div>
                                 </div>

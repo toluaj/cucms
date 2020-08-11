@@ -112,13 +112,13 @@ class CallForPaper extends Component {
             <Nav user={user}/> 
             <div className="table-responsive content">
                 <table className="table copy-font wrap-table100" style={{width: '30em', marginLeft: '30em'}}>
-                    <thead style={{backgroundColor: 'teal'}}>
+                    <thead style={{backgroundColor: 'white'}}>
                     <tr>
                         <th>Conference Name</th>
                         <th style={{marginLeft: '2em'}}>Call For Paper</th>
                     </tr>
                     </thead>
-                    <tbody style={{backgroundColor: '#ebf5f3', borderRadius: '3em'}}>
+                    <tbody style={{backgroundColor: '#F5F4F6', borderRadius: '3em'}}>
                         {conferences.map((req, index) => (
                             <tr key={index} data-index={index} className="rowed">
                                 <td>{req.name}</td>

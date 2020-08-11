@@ -1,10 +1,11 @@
 body {
     font-family: 'Roboto Condensed';
-    background-image: url('../images/grey.jpg');
-    /* background-color: antiquewhite; */
+    /*background-image: url('../images/grey.jpg');*/
+    /* background-color: rgba(220, 220, 220, 1);*/
+    background-color: #e5e5e5;
     background-repeat: repeat ;
-    color: teal ;
-    font-family: 'Times New Roman','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: black ;
+    font-family: 'Open Sans', 'Times New Roman','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
     margin: 10px;
     max-width: 100%;
     overflow-x: hidden;
@@ -22,8 +23,10 @@ input[type="text"] {
     font-family: "Times New Roman";
 }
 
+
 select {
     font-family: "Times New Roman";
+    box-shadow: 3px 3px #888888;
 }
 
 textarea {

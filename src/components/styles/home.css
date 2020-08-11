@@ -2,19 +2,20 @@
     margin: 0 auto
 }
 
-.jumbotron img {
-    width: 7em;
-    margin-top: -28px;
+.icons {
+
 }
 
-.jumbotron {
-    height: 25px;
-    color: teal;
-    background-color: rgb(241, 244, 247) !important;
-    margin: 0 auto;
-    border-radius: .5em;
+.jumb {
+    margin-top: 3em;
 }
 
+.jumb img {
+    width: 30%;
+    height: 30%;
+    margin-top: -5px;
+    margin-right: -5px;
+}
 .head h1 {
     margin-top: -30px;
     margin-bottom: -2px;
@@ -29,7 +30,7 @@ ul.topnav {
     overflow: hidden;
     width: 83em;
     height: 80px;
-    background-color: rgb(199, 206, 212);
+    /*background-color: rgb(199, 206, 212);*/
     border-radius: .5em;
   }
   
@@ -73,7 +74,7 @@ ul.topnav {
 table {
     width: 100%;
     display: table;
-    margin: 0;
+    /*margin: 0;*/
 }
 
 .wrap-table100 {
@@ -88,12 +89,12 @@ table {
     align-items: center; 
     justify-content: center;
     flex-wrap: wrap;
-    
+
 }
 
 .limiter {
     width: 100%;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
 }
 
 .link {
@@ -103,9 +104,10 @@ table {
 
 .icons {
     float: right;
-    margin-bottom: -2em;
-    margin-top: -4.5em;
-    padding: 2px
+    /*margin-bottom: -2em;*/
+    /*margin-top: -4.5em;*/
+    /*padding: 2px*/
+    color: #0c081d;
 }
 
 .icons a {
@@ -115,8 +117,9 @@ table {
 
 .user-icon {
     font-size: 1.9em;
-    margin-top: 5px;
-    color: teal;
+    /*margin-top: 5px;*/
+    /*color: teal;*/
+    color: #4A5568;
 }
 
 .rowed {
@@ -129,7 +132,7 @@ table {
 
 .dropdown {
     position: relative;
-    float: right; margin-right: 3em; margin-top: -3.5em
+    float: right; margin-right: 3em; margin-top: -8em;
     /* display: inline-block; */
 }
 
@@ -150,10 +153,18 @@ table {
     /*background-color: teal;*/
     text-decoration: none;
     list-style-type: none;
-    list-style: none;
     display: block;
   }
 
 .dropdown:hover .dropdown-content {display: block; list-style-type: none;}
 .dropdown:hover .dropbtn {background-color: #3e8e41; list-style-type: none;}
 .dropdown-content a:hover {background-color: #ddd; list-style-type: none;}
+
+.reg {
+    width: 20px;
+    height: 20px
+}
+
+tr:nth-of-type(even) {
+    background-color:#ccc;
+}

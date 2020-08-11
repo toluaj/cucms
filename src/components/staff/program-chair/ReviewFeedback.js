@@ -99,8 +99,8 @@ class ReviewFeedback extends Component {
             return (
                 <div>
                     <select className="form-control" onChange={this.onChange}
-                            style={{width: '15em', backgroundColor: '#d1bebe'}} name="conference_id">
-                        <option value=""></option>
+                            style={{width: '15em',marginLeft: '1em',borderRadius: '7px',backgroundColor: '#e1e1e1'}} name="conference_id">
+                        <option value="">Select Conference</option>
                         {conferences.map((conference) => {
                             return (
                                 <option value={conference.conference_id}  key={conference.conference_id}>
@@ -270,39 +270,48 @@ class ReviewFeedback extends Component {
 
     render() {
             const {user, reviews, abstract, path, feedback} = this.state;
+            console.log(user);
         //     console.log(this.state.conference_id);
         // console.log(this.state.id);
         return(
-          <div className="container-fluid" style={{marginLeft: '10em'}}>
+          <div className="container-fluid" >
               <Nav user={user}/>
-              <h1>Choose conference </h1>
+              {/*<h3 className="mt-3"><b>Choose conference</b></h3>*/}
               <form className="wrapper">
-                  <div className="row">
+                  <div className="row" style={{marginLeft: '5em'}}>
                       <div>
-                          <label className="label2 copy-font mt-3" htmlFor="conference" aria-labelledby="conference">
-                              Choose Conference
+                          <label className="label2 copy-font mt-5" htmlFor="conference" aria-labelledby="conference">
+                             <b> Select a Conference </b>
                           </label>
                           {this.showConferences()}
                       </div>
+                      {user.firstName ?
+                              <div className="" style={{marginLeft: '58em'}}><b>Hi, {user.firstName}</b></div>
+                              : "" }
                   </div>
-                  <button className="btn btn-dark" type="submit" onClick={this.getReviews}>
-                      CHECK ABSTRACTS
+                  <button className="btn btn-block"
+                          style={{backgroundColor: '#777777',
+                              width: '15em', marginLeft: '6em', color: 'white',
+                              borderRadius: '7px'}}
+                          type="submit" onClick={this.getReviews}>
+                      Check Abstracts
                   </button>
               </form>
                   <div className="mt-3 limiter container-table100">
                       <div className="table-responsive content">
-                          <table className="table copy-font wrap-table100" style={{width: '50em', marginLeft: '10em'}}>
-                              <thead style={{backgroundColor: 'teal'}}>
+                          <table className="table copy-font wrap-table100"
+                                 style={{width: '50em', marginLeft: '30em'}}>
+                              <thead style={{backgroundColor: 'white'}}>
                               <tr>
-                                  <th>Main Author</th>
-                                  <th>Abstract</th>
+                                  <th>MAIN AUTHOR</th>
+                                  <th>ABSTRACT</th>
                                   {/*<th>Feedback</th>*/}
-                                  <th style={{marginLeft: '2em'}}>Recommendation</th>
-                                  <th>Status</th>
-                                  <th>Response</th>
+                                  <th style={{marginLeft: '2em'}}>RECOMMENDATION</th>
+                                  <th>STATUS</th>
+                                  <th>RESPONSE</th>
                               </tr>
                               </thead>
-                              <tbody style={{backgroundColor: '#ebf5f3', borderRadius: '3em'}}>
+                              <tbody style={{backgroundColor: '#F5F4F6', borderRadius: '3em'}}>
                               {reviews.map((rev, index) => (
                                   <tr key={index} data-index={index} className="rowed">
                                       <td>{rev.abstract.firstName} {rev.abstract.lastName}</td>

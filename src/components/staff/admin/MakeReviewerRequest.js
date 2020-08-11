@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify';
 import Nav from '../../layouts/AdminSideBar'
-import { type } from 'jquery';
 
 class MakeReviewerRequest extends Component {
 
@@ -159,6 +158,7 @@ class MakeReviewerRequest extends Component {
         }).then(res => {
             if(res.data) {
                 console.log(res.data);
+                toast.success('Request made');
             }
         }).catch(err => {
             console.log(err.message);
@@ -204,7 +204,7 @@ class MakeReviewerRequest extends Component {
             <div>
               {/* <label className="label2 copy-font">Users</label> */}
               <select className="form-control" onChange={this.onChange}
-               style={{width: '15em', backgroundColor: '#d1bebe'}} name="user_id">
+               style={{width: '15em', backgroundColor: '#e2e2e2'}} name="user_id">
                 <option>Select User</option>
                 {users.map((user) => {
                   return (
@@ -251,7 +251,7 @@ class MakeReviewerRequest extends Component {
             <div>
               {/* <label className="label2 copy-font">Conference</label> */}
               <select className="form-control" onChange={this.onChange}
-               style={{width: '15em', backgroundColor: '#d1bebe'}} name="conference_id">
+               style={{width: '15em', backgroundColor: '#e2e2e2'}} name="conference_id">
                 <option>Select Conference</option>
                 {conferences.map((conference) => {
                   return (
@@ -278,7 +278,7 @@ render() {
 
     return(
        <div className="container-fluid mt-5" 
-            style={{ width: '22em', border: '4px solid teal',
+            style={{ width: '25em', border: '4px solid #e5e5e5', boxShadow: '5px 5px grey', backgroundColor: '#e5e5e5',
                 marginLeft: '37em', borderRadius: '2em'}}>
            <Nav user={user}/>
            <form className="wrapper" onSubmit={e => e.preventDefault()} 
@@ -287,31 +287,31 @@ render() {
            <div className="ml-5">
            <div>
            <label className="label2 copy-font mt-3" htmlFor="conference" aria-labelledby="conference">
-                Choose Conference
+                {/*Choose Conference*/}
               </label>
                {this.showConferences()}
                </div>
            <div>
            <label className="label2 copy-font" htmlFor="user" aria-labelledby="user">
-                Choose User
+                {/*Choose User*/}
               </label>
                {this.showUsers()}
                </div>
               <div>
               <label className="label2 copy-font" htmlFor="user" aria-labelledby="user">
-                Request Type
+                {/*Request Type*/}
                 <select name="type" onChange={this.onChange}>
-                  <option value=""></option>
-                  <option value="reviewer">Reviewer</option>
-                  <option value="chair">Program Chair</option>
+                  <option value="">Request Type</option>
+                  <option value="Reviewer">Reviewer</option>
+                  <option value="Chair">Program Chair</option>
                 </select>
               </label>
               </div>
            </div>
            <button onClick={this.onSubmit}
                    className="btn btn-block"
-                   style={{backgroundColor: 'teal', width: '10em',
-                    marginLeft: '5em', marginBottom: '2em'}}>MAKE REQUEST</button>
+                   style={{backgroundColor: '#0c081d', width: '15em', color: 'white',
+                    marginLeft: '3em', marginBottom: '2em'}}>MAKE REQUEST</button>
            </form>
        </div>
     );

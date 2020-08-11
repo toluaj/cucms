@@ -3,6 +3,7 @@ import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify';
 import Side from '../../layouts/AdminSideBar';
 import moment from "moment";
+import uploadPaper from "./uploadPaper";
 
 class getUserAbstract extends Component {
 
@@ -84,6 +85,11 @@ class getUserAbstract extends Component {
             })
     }
 
+    uploadPaper = () => {
+
+
+    }
+
     render() {
 
         const {user, abstracts} = this.state;
@@ -96,16 +102,17 @@ class getUserAbstract extends Component {
                 <div className="mt-3 limiter container-table100">
                     <div className="table-responsive content ">
                         <table className="table copy-font wrap-table100"
-                               style={{maxWidth: '40em', marginLeft: '25em'}}>
-                            <thead style={{backgroundColor: 'teal'}}>
+                               style={{maxWidth: '50em', marginLeft: '22em'}}>
+                            <thead style={{backgroundColor: 'white'}}>
                             <tr>
                                 <th>Title</th>
                                 <th>Status</th>
                                 <th>Submission Date</th>
                                 <th>Actions</th>
+                                <th>Submit Paper</th>
                             </tr>
                             </thead>
-                            <tbody style={{backgroundColor: '#C7CED4', borderRadius: '3em'}} >
+                            <tbody style={{backgroundColor: '#F5F4F6', borderRadius: '3em'}} >
                             {abstracts.length > 0 ? abstracts.map((req, index) => (
                                 <tr key={index} data-index={index} className="rowed">
                                     <td>{req.title}</td>
@@ -118,6 +125,16 @@ class getUserAbstract extends Component {
                                             data-index={index}
                                            aria-hidden="true"></i>
                                     </td>}
+                                    {req.status === "accepted" ? <td>
+                                        <i className="fa fa-upload"
+                                           // onClick={this.downloadFile}
+                                           style={{cursor: 'pointer'}}
+                                           data-index={index}
+                                           data-toggle="modal"
+                                           data-target="upload"
+                                           aria-hidden="true"></i>
+                                        <uploadPaper/>
+                                    </td>: 'N/A'}
                                 </tr>
                             )): "You have not submitted any abstracts at this time"}
                             </tbody>

@@ -100,24 +100,28 @@ class Login extends Component {
             <img src={logo} />
           </div>
           <ToastContainer/>
-        <div className="header mr-4">CUCMS Login</div>
+            <div className="header mt-3"><b>Welcome back to CUCMS</b></div>
+            <h6 className="header mr-2 mt-4">Login to get started</h6>
           <form onSubmit={this.onSubmit}>
           <div className="form">
             <div className="form-group">
-              <label for="email" className="">Email Address</label>
+              {/*<label for="email" className="">Email Address</label>*/}
               <input type="email"
+                     placeholder="Email Address"
                name="email"
-               value={email}
+               value={email} size="35"
                onChange={this.onChange} />
             </div>
             <div className="form-group">
-              <label for="password" className="">Password</label>
-              <input type="password" name="password"
-              value={password}
-              onChange={this.onChange} />
+              {/*<label for="password" className="">Password</label>*/}
+              <input type="password"
+                     name="password"
+                     value={password} size="35"
+                     placeholder="Password"
+                     onChange={this.onChange} />
             </div>
               <Link to="/forgot-password"
-                    style={{marginRight: '9em', marginTop: '-1em', marginBottom: '1em', color: 'teal'}}
+                    style={{marginLeft: '15em', marginTop: '-1em', marginBottom: '1em', color: '#2E294E'}}
               >Forgot Password?</Link>
             {/* <div className="form-group">
               <label for="remember" className="remember">

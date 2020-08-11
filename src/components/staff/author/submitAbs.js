@@ -211,10 +211,10 @@ class submitAbs extends Component {
                 <ToastContainer/>
                 <div className="jumbotron">
                     <div className="image">
-                        <img className="img" src={logo}/>
+                        <img className="img" style={{width: '7em', height: '4em'}} src={logo}/>
                     </div>
                     <br/>
-                    <h1 className=" head mr-5">CUCMS</h1>
+                    <h3 className=" head mr-5"><b>CUCMS</b></h3>
                 </div>
                 <SideBar user={user}/>
                 <div className="row">
@@ -325,11 +325,11 @@ class submitAbs extends Component {
                         <h5 className="mt-3"><u>Upload Extended Abstract<b style={{color: 'red'}}>*</b></u></h5>
                         <input type="file" name="abstract" onChange={this.handelChange} className="mt-2"/>
                         </div>
-                            <button id="submit" type="submit"
-                                    className="btnsub btn btn-block"
+                            <button type="submit"
+                                    className="btnsub btn "
                                     style={{fontFamily: 'Times New Roman'}}
                                     name="submit">
-                            <p className="sign">Submit</p></button>
+                            <p className="sign">SUBMIT</p></button>
                         </form>
                     </div>
             </div>

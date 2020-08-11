@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {Redirect} from 'react-router-dom';
+import logo from '../images/logo.png'
 
 class AdminSideBar extends Component {
 
@@ -35,12 +36,12 @@ class AdminSideBar extends Component {
         }
         return (
             <div>
-                <SideNav style={{backgroundColor: "teal", height: '100%'}}>
-                <SideNav.Toggle style={{backgroundColor: "#d1bebe"}} />
+                <SideNav style={{backgroundColor: "#2E294E", height: '200%'}}>
+                <SideNav.Toggle style={{backgroundColor: "#2E294E", backgroundImage: {logo}}} />
                 <SideNav.Nav  >
                     <NavItem eventKey="home">
                     <NavIcon><Link to="/" className="nav-link">
-                            <i className="fa fa-fw fa-home" title="Home" style={{ fontSize: '2.2em' }} />
+                            <i className="fa fa-fw fa-home" title="Home" style={{ fontSize: '2.2em'}} />
                             </Link>
                         </NavIcon>
                         <NavText>Home</NavText>
@@ -50,7 +51,7 @@ class AdminSideBar extends Component {
                         <i class="fa fa-server" title="Conferences" aria-hidden="true" style={{fontSize: '1.75em'}}></i>
                         </NavIcon>
                         <NavText>Conferences</NavText>
-                    {role === "chair" || role === "admin" ?
+                    {role === "admin" ?
                         <NavItem>
                         <NavText><Link to="/createconference" className="nav-link"> Add Conference </Link></NavText>
                     </NavItem> : ""}

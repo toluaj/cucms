@@ -157,24 +157,27 @@ class AssignAbstract extends Component {
                     <Nav user={user}/>
                     <div className="table-responsive content">
                         <table className="table copy-font wrap-table100" style={{width: '40em', marginLeft: '25em'}}>
-                            <thead style={{backgroundColor: 'teal'}}>
+                            <thead style={{backgroundColor: 'white'}}>
                             <tr>
                                 <th>Conference Name</th>
                                 <th style={{marginLeft: '2em'}}>Assign Abstracts</th>
                             </tr>
                             </thead>
-                            <tbody style={{backgroundColor: '#ebf5f3', borderRadius: '3em'}}>
+                            <tbody style={{backgroundColor: '#F5F4F6', borderRadius: '3em'}}>
                             {conferences.map((req, index) => (
                                 <tr key={index} data-index={index} className="rowed">
                                     <td>{req.name}</td>
                                     <td>
-                                        <i className="fa fa-level-down"
+                                        <img
+                                            className="reg"
+                                            src="https://res.cloudinary.com/dthdj5bkt/image/upload/c_scale,w_15/v1597104154/assignment.svg"
                                            aria-hidden="true"
                                            onClick={this.showModal}
                                            data-index={index}
                                            data-toggle="modal"
                                            data-target="#assign"
-                                           style={{marginLeft: '3em',cursor: 'pointer', width: '8em'}}></i>
+                                           style={{cursor: 'pointer', width: '8em'}}
+                                        />
                                             <AbstractAssign
                                                 abstract={abstracts}
                                                 reviewer={reviewers}

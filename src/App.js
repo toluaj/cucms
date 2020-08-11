@@ -19,6 +19,7 @@ import getUserAbstract from "./components/staff/author/getUserAbstract";
 import ReviewFeedback from "./components/staff/program-chair/ReviewFeedback";
 import ForgotPassword from "./components/general/ForgotPassword";
 import ResetPassword from "./components/general/ResetPassword";
+import Contact from "./components/layouts/Contact";
 
 class App extends Component {
   render() {
@@ -44,6 +45,7 @@ class App extends Component {
           <Route exact path="/abstract-review" component={ReviewFeedback}></Route>
           <Route exact path="/forgot-password" component={ForgotPassword}></Route>
           <Route exact path="/reset/:token" component={ResetPassword}></Route>
+          <Route exact path="/contact" component={Contact}></Route>
         </div>
       </BrowserRouter>
     );

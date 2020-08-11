@@ -150,47 +150,36 @@ class SplashPage extends Component {
                 {/*<OneConfProgram id={id}/>*/}
                 <div className="row enter">
                 </div>
-                <div className="jumbotron">
+                <div className="jumb">
                     <div className="image">
                         <img src={logo}/>
                     </div>
                     <div className="head"> 
-                    <h1>CUCMS</h1>
-                    <p>A solution to manage conferences in Covenant University</p>  
-                    </div>
-                    <div className="icons">
-                        <a href="https://web.facebook.com/CovenantUniversity?_rdc=1&_rdr" target="_blank">
-                            <i class="fa fa-facebook" aria-hidden="true"></i></a>
-                        <a href="https://www.linkedin.com/school/covenant-university/" target="_blank">
-                            <i class="fa fa-linkedin" aria-hidden="true"></i></a>
-                        <a href="https://twitter.com/CUHEBRON?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" target="_blank">
-                            <i class="fa fa-twitter" aria-hidden="true"></i></a>
-                            {logged ? <div style={{marginTop: '1em', marginLeft: '0.5em', fontWeight: 'bold'}}
-                                >Hi, {user.firstName}</div> :
-                            ""}
+                    <h1><b>CUCMS</b></h1>
+                    {/*<p>A solution to manage conferences in Covenant University</p>  */}
                     </div>
                 </div>
-                <SplashSideBar user = {logged}/>
+                <SplashSideBar user = {user}/>
                 <div className="mt-3">
-                    <h4 style={{marginLeft: '25em'}}><i>UPCOMING CONFERENCES</i></h4>
+                    <h5 style={{marginLeft: '5em'}}><b>Upcoming Conferences</b></h5>
                     </div>
                 <div className="mt-3 limiter container-table100">
                     <div className="table-responsive content ">
                         <table className="table copy-font wrap-table100"
                                style={{width: '80em', marginLeft: '6em', fontFamily: 'TimesNewRoman'}}>
-                            <thead style={{backgroundColor: 'teal'}}>
+                            <thead style={{backgroundColor: 'white'}}>
                                 <tr>
-                                    <th>Name</th>
-                                    <th>Topic</th>
-                                    <th>Description</th>
-                                    <th>Start Date</th>
-                                    <th>End Date</th>
-                                    <th>Location</th>
-                                    <th>View</th>
-                                    {user.firstName ? <th>Register</th> : ""}
+                                    <th>NAME</th>
+                                    <th>TOPIC</th>
+                                    <th>DESCRIPTION</th>
+                                    <th>START DATE</th>
+                                    <th>END DATE</th>
+                                    <th>LOCATION</th>
+                                    <th>VIEW</th>
+                                    {user.firstName ? <th>REGISTER</th> : ""}
                                 </tr>
                             </thead>
-                            <tbody style={{backgroundColor: '#C7CED4', borderRadius: '3em'}}>
+                            <tbody style={{backgroundColor: '#F5F4F6', borderRadius: '3em'}}>
                                 {conferences.map((conf, index) => (
                                 <tr key={index + 1} data-index={index} className="rowed">
                                     <td data-index={index} >{conf.name}</td>
@@ -200,7 +189,7 @@ class SplashPage extends Component {
                                     <td>{moment(conf.end_date).format('DD/MM/YYYY')}</td>
                                     <td>{conf.location}</td>
                                     <td><i style={{cursor: 'pointer'}}
-                                           class="fa fa-eye"
+                                           className="fa fa-eye ml-3"
                                            aria-hidden="true"
                                            data-index={index}
                                            data-toggle="modal"
@@ -211,14 +200,18 @@ class SplashPage extends Component {
                                                         name={name}
                                                         program={programs}/>
                                     </td>
-                                    {user.firstName ? <td><i style={{cursor: 'pointer'}}
-                                                   className="fa fa-money"
-                                                   aria-hidden="true"
+                                    {user.firstName ? <td>
+                                        <img style={{cursor: 'pointer'}}
+                                                   className="reg"
+                                                   // aria-hidden="true"
+                                                   src="https://res.cloudinary.com/dthdj5bkt/image/upload/c_scale,w_10/v1597096139/forward.svg"
                                                    data-index={index}
+                                             // alt="pic bitch"
+                                             //       width="400" height="400"
                                                    data-toggle="modal"
                                                    data-target="#payment"
                                                    onClick={this.register}
-                                    ></i>
+                                        />
                                         <Payment
                                             program={programs}
                                             name={name}
@@ -230,9 +223,21 @@ class SplashPage extends Component {
                         </table>
                     </div>
                 </div>
-                <footer className=" ">
+                <div className="icons footer_social_list">
+                    <a href="https://web.facebook.com/CovenantUniversity?_rdc=1&_rdr" target="_blank">
+                        <i className="fa fa-facebook" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/school/covenant-university/" target="_blank">
+                        <i className="fa fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://twitter.com/CUHEBRON?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
+                       target="_blank">
+                        <i className="fa fa-twitter" aria-hidden="true"></i></a>
+                    {/*{logged ? <div style={{marginTop: '1em', marginLeft: '0.5em', fontWeight: 'bold'}}*/}
+                    {/*    >Hi, {user.firstName}</div> :*/}
+                    {/*    ""}*/}
+                </div>
+                <div className="footer">
                 <p>{new Date().getFullYear()} © Covenant University. All Rights Reserved</p>
-            </footer>
+            </div>
             </div>
         )
     }

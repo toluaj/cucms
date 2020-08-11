@@ -120,8 +120,8 @@ render() {
            <div className="mt-3 limiter container-table100">
                     <div className="table-responsive content ">
                         <table className="table copy-font wrap-table100"
-                         style={{maxWidth: '40em', marginLeft: '25em'}}>
-                    <thead style={{backgroundColor: 'teal'}}>
+                         style={{maxWidth: '50em', marginLeft: '23em'}}>
+                    <thead style={{backgroundColor: 'white'}}>
                     <tr>
                         <th>Conference Name</th>
                         <th>User Email</th>
@@ -130,7 +130,7 @@ render() {
                         {/*<th>Action</th>*/}
                     </tr>
                     </thead>
-                    <tbody style={{backgroundColor: '#C7CED4', borderRadius: '3em'}} >
+                    <tbody style={{backgroundColor: '#F5F4F6', borderRadius: '3em'}} >
                         {requests.length > 0 ? requests.map((req, index) => (
                             <tr key={index} data-index={index} className="rowed">
                                 <td>{req.conference_name}</td>

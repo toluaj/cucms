@@ -103,7 +103,7 @@ class conferenceProgram extends Component {
             return (
                 <div>
                     <select className="" onChange={this.onChange}
-                            style={{width: '15em', backgroundColor: '#d1bebe'}} name="conference_id">
+                            style={{width: '15em', backgroundColor: '#e2e2e2'}} name="conference_id">
                         <option value=""></option>
                         {conferences.map((conference) => {
                             return (
@@ -161,7 +161,8 @@ class conferenceProgram extends Component {
             <div className="container-fluid prog" style={{maxWidth: '90%'}}>
                  <Nav user={user}/>
                 <form className="form"onSubmit={this.onSubmit} onChange={this.handleChange}>
-                <h5>Conference Program (you can edit this later)</h5>
+                <h5 className="mr-5">Conference Program </h5>
+                    {/*(you can edit this later)*/}
                     {/*<div className="form-group">*/}
                         <div className="row">
                             <div className="" style={{width: '1em', marginRight: '18em', marginLeft: '-7em'}}>

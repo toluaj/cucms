@@ -89,7 +89,6 @@ input {
 }
 
 .sign {
-    font-weight: bold;
     line-height: 5px;
     text-align: center;
 }
@@ -202,15 +201,17 @@ input {
 }
 .nav-link :focus, :hover, :visited, :link, :active {
     text-decoration: none;
-    text-decoration-style: none;
+    /*text-decoration-style: none;*/
 }
 
 .btnsub {
-    background-color: rgb(52, 156, 66);
+    background-color: #0c081d;
     margin-top: 1em;
     color: white;
     width: 5em;
     height: 1.2em;
     border-radius: 4px;
     font-size: 20px;
+    margin-right: 10em;
+    font-family: "Open Sans";
 }

@@ -3,7 +3,8 @@
     .signupbutton {
         margin-left: 3em;
         width: 10em;
-        background-color: teal;
+        background-color: #0c081d;
+        color: white
     }
 
     footer {

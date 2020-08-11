@@ -15,9 +15,10 @@
 }
 
 .confbut {
-    background-color: teal;
-    width: 5.5em;
+    background-color: #0c081d;
+    width: 10em;
     margin-left: 44em;
+    color: white;
 }
 
 /* .progput {
