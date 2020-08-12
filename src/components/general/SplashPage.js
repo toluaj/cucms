@@ -155,7 +155,7 @@ class SplashPage extends Component {
                         <img src={logo}/>
                     </div>
                     <div className="head"> 
-                    <h1><b>CUCMS</b></h1>
+                    <h1 style={{ fontFamily: 'Trebuchet MS'}}><b>CUCMS</b></h1>
                     {/*<p>A solution to manage conferences in Covenant University</p>  */}
                     </div>
                 </div>

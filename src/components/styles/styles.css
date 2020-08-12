@@ -2,7 +2,7 @@ body {
     font-family: 'Roboto Condensed';
     /*background-image: url('../images/grey.jpg');*/
     /* background-color: rgba(220, 220, 220, 1);*/
-    background-color: #e5e5e5;
+    background-color: #fcfcfc;
     background-repeat: repeat ;
     color: black ;
     font-family: 'Open Sans', 'Times New Roman','Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
@@ -21,8 +21,23 @@ body {
 
 input[type="text"] {
     font-family: "Times New Roman";
+    background-color: rgba(225, 225, 225, 1);
 }
 
+input[type="time"] {
+    font-family: "Times New Roman";
+    background-color: rgba(225, 225, 225, 1);
+}
+
+input[type="date"] {
+    font-family: "Times New Roman";
+    background-color: rgba(225, 225, 225, 1);
+}
+
+input[type="number"] {
+    font-family: "Times New Roman";
+    background-color: rgba(225, 225, 225, 1);
+}
 
 select {
     font-family: "Times New Roman";

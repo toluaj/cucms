@@ -37,11 +37,14 @@ class AdminSideBar extends Component {
         return (
             <div>
                 <SideNav style={{backgroundColor: "#2E294E", height: '200%'}}>
-                <SideNav.Toggle style={{backgroundColor: "#2E294E", backgroundImage: {logo}}} />
+                {/*<SideNav.Toggle style={{backgroundColor: "#2E294E", backgroundImage: {logo}}} />*/}
+                    <Toggle componentClass={(obj) => { return ( <img className=""
+                                                                             style={{ height: '40px', width: '50px', marginTop: '10px', marginBottom: '10px'}}
+                                                                             src={logo} /> ); }} />
                 <SideNav.Nav  >
                     <NavItem eventKey="home">
                     <NavIcon><Link to="/" className="nav-link">
-                            <i className="fa fa-fw fa-home" title="Home" style={{ fontSize: '2.2em'}} />
+                            <i className="fa fa-fw fa-home" title="Home" style={{ fontSize: '2.2em', marginBottom: '30px'}} />
                             </Link>
                         </NavIcon>
                         <NavText>Home</NavText>

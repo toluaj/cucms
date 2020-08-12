@@ -83,9 +83,8 @@ class ResetPassword extends Component {
                 </div>
                 <div>
                     <button className="btn btn-block"
-                            style={{backgroundColor: 'teal'}}
-                            onClick={this.submitForm}
-                    >RESET</button>
+                            style={{backgroundColor: '#0c081d', width: '7em', borderRadius: '7px', color: 'white'}}
+                            onClick={this.submitForm}>RESET</button>
                 </div>
             </div>
         )

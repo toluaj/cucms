@@ -1,0 +1,19 @@
+  <div className="base-container">
+                 <div className="" style={{width: '9em', marginTop: '12em'}}><img src={logo}/></div>
+                 <div style={{marginTop: '1em'}}>
+                     <label>Email address</label>
+                     <br/>
+                     <input type="text"
+                            value={email}
+                            name="email" onChange={this.onChange}
+                            placeholder="Enter your email address" />
+                 </div>
+                 <div>
+                     <button className="btn btn-block"
+                             style={{backgroundColor: '#0c081d', color: 'white'}}
+                             onClick={this.onSubmit}>SEND</button>
+                 </div>
+                 <Link to="/login"
+                       style={{marginRight: '6em', marginTop: '1em', color: '#0c081d'}}
+                 >Remember Password? Login</Link>
+             </div>

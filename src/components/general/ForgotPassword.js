@@ -61,10 +61,11 @@ class ForgotPassword extends Component {
         const {email} = this.state;
         return (
             <div className="base-container">
-                <div className="" style={{width: '9em', marginTop: '15em'}}><img src={logo}/></div>
+                <div className="" style={{width: '12em', marginTop: '10em'}}><img src={logo}/></div>
                 <div style={{marginTop: '1em'}}>
                     <label>Email address</label>
                     <br/>
+                    <i className="fa fa-envelope"></i>
                     <input type="text"
                            value={email}
                            name="email" onChange={this.onChange}
@@ -72,11 +73,11 @@ class ForgotPassword extends Component {
                 </div>
                 <div>
                     <button className="btn btn-block"
-                            style={{backgroundColor: 'teal'}}
+                            style={{backgroundColor: '#0c081d', width: '7em', borderRadius: '7px', color: 'white'}}
                             onClick={this.onSubmit}>SEND</button>
                 </div>
                 <Link to="/login"
-                      style={{marginRight: '6em', marginTop: '1em', color: 'teal'}}
+                      style={{marginLeft: '7em', marginTop: '1.5em', color: '#0c081d'}}
                 >Remember Password? Login</Link>
             </div>
         )

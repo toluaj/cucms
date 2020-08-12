@@ -3,7 +3,7 @@ import axios from 'axios';
 import {toast, ToastContainer} from 'react-toastify';
 import Side from '../../layouts/AdminSideBar';
 import moment from "moment";
-import uploadPaper from "./uploadPaper";
+import UploadPaper from "./UploadPaper";
 
 class getUserAbstract extends Component {
 
@@ -14,9 +14,11 @@ class getUserAbstract extends Component {
             user: {},
             abstracts: [],
             conference_id: '',
-            logged: ''
+            logged: '',
+            abstract: []
         }
         this.downloadFile = this.downloadFile.bind(this);
+        this.getId = this.getId.bind(this);
     }
 
     componentWillMount() {
@@ -85,14 +87,19 @@ class getUserAbstract extends Component {
             })
     }
 
-    uploadPaper = () => {
+    getId = (e) => {
 
+        let index = +e.currentTarget.getAttribute('data-index');
+        console.log(this.state.abstracts[index]);
+        this.setState({
+            abstract: this.state.abstracts[index]
+        }, () => console.log(this.state.abstract))
 
     }
 
     render() {
 
-        const {user, abstracts} = this.state;
+        const {user, abstracts, abstract} = this.state;
 
         return(
 
@@ -127,13 +134,16 @@ class getUserAbstract extends Component {
                                     </td>}
                                     {req.status === "accepted" ? <td>
                                         <i className="fa fa-upload"
-                                           // onClick={this.downloadFile}
+                                           onClick={this.getId}
                                            style={{cursor: 'pointer'}}
                                            data-index={index}
                                            data-toggle="modal"
-                                           data-target="upload"
+                                           data-target="#upload"
                                            aria-hidden="true"></i>
-                                        <uploadPaper/>
+                                        <UploadPaper
+                                            abstract={abstract}
+                                            user={user}
+                                        />
                                     </td>: 'N/A'}
                                 </tr>
                             )): "You have not submitted any abstracts at this time"}

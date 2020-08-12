@@ -22,6 +22,73 @@
     .aff {
         margin-right: 1.2em;
     }
+
+    .grid-container {
+        background-color: #fcfcfc;
+        display: grid;
+        grid-template-columns: auto auto auto;
+        /*background-color: #2196F3;*/
+        padding: 0px;
+        position: absolute;
+        /*margin: 20px;*/
+    }
+
+    .text {
+        position: absolute;
+        top: 50%;
+        left: 18%;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+
+    .text2 {
+        position: absolute;
+        top: 45%;
+        left: 18%;
+        transform: translate(-50%, -50%);
+        color: white;
+    }
+
+    .slogo {
+        position: relative;
+        top: 30%;
+        right: 43%;
+        /*margin-right: 10em;*/
+        height: 5em;
+        width: 8em;
+        /*transform: translate(-50%, -50%);*/
+        /*color: white;*/
+        /*!*height: 50px;*!*/
+        /*!*width: 10em;*!*/
+        /*margin-left: 11em;*/
+        /*margin-top: -31em;*/
+        /*margin-right: 3em;*/
+
+    }
+
+    .grid-item1 {
+        /*background-color: rgba(255, 255, 255, 1);*/
+        /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+        /*padding: 10px;*/
+        /*width: 48em;*/
+        /*height: 72em;*/
+    }
+
+    .grid-item2 {
+        /*background-color: rgba(255, 255, 255, 1);*/
+        /*border: 1px solid rgba(0, 0, 0, 0.8);*/
+        /*padding: 1em;*/
+        /*font-size: 30px;*/
+        text-align: center;
+        position: relative;
+        margin-top: 20px;
+        /*width: 50em;*/
+        /*height: 30em;*/
+    }
+    .chair {
+        filter: invert(15%) sepia(5%) saturate(800%) hue-rotate(209deg) brightness(90%) contrast(60%);
+
+    }
 }
 
 .form-group input {
