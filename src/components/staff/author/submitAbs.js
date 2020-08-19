@@ -126,24 +126,24 @@ class submitAbs extends Component {
            formData.append('conference_id', conference_id)
            console.log(formData.values());
 
-           // axios({
-           //   method: 'post',
-           //   url: `http://localhost:8080/api/cu/abstract/upload`,
-           //   data: formData,
-           //   headers: {
-           //       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-           //   }
-           // }).then((res) => {
-           //   if(res.data) {
-           //     console.log(res.data);
-           //     toast.success("Successful upload");
-           //   }
-           //   else {
-           //     toast.error('Something went wrong. Try again')
-           //   }
-           // }).catch(err => {
-           //   console.log(err.message);
-           // })
+           axios({
+             method: 'post',
+             url: `http://localhost:8080/api/cu/abstract/upload`,
+             data: formData,
+             headers: {
+                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+             }
+           }).then((res) => {
+             if(res.data) {
+               console.log(res.data);
+               toast.success("Successful upload");
+             }
+             else {
+               toast.error('Something went wrong. Try again')
+             }
+           }).catch(err => {
+             console.log(err.message);
+           })
            
       }
 

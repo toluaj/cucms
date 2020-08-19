@@ -60,7 +60,7 @@ class AbstractAssign extends Component {
                         {reviewer.map((rev) => {
                             return (
                                 <option value={rev.user_id} key={rev.user_id}>
-                                    {rev.user_id}
+                                    {rev.firstName} {rev.lastName} {rev.email}
                                 </option>
                             );
                         })}
