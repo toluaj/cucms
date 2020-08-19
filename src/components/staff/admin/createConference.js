@@ -21,7 +21,8 @@ class createConference extends Component {
       end_date: '',
       sessions: '',
       loading: '',
-      user: ''
+      user: '',
+      deadline: ''
     }
 
     this.onChange = this.onChange.bind(this);
@@ -59,7 +60,7 @@ class createConference extends Component {
     })
 }
 
-  onChange = (e) =>
+   onChange = (e) =>
    this.setState({
      [e.target.name]: e.target.value,
    });
@@ -72,6 +73,7 @@ class createConference extends Component {
       topic,
       start_date,
       end_date,
+      deadline
     } = this.state;
 
     return (
@@ -80,14 +82,15 @@ class createConference extends Component {
       location.length > 0 &&
       topic.length > 0 &&
       start_date.length > 0 &&
-      end_date.length > 0 
+      end_date.length > 0 &&
+      deadline.length > 0
     );
   };
 
   onSubmit = () => {
 
-    const {name, description, location, topic, start_date, end_date,sessions} = this.state;
-    const data = {name, description, location, topic, start_date, end_date,sessions}
+    const {name, description, location, topic, start_date, end_date,deadline} = this.state;
+    const data = {name, description, location, topic, start_date, end_date,deadline}
     console.log(data);
 
     axios({
@@ -118,7 +121,7 @@ class createConference extends Component {
 
     render() {
 
-      const {name, description, location, topic, start_date, end_date, sessions, user} = this.state;
+      const {name, description, location, topic, start_date, end_date, deadline, user} = this.state;
 
       const isEnabled = this.submitForm();
 
@@ -199,15 +202,15 @@ class createConference extends Component {
                onChange={this.onChange} />
             </div>
             </div>
-            {/*<div className="row">*/}
-            {/*<div className="form-group col-sm-6">*/}
-            {/*  <p for="sessions">Number of Sessions <b style={{color: 'red'}}>*</b></p>*/}
-            {/*  <input type="number"*/}
-            {/*   name="sessions"*/}
-            {/*   value={sessions} className="sess"*/}
-            {/*   onChange={this.onChange} />*/}
-            {/*</div>*/}
-            {/*</div>*/}
+            <div className="row">
+            <div className="form-group col-sm-6">
+              <p for="sessions">Submission Deadline <b style={{color: 'red', whiteSpace: 'nowrap'}}>*</b></p>
+              <input type="date"
+               name="deadline"
+               value={deadline} className="sess"
+               onChange={this.onChange} />
+            </div>
+            </div>
           </div>
           </form>
         </div>

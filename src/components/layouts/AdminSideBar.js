@@ -36,15 +36,16 @@ class AdminSideBar extends Component {
         }
         return (
             <div>
-                <SideNav style={{backgroundColor: "#2E294E", height: '200%'}}>
+                <SideNav style={{backgroundColor: "#2E294E", height: '200%', paddingBottom  : '30px'}}>
                 {/*<SideNav.Toggle style={{backgroundColor: "#2E294E", backgroundImage: {logo}}} />*/}
                     <Toggle componentClass={(obj) => { return ( <img className=""
-                                                                             style={{ height: '40px', width: '50px', marginTop: '10px', marginBottom: '10px'}}
+                                                                             style={{ height: '40px', width: '60px', marginLeft: '7px',
+                                                                                 marginTop: '10px', marginBottom: '10px'}}
                                                                              src={logo} /> ); }} />
                 <SideNav.Nav  >
                     <NavItem eventKey="home">
                     <NavIcon><Link to="/" className="nav-link">
-                            <i className="fa fa-fw fa-home" title="Home" style={{ fontSize: '2.2em', marginBottom: '30px'}} />
+                            <i className="fa fa-fw fa-home" title="Home" style={{ fontSize: '2.2em'}} />
                             </Link>
                         </NavIcon>
                         <NavText>Home</NavText>
@@ -54,7 +55,7 @@ class AdminSideBar extends Component {
                         <i class="fa fa-server" title="Conferences" aria-hidden="true" style={{fontSize: '1.75em'}}></i>
                         </NavIcon>
                         <NavText>Conferences</NavText>
-                    {role === "admin" ?
+                    {role === "chair" || role === "admin" ?
                         <NavItem>
                         <NavText><Link to="/createconference" className="nav-link"> Add Conference </Link></NavText>
                     </NavItem> : ""}
@@ -66,10 +67,10 @@ class AdminSideBar extends Component {
                     {/*<NavItem>*/}
                     {/*    <NavText><Link to="" className="nav-link"> Edit Conference </Link></NavText>*/}
                     {/*</NavItem> : ""}*/}
-                    {role === "admin" ?
-                    <NavItem>
-                        <NavText><Link to="/confprogram" className="nav-link"> Create Sessions </Link></NavText>
-                    </NavItem> : ""}
+                    {/*{role === "admin" ?*/}
+                    {/*<NavItem>*/}
+                    {/*    <NavText><Link to="/confprogram" className="nav-link"> Create Sessions </Link></NavText>*/}
+                    {/*</NavItem> : ""}*/}
                     {role === "chair" ?
                     <NavItem>
                         <NavText><Link to="/confprogram" className="nav-link"> Create Sessions </Link></NavText>

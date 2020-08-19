@@ -86,8 +86,7 @@
         /*height: 30em;*/
     }
     .chair {
-        filter: invert(15%) sepia(5%) saturate(800%) hue-rotate(209deg) brightness(90%) contrast(60%);
-
+        /*margin-right: -1em;*/
     }
 }
 

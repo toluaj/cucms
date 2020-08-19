@@ -20,7 +20,7 @@ const OneConfProgram = ({name, id, program}) => {
                 <div className="modal-dialog" style={{ width: '600px' }}>
                     <div className="modal-content" style={{ width: '45em', marginRight: '3em' }}>
                         <div className="modal-header">
-                            <h4 className="modal-title text-center" id="myModalLabel">
+                            <h4 className="modal-title text-center" id="myModalLabel"  style={{ fontFamily: 'Trebuchet MS'}}>
                                 Program for {name}
                             </h4>
                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">
@@ -49,11 +49,11 @@ const OneConfProgram = ({name, id, program}) => {
                                                 <tbody style={{backgroundColor: '#F5F4F6',borderRadius: '3em'}} >
                                             {prog.acts.map((act, i) => (
                                                 <tr key={i} >
-                                                    <td style={{minWidth: '70px', paddingRight: '3em'}}><nobr>{act.name}</nobr></td>
-                                                    <td style={{minWidth: '70px', paddingRight: '3em'}}>{act.room}</td>
-                                                    <td style={{minWidth: '70px', paddingRight: '3em'}}>{moment(act.date).format('DD/MM/YYYY')}</td>
-                                                    <td style={{minWidth: '70px', paddingRight: '3em'}}>{act.start_time}</td>
-                                                    <td style={{minWidth: '70px', paddingRight: '3em'}}>{act.end_time}</td>
+                                                    <td style={{paddingRight: '1em'}}><nobr>{act.name}</nobr></td>
+                                                    <td style={{paddingRight: '1em'}}>{act.room}</td>
+                                                    <td style={{paddingRight: '1em'}}>{moment(act.date).format('DD/MM/YYYY')}</td>
+                                                    <td style={{paddingRight: '1em'}}>{act.start_time}</td>
+                                                    <td style={{paddingRight: '1em'}}>{act.end_time}</td>
                                                 </tr>
                                             ))}
                                                 </tbody>

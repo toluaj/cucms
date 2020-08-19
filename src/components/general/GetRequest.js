@@ -9,13 +9,14 @@ class MakeRequest extends Component {
         super(props);
 
         this.state = {
-            user: {},
+            user: [],
             requests: [],
             conference_id: '',
             logged: '',
-            conference_name: ''
+            conference_name: '',
+             email: ''
         }
-        this.getRequests = this.getRequests.bind(this);
+        // this.getRequests = this.getRequests.bind(this);
         this.accept = this.accept.bind(this);
         this.decline = this.decline.bind(this);
         this.acceptChair = this.acceptChair.bind(this);
@@ -24,10 +25,10 @@ class MakeRequest extends Component {
 
     componentWillMount() {
         this.fetchLoggedOnUser();
+        // this.getRequests();
     }
     
     componentDidMount() {
-        this.getRequests();
     }
 
     fetchLoggedOnUser() {
@@ -41,7 +42,11 @@ class MakeRequest extends Component {
         }).then((res) => {
           if(res.data) {
             console.log(res.data.data);
-            this.setState({user: res.data.data, logged: 'true'})
+            this.setState({user: res.data.data, email: res.data.data.email, logged: 'true'})
+              console.log(this.state.email);
+            const {email} = this.state;
+            const data = {email};
+            this.getRequests(data);
           }
           else {
             console.log('you are not logged in!')
@@ -57,23 +62,25 @@ class MakeRequest extends Component {
     }
 
 
-    getRequests = () => {
+    getRequests = (data) => {
+        // console.log(data);
 
         axios({
-            method: 'get',
-            url: 'http://localhost:8080/api/cu/request',
+            method: 'post',
+            url: 'http://localhost:8080/api/cu/request/request',
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-            }
+            },
+            data: data
         }).then(res => {
             if(res.data) {
 
                 console.log(res.data.data);
                 this.setState({
-                    requests: res.data.data       
+                    requests: res.data.data
                 })
 
-            } 
+            }
         }).catch(err => {
             console.log(err.message);
         })
@@ -222,7 +229,7 @@ render() {
            <div className="mt-3 limiter container-table100">
                     <div className="table-responsive content ">
                         <table className="table copy-font wrap-table100"
-                         style={{maxWidth: '40em', marginLeft: '25em'}}>
+                         style={{maxWidth: '45em', marginLeft: '25em'}}>
                     <thead style={{backgroundColor: 'white'}}>
                     <tr>
                         <th>Conference Name</th>
@@ -251,7 +258,7 @@ render() {
                                 {/*        style={{marginLeft: '1em'}}></i>*/}
                                 {/*    </button>*/}
                                 {/*</td>}*/}
-                                {req.type === "chair" && req.reply === "pending" ?
+                                {req.type === "Chair" && req.reply === "pending" ?
                                     <td>
                                         {/*<button>*/}
                                             <i className="fa fa-check"
@@ -268,7 +275,7 @@ render() {
                                                style={{marginLeft: '1em', cursor: 'pointer'}}>.</i>
                                         {/*</button>*/}
                                     </td> :
-                                    req.type === "reviewer" && req.reply === "pending" ?
+                                    req.type === "Reviewer" && req.reply === "pending" ?
                                         <td>
                                             {/*<button>*/}
                                                 <i className="fa fa-check"

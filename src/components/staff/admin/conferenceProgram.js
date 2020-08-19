@@ -98,6 +98,7 @@ class conferenceProgram extends Component {
 
     showConferences() {
         const { conferences } = this.state;
+        console.log(conferences);
 
         if (conferences && conferences.length) {
             return (

@@ -32,8 +32,8 @@ class Login extends Component {
 
       });
 
-    onSubmit = () => {
-
+    onSubmit = (e) => {
+        e.preventDefault();
       const {email, password} = this.state;
       const data = {email, password};
       console.log(data);
@@ -130,11 +130,11 @@ class Login extends Component {
                 </label>
             </div> */}
           </div>
+              <button type="submit" className="btn loginbtn ml-5" >
+                  Login
+              </button>
           </form>
         </div>
-          <button type="button" className="btn loginbtn" onClick={this.onSubmit}>
-            Login
-          </button>
           <footer className="">
               Don't have an account? <Link to="/sign-up">Sign Up</Link> </footer>
       </div>

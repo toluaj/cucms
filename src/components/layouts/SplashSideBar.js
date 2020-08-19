@@ -20,7 +20,7 @@ class SplashSideBar extends Component {
 
         {user.firstName ?
             <div>
-                <div className="dropdown" style={{marginRight: '6em'}}><b>Hi, {user.firstName}</b></div>
+                <div className="dropdown" style={{marginRight: '6em', fontFamily: 'Trebuchet MS'}}><b>Hi, {user.firstName}</b></div>
          <div className="dropdown" >
            <a className="right" href="/editprofile"><i className="fa fa-user-circle user-icon" aria-hidden="true">
                 </i></a>

@@ -147,6 +147,8 @@ class MakeReviewerRequest extends Component {
 
     makeRequest(data) {
 
+        const {history} = this.props;
+
         axios({
 
             method: 'post',
@@ -159,6 +161,9 @@ class MakeReviewerRequest extends Component {
             if(res.data) {
                 console.log(res.data);
                 toast.success('Request made');
+                // setTimeout(() => {
+                //     window.location.reload();
+                // }, 10000);
             }
         }).catch(err => {
             console.log(err.message);
@@ -166,39 +171,51 @@ class MakeReviewerRequest extends Component {
 
     }
 
-   async  onSubmit(){
+   // async  onSubmit(){
+   //
+   //      const name = await this.getName();
+   //      console.log("The conference name is below")
+   //      console.log(name);
+   //      console.log("The user mail is below")
+   //     const mail = await this.getId();
+   //     console.log(mail);
+   //
+   //      // console.log(this.state.conference_id);
+   //       console.log(this.state);
+   //
+   //      console.log(this.state.conference_name);
+   //      //SetState and make MakeRequest The call back of the set state
+   //      this.setState({
+   //          conference_name: name,
+   //          email: mail
+   //         }, () => {
+   //          const {user_id,conference_id, email, conference_name, type} = this.state;
+   //          const data = {user_id, conference_id, email, conference_name, type};
+   //          this.makeRequest(data);
+   //         console.log(this.state.conference_name, 'conference_name');
+   //         console.log(data)
+   //     })
+   //
+   //
+   //
+   //
+   //  }
 
+    async onSubmit ()  {
         const name = await this.getName();
         console.log("The conference name is below")
         console.log(name);
-        console.log("The user mail is below")
-       const mail = await this.getId();
-       console.log(mail);
-       
-        // console.log(this.state.conference_id);
-         console.log(this.state);
-
-        console.log(this.state.conference_name);
-        //SetState and make MakeRequest The call back of the set state
-        this.setState({
-            conference_name: name,
-            email: mail
-           }, () => {
-            const {user_id,conference_id, email, conference_name, type} = this.state;
-            const data = {user_id, conference_id, email, conference_name, type};
-            this.makeRequest(data);
-           console.log(this.state.conference_name, 'conference_name');
-           console.log(data)
-       })
-    
-
-        
-        
+        this.setState({conference_name: name})
+        const {email, conference_id, conference_name, type} = this.state;
+        console.log(email, conference_id, conference_name, type);
+        const data = {email, conference_id, conference_name, type};
+        console.log(data);
+        this.makeRequest(data);
     }
 
     showUsers() {
         const { users } = this.state;
-    
+
         if (users && users.length) {
           return (
             <div>
@@ -274,7 +291,8 @@ class MakeReviewerRequest extends Component {
 
 render() {
     console.log(this.state.conference_name);
-    const {user} = this.state;
+    console.log(this.state.email);
+    const {user, email} = this.state;
 
     return(
        <div className="container-fluid mt-5" 
@@ -295,7 +313,15 @@ render() {
            <label className="label2 copy-font" htmlFor="user" aria-labelledby="user">
                 {/*Choose User*/}
               </label>
-               {this.showUsers()}
+               {/*{this.showUsers()}*/}
+               <input
+                   type="email"
+                   name="email"
+                   value={email}
+                   onChange={this.onChange  }
+                   className="mr-2"
+                   placeholder="Enter email"
+                   style={{backgroundColor: ''}}/>
                </div>
               <div>
               <label className="label2 copy-font" htmlFor="user" aria-labelledby="user">

@@ -38,13 +38,14 @@ class SignUp extends Component {
 
    }
 
-   onSubmit = () => {
-
+   onSubmit = (e) => {
+        e.preventDefault();
      const {title, firstName, lastName, email, affiliation, password,
       phoneNumber, gender, alternate_phone, country, address} = this.state;
      const data = {title, firstName, lastName, email, affiliation,
         password, phoneNumber,gender,alternate_phone, country, address}
         console.log(data);
+     const {history} = this.props;
 
       if(this.state.password !== this.state.conf_password) {
           toast.error("passwords not match")
@@ -59,7 +60,10 @@ class SignUp extends Component {
           if(res.data) {
             console.log(res.data);
             toast.success("Successful registration. Verify your email address");
-            window.location.replace('/login');
+              setTimeout(() => {
+                  history.push('/login');
+              }, 10000);
+            // window.location.replace('/login');
           }
           else {
             toast.error('Something went wrong. Try again')
@@ -80,7 +84,7 @@ class SignUp extends Component {
       country,
       password,
       gender,
-      title,
+      // title,
       conf_password
     } = this.state;
 
@@ -92,7 +96,7 @@ class SignUp extends Component {
       address.length > 0 &&
       country.length > 0 &&
       password.length > 0 &&
-      title.length > 0 &&
+      // title.length > 0 &&
       gender.length > 0 &&
       conf_password.length > 0
     );
@@ -105,13 +109,15 @@ class SignUp extends Component {
 
    onCountryChange = (e) => {
     const { value } = e.target;
-    this.setState({ country: value });
+    this.setState({ country: value }, () => console.log(this.state.country));
   };
 
     render() {
 
       const {firstName, lastName, email,
-         password, phoneNumber, alternate_phone, address, gender} = this.state;
+         password, phoneNumber, alternate_phone, address, gender, country} = this.state;
+      console.log(firstName, lastName, email,
+          password, phoneNumber, alternate_phone, address, gender, country)
 
         const isEnabled = this.submitForm();
 
@@ -120,7 +126,8 @@ class SignUp extends Component {
         <div className="grid-container" >
             <div className="grid-item1">
                 <img className="chair"
-                    src="https://res.cloudinary.com/dthdj5bkt/image/upload/c_scale,h_892,w_680/v1597236064/2xaF4TbjXT0.png"
+                    // src="https://res.cloudinary.com/dthdj5bkt/image/upload/c_scale,h_892,w_680/v1597236064/2xaF4TbjXT0.png"
+                    src="https://res.cloudinary.com/dthdj5bkt/image/upload/c_scale,h_908,w_700/v1597277491/sign-up.png"
                     style={{marginTop: '-10px', marginLeft: '-1.85em', marginBottom: '-20px', }}
                 />
                 <img className="slogo" src={logo} />
@@ -129,7 +136,7 @@ class SignUp extends Component {
             </div>
           <div className="grid-item2">
               <div >
-              <h5 className="" style={{marginRight: '24em', marginBottom: '-1.5em', fontFamily: 'Trebuchet MS'}}><b> SIGN UP FOR CUCMS </b></h5>
+              <h5 className="" style={{marginRight: '24em', marginBottom: '-1.5em', fontFamily: 'Trebuchet MS'}}><b> Sign up for CUCMS </b></h5>
 
                   {/*<h6 style={{fontFamily: 'Trebuchet MS', }}>Fill the form below to continue</h6>*/}
                   <p style={{marginLeft: '20em',fontFamily: 'Trebuchet MS', marginBottom: '4em', marginTop: '3px'}}><b>
@@ -253,10 +260,11 @@ class SignUp extends Component {
                       </div>
                   </div>
                   <div className="text-center">
-                      <button type="button" className="btn signupbutton "
+                      <button type="submit" className="btn signupbutton "
                               disabled={!isEnabled}
                               style={{width: '16em', borderRadius: '7px', marginRight: '22em', marginTop: '1em'}}
-                              onClick={this.onSubmit}>
+                              // onClick={this.onSubmit}
+                      >
                           Create Account
                       </button>
                   </div>

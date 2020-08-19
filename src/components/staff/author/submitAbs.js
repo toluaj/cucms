@@ -32,7 +32,6 @@ class submitAbs extends Component {
         this.onChange = this.onChange.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.handelChange = this.handelChange.bind(this);
-        // this.downloadFile = this.downloadFile.bind(this);
     }
 
     componentWillMount() {
@@ -160,7 +159,7 @@ class submitAbs extends Component {
 
         axios({
             method: 'get',
-            url: 'http://localhost:8080/api/cu/conference',
+            url: 'http://localhost:8080/api/cu/conference/sub',
             headers: {
                 'Authorization': `Bearer ${sessionStorage.getItem('token')}`
             }
@@ -174,53 +173,50 @@ class submitAbs extends Component {
         })
     }
 
-    // downloadFile = () => {
-    //
-    //     axios({
-    //         method: 'get',
-    //         url: 'http://localhost:8080/api/cu/abstract/upload',
-    //         headers: {
-    //             'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-    //         }
-    //     })
-    //     .then((res) => {
-    //         if(res.data){
-    //             console.log(res.data);
-    //             // window.open(`${res.data.file}`);
-    //             window.open('http://localhost:8080/'+res.data.file);
-    //             // FileDownload('data', res.data.file);
-    //             console.log(window.location.pathname);
-    //         }
-    //         else {
-    //             console.log('could not upload abstract!')
-    //           }
-    //     })
-    //     .catch(err => {
-    //         console.log("no authorization")
-    //     })
-    // }
+    submitForm = () => {
+        const {
+            firstName,
+            lastName,
+            topic,
+            affiliation,
+            email,
+            abstract_text
+        } = this.state;
+
+        return (
+            firstName.length > 0 &&
+            lastName.length > 0 &&
+            email.length > 0 &&
+            topic.length > 0 &&
+            affiliation.length > 0 &&
+            abstract_text.length > 0
+        );
+    };
 
     render() {
 
         let {authorList, conferences, user} = this.state;
         console.log(conferences)
         const {topic, affiliation, firstName, lastName, abstract_text, abstract, email} = this.state;
+        const isEnabled = this.submitForm();
+
 
         return(
             <div className="container-fluid">
                 <ToastContainer/>
-                <div className="jumbotron">
-                    <div className="image">
-                        <img className="img" style={{width: '7em', height: '4em'}} src={logo}/>
-                    </div>
-                    <br/>
-                    <h3 className=" head mr-5"><b>CUCMS</b></h3>
-                </div>
-                <SideBar user={user}/>
+                {/*<div className="">*/}
+                {/*    <SideBar user={user}/>*/}
+                {/*    <div className="image">*/}
+                {/*        <img className="img" style={{width: '7em', height: '4em'}} src={logo}/>*/}
+                {/*    </div>*/}
+                {/*    <br/>*/}
+                {/*    <h3 className=" head mr-5"><b>CUCMS</b></h3>*/}
+                {/*</div>*/}
                 <div className="row">
                     <h5 className="submit mt-5 mb-3 col-12">SUBMIT ABSTRACT</h5>
                     {/* <br/> */}
                 </div>
+                <SideBar user={user}/>
                 <div className="row">
                     <div className="instructions col-12">
                     <h6><u>Instructions for the submission of an abstract</u></h6>
@@ -253,7 +249,7 @@ class submitAbs extends Component {
                     </div>
                 </div>
                     <div className="submission">
-                        <form className="ml-4" id="wrapper"
+                        <form className="ml-4 form-group" id="wrapper"
                         onSubmit={this.onSubmit} encType="multipart/form-data">
                         <h5><u>Abstract Title<b style={{color: 'red'}}>*</b></u></h5>
                         <p>Title must not exceed 200 characters</p>
@@ -322,12 +318,13 @@ class submitAbs extends Component {
                             <textarea name="affiliation" onChange={this.onChange}
                             value={affiliation} cols="50" rows="3"></textarea>
                         </div>
-                        <h5 className="mt-3"><u>Upload Extended Abstract<b style={{color: 'red'}}>*</b></u></h5>
+                        <h5 className="mt-3"><u>Upload Extended Abstract</u></h5>
                         <input type="file" name="abstract" onChange={this.handelChange} className="mt-2"/>
                         </div>
                             <button type="submit"
                                     className="btnsub btn "
                                     style={{fontFamily: 'Times New Roman'}}
+                                    disabled={!isEnabled}
                                     name="submit">
                             <p className="sign">SUBMIT</p></button>
                         </form>
