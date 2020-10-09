@@ -16,7 +16,8 @@ class MakeReviewerRequest extends Component {
             user_id: '',
             conference_id: '',
             user: {},
-            loading: ''
+            loading: '',
+            type: ''
 
         }
         this.onChange = this.onChange.bind(this);
@@ -161,9 +162,9 @@ class MakeReviewerRequest extends Component {
             if(res.data) {
                 console.log(res.data);
                 toast.success('Request made');
-                // setTimeout(() => {
-                //     window.location.reload();
-                // }, 10000);
+                setTimeout(() => {
+                    window.location.reload();
+                }, 5000);
             }
         }).catch(err => {
             console.log(err.message);
@@ -284,15 +285,32 @@ class MakeReviewerRequest extends Component {
         return (
           <div>
             <label className="label2 copy-font">Conference</label>
-            <small>No Conferences to display</small>
+            <h6 style={{marginBottom: '1em'}}>No Conferences to display</h6>
           </div>
         );
     }
 
+    submitForm = () => {
+        const {
+            conference_id,
+            email,
+            type
+        } = this.state;
+
+        return (
+            conference_id.length > 0 &&
+            email.length > 0 &&
+            type.length > 0
+        );
+    };
+
 render() {
     console.log(this.state.conference_name);
+    console.log(this.state.conference_id.length);
+    console.log(this.state.type.length);
     console.log(this.state.email);
     const {user, email} = this.state;
+    const isEnabled = this.submitForm();
 
     return(
        <div className="container-fluid mt-5" 
@@ -336,8 +354,9 @@ render() {
            </div>
            <button onClick={this.onSubmit}
                    className="btn btn-block"
+                   disabled={!isEnabled}
                    style={{backgroundColor: '#0c081d', width: '15em', color: 'white',
-                    marginLeft: '3em', marginBottom: '2em'}}>MAKE REQUEST</button>
+                    marginLeft: '3em', marginBottom: '2em', fontFamily: 'Trebuchet MS'}}>MAKE REQUEST</button>
            </form>
        </div>
     );

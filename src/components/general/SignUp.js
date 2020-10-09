@@ -128,6 +128,7 @@ class SignUp extends Component {
                 <img className="chair"
                     // src="https://res.cloudinary.com/dthdj5bkt/image/upload/c_scale,h_892,w_680/v1597236064/2xaF4TbjXT0.png"
                     src="https://res.cloudinary.com/dthdj5bkt/image/upload/c_scale,h_908,w_700/v1597277491/sign-up.png"
+                    // src="../images/signup.png"
                     style={{marginTop: '-10px', marginLeft: '-1.85em', marginBottom: '-20px', }}
                 />
                 <img className="slogo" src={logo} />

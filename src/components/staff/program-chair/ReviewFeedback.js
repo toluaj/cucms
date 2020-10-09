@@ -306,7 +306,7 @@ class ReviewFeedback extends Component {
                                   <th>MAIN AUTHOR</th>
                                   <th>ABSTRACT</th>
                                   {/*<th>Feedback</th>*/}
-                                  <th style={{marginLeft: '2em'}}>RECOMMENDATION</th>
+                                  <th style={{marginLeft: '2em'}}>RECOMMENDED</th>
                                   <th>STATUS</th>
                                   <th>RESPONSE</th>
                               </tr>
@@ -330,7 +330,7 @@ class ReviewFeedback extends Component {
                                             path={path}
                                           />
                                       </td>
-                                      <td>{rev.recommendation}</td>
+                                      <td>{(rev.recommendation).toUpperCase()}</td>
                                       <td>{rev.abstract.status}</td>
                                       {rev.abstract.status === "pending" ? <td>
                                           {/*<button>*/}

@@ -155,8 +155,12 @@ class SplashPage extends Component {
                         <img src={logo}/>
                     </div>
                     <div className="head"> 
-                    <h1 style={{ fontFamily: 'Trebuchet MS'}}><b>CUCMS</b></h1>
-                    {/*<p>A solution to manage conferences in Covenant University</p>  */}
+                    <h1 style={{ fontFamily: 'Trebuchet MS', display: 'inline' }}><b>CUCMS</b></h1>
+                    {/*<a*/}
+                    {/*    style={{ fontFamily: 'Trebuchet MS', display: 'inline',*/}
+                    {/*        marginRight: '2em', color: 'black', fontSize: '15px' }}*/}
+                    {/*    href="/contact-us"*/}
+                    {/*>Contact Us</a>*/}
                     </div>
                 </div>
                 <SplashSideBar user = {user}/>

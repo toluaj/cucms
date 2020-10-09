@@ -14,7 +14,8 @@ class ReviewAbstract extends Component {
             logged: '',
             feedback: '',
             recommendation: '',
-            abstract_id: ''
+            abstract_id: '',
+            review: []
         }
         this.downloadFile = this.downloadFile.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
@@ -22,6 +23,7 @@ class ReviewAbstract extends Component {
 
     componentWillMount() {
         this.fetchLoggedOnUser();
+        this.getReview();
     }
 
     fetchLoggedOnUser() {
@@ -92,10 +94,27 @@ class ReviewAbstract extends Component {
 
     }
 
+    getReview() {
+
+        axios({
+            method: 'get',
+            url: 'http://localhost:8080/api/cu/review',
+            headers: {
+                'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+            }
+        }).then(res => {
+            console.log(res.data.data);
+            this.setState({
+                review: res.data.data
+            })
+        })
+    }
+
     render() {
-        const {user, feedback} = this.state;
+        const {user, feedback, review} = this.state;
         const {name, abstract} = this.props;
         console.log(abstract);
+        console.log(review.length);
         return (
             <div
                 id="review" className="modal fade in"
@@ -130,35 +149,47 @@ class ReviewAbstract extends Component {
                             </div>
                             <form>
                                 <div className="container-rev">
-                                    <div>
-                                        <label htmlFor="feedback">Feedback</label>
-                                        <textarea name="feedback" id="feedback" value={feedback}
-                                                  onChange={this.onChange}
-                                                  cols="50" rows="10" className="form-control"></textarea>
-                                    </div>
-                                    <div>
-                                        <label className="mt-4">Do you recommend the publishing of this abstract?</label>
-                                    <div className="radio">
-                                        <input id="radio-1" className="rad" name="recommendation"
-                                               value="yes" type="radio" onChange={this.onChange}/>
-                                            <label for="radio-1" className="radio-label">Yes</label>
-                                    </div>
+                                    {review.feedback ?
+                                        <div>
+                                            <label htmlFor="feedback">Feedback</label>
+                                            <textarea value={review.feedback}
+                                                      cols="50" rows="10" className="form-control" readOnly></textarea>
+                                        </div> :
+                                        <div>
+                                            <label htmlFor="feedback">Feedback</label>
+                                            <textarea name="feedback" id="feedback" value={feedback}
+                                                      onChange={this.onChange}
+                                                      cols="50" rows="10" className="form-control"></textarea>
+                                        </div>}
+                                    {review.recommendation ? <div>
+                                        <label className="mt-4">Did you recommend the publishing of this
+                                            abstract?</label>
+                                        <input type="text" value={review.recommendation} readOnly/>
+                                    </div>:
+                                        <div>
+                                            <label className="mt-4">Do you recommend the publishing of this
+                                                abstract?</label>
+                                            <div className="radio">
+                                                <input id="radio-1" className="rad" name="recommendation"
+                                                       value="yes" type="radio" onChange={this.onChange}/>
+                                                <label htmlFor="radio-1" className="radio-label">Yes</label>
+                                            </div>
 
-                                    <div className="radio">
-                                        <input id="radio-2" name="recommendation" className="rad"
-                                               value="no" type="radio" onChange={this.onChange}/>
-                                            <label  for="radio-2" className="radio-label">No</label>
-                                    </div>
-                                    </div>
-
-                                    <div className="modal-footer">
+                                            <div className="radio">
+                                                <input id="radio-2" name="recommendation" className="rad"
+                                                       value="no" type="radio" onChange={this.onChange}/>
+                                                <label htmlFor="radio-2" className="radio-label">No</label>
+                                            </div>
+                                        </div>}
+                                    {review.feedback ? "" : <div className="modal-footer">
                                         <button
                                             type="button"
-                                            className="btn btn-primary"
-                                            style={{marginRight: '18em'}}
+                                            className="btn btn-block"
+                                            style={{backgroundColor: '#0c081d', width: '10em', color: 'white',
+                                            marginRight: '18em', marginBottom: '2em', fontFamily: 'Trebuchet MS'}}
                                             onClick={this.onSubmit}
                                         >SUBMIT REVIEW</button>
-                                    </div>
+                                    </div>}
                                 </div>
 
                             </form>

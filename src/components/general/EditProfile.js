@@ -138,7 +138,8 @@ editProfile = (e) => {
         </div>
         <div className="footer">
           <button type="submit" className="btn btn-block" onClick={this.editProfile}
-                  style={{width: '17em', marginLeft: '26em', borderRadius: '7px', color: 'white', backgroundColor: '#0c081d'}}>
+                  style={{width: '17em', marginLeft: '26em', borderRadius: '7px',
+                    color: 'white', backgroundColor: '#0c081d', fontFamily: 'Trebuchet MS'}}>
             UPDATE
           </button>
         </div>

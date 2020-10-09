@@ -137,6 +137,9 @@ class submitAbs extends Component {
              if(res.data) {
                console.log(res.data);
                toast.success("Successful upload");
+                 setTimeout(() => {
+                     window.location.reload();
+                 }, 10000);
              }
              else {
                toast.error('Something went wrong. Try again')
@@ -259,7 +262,7 @@ class submitAbs extends Component {
                         <p>Text must not exceed 5000 characters</p>
                         <textarea className="ta-abstract" onChange={this.onChange}
                                   name="abstract_text" value={abstract_text}
-                                  cols="90" rows="20"></textarea>
+                                  cols="90" rows="20" maxLength="5000"></textarea>
                         <div>
                         {/* {authorList.map((val, i) => {
                             let firstName = `firstName-${i}`, lastName = `lastName-${i}`, email = `email-${i}`
@@ -323,7 +326,7 @@ class submitAbs extends Component {
                         </div>
                             <button type="submit"
                                     className="btnsub btn "
-                                    style={{fontFamily: 'Times New Roman'}}
+                                    style={{fontFamily: 'Trebuchet MS'}}
                                     disabled={!isEnabled}
                                     name="submit">
                             <p className="sign">SUBMIT</p></button>

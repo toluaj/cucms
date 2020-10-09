@@ -170,7 +170,7 @@ class createConference extends Component {
               <div className="form-group col-sm-6 desc">
               <label for="username">Description <b style={{color: 'red'}}>*</b></label>
               {/* <input type="text" name="username" /> */}
-              <textarea rows="3"
+              <textarea rows="10"
                         cols="32"
                         name="description"
                         value={description}
@@ -218,6 +218,7 @@ class createConference extends Component {
           <button type="button"
            className="btn btn-block confbut"
            disabled={!isEnabled}
+                  style={{fontFamily: 'Trebuchet MS'}}
            onClick={this.onSubmit}>
             CREATE
           </button>

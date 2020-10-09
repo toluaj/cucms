@@ -43,7 +43,7 @@ class AbstractAssign extends Component {
         return (
             <div>
                 {/*<label className="label2 copy-font">User</label>*/}
-                <small>No Abstracts to display</small>
+                <h6>No Abstracts to display</h6>
             </div>
         );
     }
@@ -71,7 +71,7 @@ class AbstractAssign extends Component {
         return (
             <div>
                 {/*<label className="label2 copy-font">User</label>*/}
-                <small>No Abstracts to display</small>
+                <h6>No Reviewers to display</h6>
             </div>
         );
     }
@@ -140,7 +140,8 @@ class AbstractAssign extends Component {
                                         <button
                                             type="button"
                                             className="btn btn-block"
-                                            style={{marginLeft: '7em', position: 'left', backgroundColor: '#0c081d', color: 'white'}}
+                                            style={{marginLeft: '7em', position: 'left', backgroundColor: '#0c081d',
+                                                color: 'white', fontFamily: 'Trebuchet MS'}}
                                             onClick={this.assignAbstract}
                                         >
                                             ASSIGN ABSTRACT

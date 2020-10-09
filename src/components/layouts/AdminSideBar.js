@@ -55,7 +55,7 @@ class AdminSideBar extends Component {
                         <i class="fa fa-server" title="Conferences" aria-hidden="true" style={{fontSize: '1.75em'}}></i>
                         </NavIcon>
                         <NavText>Conferences</NavText>
-                    {role === "chair" || role === "admin" ?
+                    {role === "admin" ?
                         <NavItem>
                         <NavText><Link to="/createconference" className="nav-link"> Add Conference </Link></NavText>
                     </NavItem> : ""}
@@ -74,6 +74,10 @@ class AdminSideBar extends Component {
                     {role === "chair" ?
                     <NavItem>
                         <NavText><Link to="/confprogram" className="nav-link"> Create Sessions </Link></NavText>
+                    </NavItem> : ""}
+                    {role === "chair" || role === "admin"?
+                    <NavItem>
+                        <NavText><Link to="/parties" className="nav-link"> View Registered Parties </Link></NavText>
                     </NavItem> : ""}
                     {role === "chair" ?
                     <NavItem>

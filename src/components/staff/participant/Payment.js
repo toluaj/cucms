@@ -149,6 +149,10 @@ class Payment extends Component {
                      if(res.data) {
                          console.log(res.data);
                          toast.success('Payment successful!');
+
+                         setTimeout(() => {
+                             window.location.replace('/');
+                         }, 10000);
                      }
                  })
 
@@ -167,10 +171,22 @@ class Payment extends Component {
         this.dummy();
     }
 
+    submit = () => {
+
+       const {affiliation} = this.state;
+
+        return (
+            affiliation.length > 0
+        );
+    }
+
     render() {
         const {program, name} = this.props;
         const {affiliation} = this.state;
         console.log(this.state);
+
+        const isEnabled = this.submit();
+
         return (
             <div
                 id="payment"
@@ -214,8 +230,9 @@ class Payment extends Component {
                             </div>
                             <button className="text-center btn btn-block"
                                     style={{marginLeft: '18em', backgroundColor: 'rgb(209,190,190)',
-                                        position:'relative', width: '4em'}}
+                                        position:'relative', width: '4em', fontFamily: 'Trebuchet MS'}}
                                     type="submit"
+                                    disabled={!isEnabled}
                             >PAY</button>
                             </form>
                         </div>

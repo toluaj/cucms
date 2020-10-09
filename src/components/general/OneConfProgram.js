@@ -3,11 +3,6 @@ import moment from 'moment';
 
 const OneConfProgram = ({name, id, program}) => {
 
-        // console.log(this.props.id);
-        // console.log(this.state.conference_id);
-        // const {name, id, program} = this.props;
-        // const {acts} = this.props.program;
-        // console.log(acts);
         return(
             <div
                 id="program"
@@ -21,7 +16,7 @@ const OneConfProgram = ({name, id, program}) => {
                     <div className="modal-content" style={{ width: '45em', marginRight: '3em' }}>
                         <div className="modal-header">
                             <h4 className="modal-title text-center" id="myModalLabel"  style={{ fontFamily: 'Trebuchet MS'}}>
-                                Program for {name}
+                                PROGRAM FOR '{name}'
                             </h4>
                             <button type="button" className="close" data-dismiss="modal" aria-hidden="true">
                                 ×
@@ -33,7 +28,7 @@ const OneConfProgram = ({name, id, program}) => {
                                     <table className="table copy-font"
                                            style={{minWidth: '30em', fontFamily: 'Open Sans'}}>
                                         {/*<thead>*/}
-                                        {program.map((prog, i)  => (
+                                        {program.length > 0 ? program.map((prog, i)  => (
                                             <tr key={i}>
                                                 <tr><b>{prog.program.toUpperCase()}</b></tr>
                                                 <br/>
@@ -58,7 +53,7 @@ const OneConfProgram = ({name, id, program}) => {
                                             ))}
                                                 </tbody>
                                             </tr>
-                                    ))}
+                                    )) : "No sessions available at this time. Come back later."}
                                         {/*</thead>*/}
                                     </table>
                                 </div>
