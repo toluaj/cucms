@@ -1,3 +1,6 @@
+This project is written to facilitate the tasks of program chairs and conference heads in organizing a conference. With features like 'Call for Paper', 'Submit Abstract', 'Assign Abstract', 'Review Abstract', 'Request Reviewer/Chair', 'Create Conference', 'Payment', this management system was written with all users in mind.
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
